@@ -1,0 +1,56 @@
+<% if (isAuthenticated) { %>
+<div
+  class="modal fade"
+  id="deleteConfirmation"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+>
+  <div
+    class="
+      modal-dialog modal-dialog-centered
+      mx-5 mx-sm-auto mx-md-auto mx-lg-auto
+    "
+  >
+    <div class="modal-content">
+      <div class="modal-body">
+        <form
+          id="signinFormFromSinglePage"
+          class="p-3 p-md-3"
+          action="/videos"
+          method="post"
+        >
+          <!-- text -->
+          <div class="form-floating mb-4">
+            <h4>Add video</h4>
+          </div>
+
+          <div>
+            <input
+              type="hidden"
+              id="csrfToken"
+              name="_csrf"
+              value="<%= csrfToken %>"
+            />
+            <input
+              type="hidden"
+              id="userId"
+              name="userId"
+              value="<%= user.id %>"
+            />
+            <!-- button -->
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-dark">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>

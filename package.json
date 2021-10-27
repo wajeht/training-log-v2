@@ -1,0 +1,42 @@
+{
+  "name": "training-log",
+  "version": "1.0.0",
+  "description": "A full-stack web application to log training videos with the respect to weekly split!",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon bin/server.js",
+    "start": "node bin/server.js",
+    "restartdb": "npm run rollback && npm run migrate:latest && npm run seed:run",
+    "rollback": "knex migrate:rollback --knexfile=./db/knexfile.js",
+    "migrate:make": "knex migrate:make --knexfile=./db/knexfile.js",
+    "migrate:latest": "knex migrate:latest --knexfile=./db/knexfile.js",
+    "migrate:rollback": "knex migrate:rollback --knexfile=./db/knexfile.js",
+    "seed:make": "knex seed:make --knexfile=./db/knexfile.js",
+    "seed:run": "knex seed:run --knexfile=./db/knexfile.js"
+  },
+  "author": "wajeht",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "connect-session-knex": "^1.6.0",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
+    "helmet": "^4.6.0",
+    "knex": "^0.95.11",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.2",
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.14"
+  }
+}

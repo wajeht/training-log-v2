@@ -1,0 +1,21 @@
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <% if (isAuthenticated) { %>
+    <li class="nav-item">
+      <a
+        class="nav-link <%= pageTitle === 'TrainingLog: Videos' ? 'active' : '' %>"
+        aria-current="page"
+        href="/videos"
+        >Videos</a
+      >
+    </li>
+  <% } %>
+  <li class="nav-item">
+    <a  class="nav-link <%= pageTitle === 'TrainingLog: Faq' ? 'active' : '' %>"
+        href="/faq">FAQ</a>
+  </li>
+  <li class="nav-item">
+    <a  class="nav-link <%= pageTitle === 'TrainingLog: Contact' ? 'active' : '' %>"
+        href="/contact">Contact</a>
+  </li>
+</ul>

@@ -1,0 +1,72 @@
+<% if (isAuthenticated) { %>
+
+<div class="d-flex">
+  <!-- search form -->
+  <form class="d-flex" method="get" action="/search/?">
+    <input class="form-control" type="search" placeholder="Search" name="q" />
+  </form>
+
+  <!-- add -->
+  <a href=""
+    data-bs-toggle="modal"
+    data-bs-target="#addPostModal"
+  >
+    <i
+      class="bi bi-plus-circle-fill text-light mx-2"
+      style="font-size: 1.7em"
+    ></i>
+
+  </a>
+
+  <!-- profile image -->
+  <div class="btn-group d-flex justify-content-between align-items-center">
+    <!-- image -->
+    <img
+      src="<%= user.profile_picture_url %> "
+      alt="mdo"
+      width="27.203"
+      height="27"
+      class="rounded-circle"
+      type="button"
+      class="btn btn-secondary dropdown-toggle"
+      data-bs-toggle="dropdown"
+      data-bs-display="static"
+      aria-expanded="false"
+    />
+    <!-- dropdown menu -->
+    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-end shadow-sm">
+      <li>
+        <a class="dropdown-item" href="/users/<%= user.username %> "
+          >My profile</a
+        >
+      </li>
+      <li>
+        <a class="dropdown-item" href="/users/<%= user.username %> "
+          >Settings</a
+        >
+      </li>
+      <li><hr class="dropdown-divider" /></li>
+
+      <li>
+        <form action="/logout" method="post">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button class="dropdown-item" type="submit">Log Out</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<% } else { %>
+
+<!-- signin button -->
+<button
+  type="button"
+  class="btn btn-outline-light"
+  data-bs-toggle="modal"
+  data-bs-target="#signInModal"
+>
+  Sign in
+</button>
+
+<% } %>

@@ -1,0 +1,57 @@
+<% if (isAuthenticated) { %>
+<!-- post a comment -->
+<div class="col-lg-9 col-sm-12 my-0 animate__animated animate__fadeIn">
+  <div class="card shadow-sm">
+    <div class="card-body" id="comment_section">
+      <h5 class="card-title">Comment</h5>
+      <div class="form-group mb-3">
+        <input
+          type="hidden"
+          id="username"
+          name="username"
+          value="<%= user.username %>"
+        />
+        <input
+          type="hidden"
+          id="videoId"
+          name="videoId"
+          value="<%= videoDetails.id %>"
+        />
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+          name="comment"
+          required
+        ></textarea>
+      </div>
+      <input
+        type="hidden"
+        id="csrfToken"
+        name="_csrf"
+        value="<%= csrfToken %>"
+      />
+      <button id="postAComment" type="button" class="btn btn-dark" onclick="postComment(this)">
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+
+<% } else { %>
+<!-- sign in to comment -->
+<div
+  class="col-lg-9 col-sm-12 animate__animated animate__fadeIn mt-0"
+  id="comment_section"
+>
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title">Comment</h5>
+      <p class="card-text"><a href="/signin">Sign in</a> to comment!</p>
+      <p class="card-text">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </p>
+    </div>
+  </div>
+</div>
+<% } %>

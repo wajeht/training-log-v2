@@ -1,0 +1,80 @@
+<% if (!isAuthenticated) { %>
+<div
+  class="modal fade"
+  id="signInModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+>
+  <div
+    class="
+      modal-dialog modal-dialog-centered
+      mx-5 mx-sm-auto mx-md-auto mx-lg-auto
+    "
+  >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          id="signinFormFromModal"
+          class="p-3 p-md-3"
+          action="/login"
+          method="post"
+        >
+          <div class="text-center mb-4">
+            <h4>Sign in</h4>
+            <p>Don't have an account yet? <a href="/signup">Signup</a> here</p>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              name="email"
+              type="email"
+              class="form-control"
+              id="floatingInput"
+              placeholder="name@example.com"
+              required
+            />
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              name="password"
+              type="password"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Password"
+              required
+            />
+            <label for="floatingPassword">Password</label>
+          </div>
+          <input
+            type="hidden"
+            id="csrfToken"
+            name="_csrf"
+            value="<%= csrfToken %>"
+          />
+          <button
+            id="signinButtonFromModal"
+            class="w-100 btn btn-lg btn-dark"
+            type="submit"
+          >
+            Sign in
+          </button>
+          <hr class="my-4" />
+          <small class="text-muted"
+            >Forget your password? <a href="/forget-password">click here</a> to
+            reset your password!</small
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>

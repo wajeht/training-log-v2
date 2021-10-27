@@ -1,0 +1,16 @@
+<% if (!isAuthenticated) { %>
+
+  <div class="text-center">
+    <div id="videos-home-page-spinner" class="spinner-border" role="status"></div>
+  </div>
+
+<% } else { %>
+
+  <div
+    id="videos-home-page-spinner"
+    class="spinner-border"
+    style="position: fixed; top: 30%; left: 50%"
+    role="status"
+  ></div>
+
+<% } %>

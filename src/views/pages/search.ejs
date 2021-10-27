@@ -1,0 +1,78 @@
+<section class="px-4 py-5 border-top">
+  <div class="container">
+    <div class="row g-3">
+      <!-- videos -->
+
+      <% if (searchResults.length > 0 ) { %>
+        <% for (const video of searchResults) { %>
+
+          <!-- single video -->
+          <div class="col-6 col-sm-4 col-lg-3">
+            <div class="card shadow-sm" data-aos="zoom-in">
+              <div
+                class="card-body d-flex justify-content-between align-items-center"
+              >
+                <a
+                  class="
+                    d-flex
+                    gap-2
+                    justify-content-center
+                    align-items-center
+                    text-decoration-none
+                    link-dark
+                  "
+                  href="/users/<%= video.username %>"
+                >
+                  <img
+                    src="<%= video.profile_picture_url %>"
+                    alt="mdo"
+                    width="30"
+                    height="30"
+                    class="rounded-circle"
+                  />
+                  <h6 class="card-title"><%= video.username %></h6>
+                </a>
+                <a href="/" class="link-dark"><i class="bi bi-three-dots"></i></a>
+              </div>
+              <a href="/videos/<%= video.id  %> ">
+                <img
+                  src="<%= video.screenshot_url %>"
+                  class="card-img-top"
+                  alt="..."
+                />
+              </a>
+              <!-- post below -->
+              <div
+                class="card-body d-flex justify-content-between align-items-center"
+              >
+                <!-- post title -->
+                <a
+                  href="/videos/<%= video.id %>"
+                  class="text-decoration-none link-dark"
+                >
+                  <h6><%= video.title %></h6>
+                </a>
+
+                <!-- comment -->
+                <a
+                  href="/videos/<%= video.id  %>#comment_section"
+                  class="link-dark"
+                >
+                  <i class="bi bi-chat"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        <% } %>
+      <% } else { %>
+
+        <div class="my-5 text-center">
+          <h1 class="fw-bold">No videos</h1>
+        </div>
+
+      <% } %>
+
+    </div>
+  </div>
+</section>

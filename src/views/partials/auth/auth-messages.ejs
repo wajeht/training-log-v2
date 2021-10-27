@@ -1,0 +1,18 @@
+<% if (authMessages.error != '') { %>
+  <div class="alert alert-danger" role="alert">
+    <%= authMessages.error%>
+  </div>
+<% } %>
+
+<% if (authMessages.success != '') { %>
+  <div class="alert alert-success" role="alert">
+    <%= authMessages.success%>
+  </div>
+<% } %>
+
+<% if (authMessages.warning != '') { %>
+  <div class="alert alert-warning" role="alert">
+    <%= authMessages.warning%>
+  </div>
+<% } %>
+
