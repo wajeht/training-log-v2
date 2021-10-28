@@ -44,7 +44,7 @@ exports.seed = (knex) => {
           username: "thejaw",
           password:
             "$2a$14$wN0neQToMrorwU7lylerJeVmFHvXZB.ZzyEj/ZbjDOk4TIBXcaEfq",
-          email: "zombbayrd@gmail.com",
+          email: "zombyard@gmail.com",
           profile_picture_url: "https://placekitten.com/400/400",
         },
       ]);

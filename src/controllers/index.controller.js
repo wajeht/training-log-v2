@@ -16,6 +16,7 @@ const getIndex = async (req, res, next) => {
       videos,
     });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };

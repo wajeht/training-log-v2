@@ -48,7 +48,27 @@ const getVideo = async (req, res, next) => {
 };
 
 const deleteVideo = async (req, res, next) => {
-  console.log(req.body);
+  const { videoId, userId } = req.body;
+
+  try {
+    //
+    if (userId != req.session.user.id) {
+      throw new Error("not authorized!");
+    }
+
+    const deleted = await Video.deleteVideoWithVideoIdAndUserId(
+      videoId,
+      userId
+    );
+
+    if (!deleted) {
+      throw new Error("err!");
+    }
+
+    res.status(200).json({ message: "success!" });
+  } catch (err) {
+    res.status(500).json({ message: "failed!" });
+  }
 };
 
 const getVideos = async (req, res, next) => {

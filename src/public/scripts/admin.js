@@ -93,6 +93,48 @@ const postComment = (btn) => {
   })();
 };
 
+const setVideoIdLocalStorage = (btn) => {
+  const videoId = btn.parentNode.children[1].value;
+  window.localStorage.setItem("videoId", videoId);
+
+  const userId = btn.parentNode.children[0].value;
+  window.localStorage.setItem("userId", userId);
+};
+
 const deleteVideo = (btn) => {
-  alert("hi");
+  const videoId = window.localStorage.getItem("videoId");
+  const userId = window.localStorage.getItem("userId");
+  const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
+
+  (async () => {
+    fetch(`/videos/${videoId}`, {
+      method: "DELETE",
+      headers: {
+        "csrf-token": csrf,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ videoId, userId }), //if you do not want to send any addional data,  replace the complete JSON.stringify(YOUR_ADDITIONAL_DATA) with null
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        const { message } = res;
+        if (message === "success!") {
+          document
+            .getElementById(`video-card${videoId}`)
+            .classList.add("animate__zoomOut");
+
+          document
+            .getElementById(`video-card${videoId}`)
+            .classList.add("animate__fast");
+          setTimeout(() => {
+            document.getElementById(`video-card${videoId}`).remove();
+          }, 400);
+        } else {
+          alert("errr!");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })();
 };

@@ -28,6 +28,8 @@ class Comment {
       .into("comment")
       .returning(["comment", "date", "video_id", "user_id"]);
   };
+
+  
 }
 
 module.exports = Comment;

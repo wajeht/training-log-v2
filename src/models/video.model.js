@@ -5,9 +5,17 @@ class Video {
     return db.select().from("video");
   };
 
+  static deleteVideoWithVideoIdAndUserId = (videoId, userId) => {
+    return db.del().from("video").where({
+      id: videoId,
+      user_id: userId,
+    });
+  };
+
   static getAllVideosWithUserDetails = () => {
     return db
       .select(
+        "video.user_id",
         "user.username",
         "user.profile_picture_url",
         "video.screenshot_url",
@@ -22,6 +30,7 @@ class Video {
   static getAllVideosThatMatchesUsername = (username) => {
     return db
       .select(
+        "video.user_id",
         "user.username",
         "user.profile_picture_url",
         "video.screenshot_url",

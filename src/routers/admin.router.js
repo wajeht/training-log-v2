@@ -18,7 +18,7 @@ router.get("/videos", loginRequired, getVideos);
 router.get("/videos/:id", getVideo);
 router.get("/users/:username", loginRequired, getUser);
 
-router.delete("videos/:id", deleteVideo);
+router.delete("/videos/:id", deleteVideo);
 
 router.post("/videos", postVideo);
 router.post("/comments/:id", loginRequired, postComment);
