@@ -85,10 +85,6 @@ if (postAComment) {
   });
 }
 
-/**
- * Automate on scroll initialization
- */
-AOS.init();
 
 /**
  * Sign in modal initialization

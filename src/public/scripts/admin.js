@@ -121,6 +121,10 @@ const deleteVideo = (btn) => {
         if (message === "success!") {
           document
             .getElementById(`video-card${videoId}`)
+            .classList.add("animate__animated");
+
+          document
+            .getElementById(`video-card${videoId}`)
             .classList.add("animate__zoomOut");
 
           document
