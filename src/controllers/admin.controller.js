@@ -3,25 +3,25 @@ const User = require("../models/user.model.js");
 const Comment = require("../models/comment.model.js");
 
 const postVideo = async (req, res, next) => {
-  const { date, title, description, videoUrl, screenshotUrl, userId } =
-    req.body;
+  try {
+    const { date, title, description, videoUrl, screenshotUrl, userId } =
+      req.body;
 
-  const inserted = await Video.postAVideo(
-    date,
-    title,
-    description,
-    videoUrl,
-    screenshotUrl,
-    userId
-  );
+    let inserted = await Video.postAVideo(
+      date,
+      title,
+      description,
+      videoUrl,
+      screenshotUrl,
+      userId
+    );
+    const [id] = inserted;
 
-  const [id] = inserted;
-
-  if (inserted === undefined) {
-    throw new Error("something went wrong");
+    res.redirect(`/videos/${id}`);
+  } catch (err) {
+    console.log(err);
+    next(err);
   }
-
-  res.redirect(`/videos/${id}`);
 };
 
 const getVideo = async (req, res, next) => {
@@ -36,6 +36,8 @@ const getVideo = async (req, res, next) => {
     const recentVideos = await Video.getRecentVideos();
     const comments = await Comment.getCommentsFromAVideo(id);
 
+    console.log(recentVideos);
+
     res.render("pages/video.ejs", {
       pageTitle: `TrainingLog: ${videoDetails.title}`,
       videoDetails,
@@ -47,11 +49,9 @@ const getVideo = async (req, res, next) => {
   }
 };
 
-const deleteVideo = async (req, res, next) => {
-  const { videoId, userId } = req.body;
-
+const deleteVideo = async (req, res) => {
   try {
-    //
+    const { videoId, userId } = req.body;
     if (userId != req.session.user.id) {
       throw new Error("not authorized!");
     }

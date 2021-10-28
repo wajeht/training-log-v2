@@ -61,6 +61,8 @@ class Video {
   static getRecentVideos = () => {
     return db
       .select(
+        "video.user_id",
+        "user.id",
         "screenshot_url",
         "profile_picture_url",
         "description",
