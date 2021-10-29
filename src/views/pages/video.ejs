@@ -66,6 +66,7 @@
               <input
                 type="hidden"
                 name="userId"
+                id="userId"
                 value="<%= videoDetails.user_id %>"
               />
               <input
@@ -79,8 +80,9 @@
               ></a>
               <a
                 href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteConfirmation"
                 id="delete-button"
-                onclick="deleteVideo(this)"
                 class="link-secondary text-decoration-none"
                 ><i class="bi bi-trash"></i
               ></a>

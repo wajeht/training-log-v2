@@ -128,6 +128,8 @@ const deleteVideo = (btn) => {
     videoId = document
       .querySelector("#delete-button")
       .parentNode.parentNode.parentNode.id.split("video-card")[1];
+    userId =
+      document.querySelector("#delete-button").parentNode.children[0].value;
   }
 
   (async () => {
@@ -147,7 +149,7 @@ const deleteVideo = (btn) => {
           // if we are on single video details page
           // we don't want to animate the deleting
           // but redirect it to videos page after
-          // 2 full seconds
+          // 400  full mil seconds
           if (document.querySelector("#single-video-page")) {
             document
               .getElementById(`single-video-page`)
