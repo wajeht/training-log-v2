@@ -9,21 +9,11 @@ const url = window.location.href;
 if (title.match(regex) || url.match(regex)) {
   document.onreadystatechange = () => {
     if (document.readyState !== "complete") {
-      if (
-        document.querySelector("#main") &&
-        document.querySelector("#spinner")
-      ) {
-        document.querySelector("main").style.visibility = "hidden";
-        document.querySelector("#spinner").style.visibility = "visible";
-      }
+      document.querySelector("main").style.visibility = "hidden";
+      document.querySelector("#spinner").style.visibility = "visible";
     } else {
-      if (
-        document.querySelector("#main") &&
-        document.querySelector("#spinner")
-      ) {
-        document.querySelector("#spinner").style.display = "none";
-        document.querySelector("main").style.visibility = "visible";
-      }
+      document.querySelector("#spinner").style.display = "none";
+      document.querySelector("main").style.visibility = "visible";
     }
   };
 }
@@ -34,25 +24,14 @@ if (title.match(regex) || url.match(regex)) {
 if (title == homePage) {
   document.onreadystatechange = () => {
     if (document.readyState !== "complete") {
-      if (
-        document.querySelector("#videos-home-page") &&
-        document.querySelector("#videos-home-page-spinner")
-      ) {
-        document.querySelector("#videos-home-page").style.visibility = "hidden";
-        document.querySelector("#videos-home-page-spinner").style.visibility =
-          "visible";
-      }
+      document.querySelector("#videos-home-page").style.visibility = "hidden";
+      document.querySelector("#videos-home-page-spinner").style.visibility =
+        "visible";
     } else {
-      if (
-        document.querySelector("#videos-home-page") &&
-        document.querySelector("#videos-home-page-spinner")
-      ) {
-        document.querySelector("#videos-home-page-spinner").style.display =
-          "none";
-        document;
-        document.querySelector("#videos-home-page").style.visibility =
-          "visible";
-      }
+      document.querySelector("#videos-home-page-spinner").style.display =
+        "none";
+      document;
+      document.querySelector("#videos-home-page").style.visibility = "visible";
     }
   };
 }

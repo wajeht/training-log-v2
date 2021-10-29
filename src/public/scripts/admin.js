@@ -80,7 +80,9 @@ const postComment = (btn) => {
 
             // remove the error if exist
             if (document.querySelector("#error")) {
-              document.querySelector("#error").remove();
+              document.querySelectorAll("#error").forEach((el) => {
+                el.remove();
+              });
             }
           }
         } else {
