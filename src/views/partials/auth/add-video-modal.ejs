@@ -75,32 +75,13 @@
             <label for="floatingTextarea2">Description</label>
           </div>
 
-          <!-- video_url  -->
-          <div class="form-floating mb-3">
-            <input
-              name="videoUrl"
-              type="text"
-              class="form-control"
-              id="floatingInput"
-              placeholder="video_url"
-              required
-            />
-            <label for="floatingInput">Video url</label>
-          </div>
-
-          <!-- screenshot_url  -->
-          <div class="form-floating mb-3">
-            <input
-              name="screenshotUrl"
-              type="text"
-              class="form-control"
-              id="floatingInput"
-              placeholder="screenshot_url"
-              required
-            />
-            <label for="floatingInput">Screenshot url</label>
-          </div>
           <div>
+            <input
+              type="hidden"
+              id="userId"
+              name="userId"
+              value="<%= user.id %>"
+            />
             <!-- button -->
             <button
               type="button"

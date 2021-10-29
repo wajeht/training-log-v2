@@ -2,10 +2,20 @@ const Video = require("../models/video.model.js");
 const User = require("../models/user.model.js");
 const Comment = require("../models/comment.model.js");
 
+const { takeScreenshot } = require("../../util/take-screenshot.js");
+const path = require("path");
+const { root } = require("../../util/directory.js");
+
 const postVideo = async (req, res, next) => {
   try {
-    const { date, title, description, videoUrl, screenshotUrl, userId } =
-      req.body;
+    const { date, title, description, userId } = req.body;
+    const video = req.file.path;
+    const videoUrl = path.join(root, video);
+
+    // console.log(date, title, description, userId);
+    // console.log(path);
+
+    const screenshotUrl = await takeScreenshot(video);
 
     let inserted = await Video.postAVideo(
       date,
@@ -15,6 +25,7 @@ const postVideo = async (req, res, next) => {
       screenshotUrl,
       userId
     );
+
     const [id] = inserted;
 
     res.redirect(`/videos/${id}`);

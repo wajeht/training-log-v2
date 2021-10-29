@@ -7,6 +7,7 @@
     "test": "jest",
     "dev": "nodemon bin/server.js",
     "start": "node bin/server.js",
+    "configure": "bash bin/configure.sh",
     "restartdb": "npm run rollback && npm run migrate:latest && npm run seed:run && npm run dev",
     "rollback": "knex migrate:rollback --knexfile=./db/knexfile.js",
     "migrate:make": "knex migrate:make --knexfile=./db/knexfile.js",
