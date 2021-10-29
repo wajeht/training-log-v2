@@ -9,11 +9,14 @@
       <!-- main video -->
       <div class="col-lg-9 col-sm-12">
         <div class="card shadow-sm">
-          <img
-            src="/<%= videoDetails.screenshot_url %>"
-            class="card-img-top"
-            alt="..."
-          />
+          <video
+            controls
+            preload="none"
+            poster="<%= videoDetails.screenshot_url %>"
+          >
+            <source src="<%= videoDetails.video_url %> " type="video/mp4" />
+          </video>
+
           <div class="card-body">
             <h5 class="card-title"><%= videoDetails.title %></h5>
             <p class="card-text"><%= videoDetails.description %></p>

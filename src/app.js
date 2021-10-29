@@ -60,7 +60,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("layout", "main");
 app.use(expressLayouts);
 app.use(express.static(path.join(__dirname, "public")));
-app.use("/data/", express.static("data/"));
+app.use("/data", express.static("data"));
 
 app.use(csrfProtection);
 app.use(localVariables);

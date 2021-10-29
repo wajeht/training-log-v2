@@ -5,7 +5,7 @@ const ffmpeg = require("fluent-ffmpeg");
 
 const takeScreenshot = async (videoPath) => {
   const videoUrlForScreenShot = path.join(root, videoPath);
-  const screenShotFolderPath = path.join(root, "data", "upload", "thumbnails");
+  const screenShotFolderPath = path.join(root, "data", "upload", "thumbnail");
 
   try {
     // take screenshot at the 0 second then save it at uploads/thumbnails
@@ -17,7 +17,13 @@ const takeScreenshot = async (videoPath) => {
     });
 
     const filename = videoPath.split("/").pop().concat("_screenshot.jpg");
-    const screenshotUrl = path.join("data", "upload", "thumbnails", filename);
+    const screenshotUrl = path.join(
+      "/",
+      "data",
+      "upload",
+      "thumbnail",
+      filename
+    );
 
     return screenshotUrl;
   } catch (error) {

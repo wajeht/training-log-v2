@@ -3,34 +3,34 @@ const User = require("../models/user.model.js");
 const Comment = require("../models/comment.model.js");
 
 const { takeScreenshot } = require("../../util/take-screenshot.js");
-const path = require("path");
-const { root } = require("../../util/directory.js");
+const { minifyImage } = require("../../util/minify-image.js");
 
 const postVideo = async (req, res, next) => {
   try {
     const { date, title, description, userId } = req.body;
-    const video = req.file.path;
-    const videoUrl = path.join(root, video);
-
-    // console.log(date, title, description, userId);
-    // console.log(path);
+    const video = `/${req.file.path}`;
 
     const screenshotUrl = await takeScreenshot(video);
+
+    const minifyScreenshotUrl = await minifyImage(screenshotUrl);
 
     let inserted = await Video.postAVideo(
       date,
       title,
       description,
-      videoUrl,
+      video,
       screenshotUrl,
       userId
     );
 
     const [id] = inserted;
 
-    res.redirect(`/videos/${id}`);
+    // this 1 sec will let the screenshot to generate
+    // and minify the image before redirecting
+    setTimeout(() => {
+      res.redirect(`/videos/${id}`);
+    }, 1000);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };

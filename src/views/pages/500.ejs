@@ -3,7 +3,8 @@
     <div class="row g-3">
       <div class="my-5 text-center">
         <h1 class="fw-bold">500</h1>
-        <pre class="text-start"><%= error %> </pre>
+        <h2><%= error.message %></h2>
+        <pre class="text-start"><%= error.stack %> </pre>
       </div>
     </div>
   </div>

@@ -46,6 +46,7 @@ class Video {
     return db
       .select(
         "video.id",
+        "video.video_url",
         "screenshot_url",
         "profile_picture_url",
         "title",

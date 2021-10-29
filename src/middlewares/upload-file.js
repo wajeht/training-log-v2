@@ -7,6 +7,7 @@ const fileFilter = (req, file, cb) => {
   const fileTypes = /jpeg|jpg|png|gif|mp4|mov|mpeg/;
   const mimetype = fileTypes.test(file.mimetype);
   const extname = fileTypes.test(path.extname(file.originalname));
+
   if (mimetype && extname) {
     return cb(null, true);
   } else {
@@ -27,8 +28,8 @@ const upload = multer({
   fileFilter: fileFilter,
   storage: fileStorage,
   limits: {
-    // 20 MB
-    fileSize: 20 * 1024 * 1024,
+    // 10 MB
+    fileSize: 10 * 1024 * 1024,
   },
 });
 

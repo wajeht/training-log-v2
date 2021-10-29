@@ -5,7 +5,7 @@ require("dotenv").config({
   path: path.join(root, ".env"),
 });
 
-const config = {
+module.exports = {
   env: process.env.NODE_ENV,
   database: {
     host: process.env.DB_HOST,
@@ -32,6 +32,5 @@ const config = {
     auth_user: process.env.EMAIL_AUTH_USER,
     auth_pass: process.env.EMAIL_AUTH_PASS,
   },
+  env: process.env.NODE_ENV,
 };
-
-module.exports = config;

@@ -3,13 +3,13 @@
 # Making folders for uploads
 echo "$(tput setaf 100)Making folders to store videos and thumbnails"
 echo "--------------------------------------------"
-if [ ! -d ../data/uploads ] || [ ! -d ../data/uploads/thumbnails ]
+if [ ! -d ../data/upload ] || [ ! -d ../data/upload/thumbnail ]
 then
   echo "Creating 'upload' folder"
-  mkdir -p ./data/uploads;
+  mkdir -p ./data/upload;
 
   echo "Creating 'thumbnails' folder"
-  mkdir -p ./data/uploads/thumbnails;
+  mkdir -p ./data/upload/thumbnail;
 fi
 echo ""
 
@@ -18,16 +18,16 @@ echo ""
 echo "$(tput setaf 125)cleaning uploaded files"
 echo "--------------------------------------------"
 echo "Deleting old videos"
-rm ./data/uploads/*mp4
+rm ./data/upload/*mp4
 
 echo "Deleting old videos thumnail"
-rm ./data/uploads/thumbnails/*png
-rm ./data/uploads/thumbnails/*jpg
-rm ./data/uploads/thumbnails/*jpeg
+rm ./data/upload/thumbnail/*png
+rm ./data/upload/thumbnail/*jpg
+rm ./data/upload/thumbnail/*jpeg
 
 echo "Deleting old profile pictures"
-rm ./data/uploads/*png
-rm ./data/uploads/*jpg
+rm ./data/upload/*png
+rm ./data/upload/*jpg
 echo ""
 
 
