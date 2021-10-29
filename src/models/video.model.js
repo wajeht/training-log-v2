@@ -52,6 +52,7 @@ class Video {
         "title",
         "description",
         "username",
+        "video.user_id",
         "date"
       )
       .from("video")

@@ -40,6 +40,8 @@ const getVideo = async (req, res, next) => {
     const { id } = req.params;
     const [videoDetails] = await Video.getVideoDetails(id);
 
+    console.log(videoDetails);
+
     if (!videoDetails) {
       throw new Error("Cannot find the video");
     }
@@ -61,6 +63,9 @@ const getVideo = async (req, res, next) => {
 const deleteVideo = async (req, res) => {
   try {
     const { videoId, userId } = req.body;
+
+    console.log(req.session.user.id);
+
     if (userId != req.session.user.id) {
       throw new Error("not authorized!");
     }
@@ -71,12 +76,13 @@ const deleteVideo = async (req, res) => {
     );
 
     if (!deleted) {
-      throw new Error("err!");
+      throw new Error("Something went wrong with your request!");
     }
 
-    res.status(200).json({ message: "success!" });
+    return res.status(200).json({ message: "success!" });
   } catch (err) {
-    res.status(500).json({ message: "failed!" });
+    console.log(err);
+    return res.status(500).json({ message: err });
   }
 };
 

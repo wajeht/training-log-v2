@@ -3,12 +3,12 @@
 
 <!-- video details -->
 <!-- min-vh-100 bug for hiding footer when reloading -->
-<section class="px-4 py-5 min-vh-100">
+<section id="single-video-page" class="px-4 py-5 min-vh-100">
   <div class="container">
     <div class="row gy-3 position-relative">
       <!-- main video -->
       <div class="col-lg-9 col-sm-12">
-        <div class="card shadow-sm">
+        <div id="video-card<%= videoDetails.id %>" class="card shadow-sm">
           <video
             controls
             preload="none"
@@ -61,17 +61,31 @@
             </div>
 
             <!-- edit and delete -->
+            <% if ( isAuthenticated && (user.id == videoDetails.user_id)) { %>
             <div class="d-flex gap-3 justify-content-center align-items-center">
+              <input
+                type="hidden"
+                name="userId"
+                value="<%= videoDetails.user_id %>"
+              />
+              <input
+                type="hidden"
+                id="csrfToken"
+                name="_csrf"
+                value="<%= csrfToken %>"
+              />
               <a href="#" class="link-secondary text-decoration-none"
                 ><i class="bi bi-pencil"></i
               ></a>
               <a
                 href="#"
+                id="delete-button"
                 onclick="deleteVideo(this)"
                 class="link-secondary text-decoration-none"
                 ><i class="bi bi-trash"></i
               ></a>
             </div>
+            <% } %>
           </div>
         </div>
       </div>

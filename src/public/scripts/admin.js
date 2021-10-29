@@ -113,9 +113,22 @@ const setVideoIdLocalStorage = (btn) => {
  * delete handle for DELETE request
  */
 const deleteVideo = (btn) => {
-  const videoId = window.localStorage.getItem("videoId");
-  const userId = window.localStorage.getItem("userId");
+  let userId = window.localStorage.getItem("userId");
   const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
+  let videoId = window.localStorage.getItem("videoId");
+
+  // grab the videoId manually on single video page
+  // because on regular page, as soon as user click
+  // delete, the dropdown menu show up and it will
+  // set the id to local storage, but since we are in
+  // single video details page, there is not drop down
+  // menu, so we have to set and id of its parent
+  // element and grab it manually
+  if (document.querySelector("#single-video-page")) {
+    videoId = document
+      .querySelector("#delete-button")
+      .parentNode.parentNode.parentNode.id.split("video-card")[1];
+  }
 
   (async () => {
     fetch(`/videos/${videoId}`, {
@@ -124,12 +137,38 @@ const deleteVideo = (btn) => {
         "csrf-token": csrf,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ videoId, userId }), //if you do not want to send any addional data,  replace the complete JSON.stringify(YOUR_ADDITIONAL_DATA) with null
+      body: JSON.stringify({ videoId, userId }),
     })
       .then((res) => res.json())
       .then((res) => {
         const { message } = res;
+
         if (message === "success!") {
+          // if we are on single video details page
+          // we don't want to animate the deleting
+          // but redirect it to videos page after
+          // 2 full seconds
+          if (document.querySelector("#single-video-page")) {
+            document
+              .getElementById(`single-video-page`)
+              .classList.add("animate__animated");
+
+            document
+              .getElementById(`single-video-page`)
+              .classList.add("animate__zoomOut");
+
+            document
+              .getElementById(`single-video-page`)
+              .classList.add("animate__fast");
+            setTimeout(() => {
+              document.getElementById(`single-video-page`).remove();
+            }, 400);
+
+            setTimeout(() => {
+              return (document.location.href = "/videos");
+            }, 400);
+          }
+
           document
             .getElementById(`video-card${videoId}`)
             .classList.add("animate__animated");
@@ -144,8 +183,6 @@ const deleteVideo = (btn) => {
           setTimeout(() => {
             document.getElementById(`video-card${videoId}`).remove();
           }, 400);
-        } else {
-          alert("errr!");
         }
       })
       .catch((err) => {
