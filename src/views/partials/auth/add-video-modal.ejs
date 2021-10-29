@@ -17,12 +17,24 @@
         <form
           id="signinFormFromSinglePage"
           class="p-3 p-md-3"
-          action="/videos"
+          action="/videos?_csrf=<%= csrfToken %>"
           method="post"
+          enctype="multipart/form-data"
         >
           <!-- text -->
           <div class="form-floating mb-4">
             <h4>Add video</h4>
+          </div>
+
+          <!-- file -->
+          <div class="mb-3">
+            <input
+              type="file"
+              class="form-control"
+              id="floatingInput"
+              name="video"
+              accept="video/*"
+            />
           </div>
 
           <!-- date -->
@@ -89,18 +101,6 @@
             <label for="floatingInput">Screenshot url</label>
           </div>
           <div>
-            <input
-              type="hidden"
-              id="csrfToken"
-              name="_csrf"
-              value="<%= csrfToken %>"
-            />
-            <input
-              type="hidden"
-              id="userId"
-              name="userId"
-              value="<%= user.id %>"
-            />
             <!-- button -->
             <button
               type="button"

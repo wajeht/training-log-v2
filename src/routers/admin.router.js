@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { loginRequired } = require("../middlewares/auth.js");
+const { uploadVideo } = require("../middlewares/upload-file.js");
 
 const {
   getSearch,
@@ -20,7 +21,7 @@ router.get("/users/:username", loginRequired, getUser);
 
 router.delete("/videos/:id", deleteVideo);
 
-router.post("/videos", postVideo);
+router.post("/videos", uploadVideo, postVideo);
 router.post("/comments/:id", loginRequired, postComment);
 
 module.exports = router;

@@ -36,8 +36,6 @@ const getVideo = async (req, res, next) => {
     const recentVideos = await Video.getRecentVideos();
     const comments = await Comment.getCommentsFromAVideo(id);
 
-    console.log(recentVideos);
-
     res.render("pages/video.ejs", {
       pageTitle: `TrainingLog: ${videoDetails.title}`,
       videoDetails,

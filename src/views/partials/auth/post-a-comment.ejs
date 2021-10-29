@@ -17,12 +17,13 @@
           name="videoId"
           value="<%= videoDetails.id %>"
         />
+
         <textarea
           class="form-control"
-          id="exampleFormControlTextarea1"
-          rows="3"
           name="comment"
-          required
+          placeholder="Leave a comment here"
+          id="floatingTextarea2"
+          style="height: 100px"
         ></textarea>
       </div>
       <input
@@ -31,7 +32,12 @@
         name="_csrf"
         value="<%= csrfToken %>"
       />
-      <button id="postAComment" type="button" class="btn btn-dark" onclick="postComment(this)">
+      <button
+        id="postAComment"
+        type="button"
+        class="btn btn-dark"
+        onclick="postComment(this)"
+      >
         Submit
       </button>
     </div>

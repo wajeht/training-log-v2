@@ -1,3 +1,6 @@
+/**
+ * post handler for commenting
+ */
 const postComment = (btn) => {
   const videoId = btn.parentNode.querySelector("[name=videoId]").value;
   const username = btn.parentNode.querySelector("[name=username]").value;
@@ -12,12 +15,12 @@ const postComment = (btn) => {
   const newComment = (newUsername, newComment, newDate) => {
     const html = document.createElement("div");
     html.innerHTML = `
-      <div class="card mb-3 shadow-sm animate__animated animate__fadeIn">
+      <div class="card  mb-3 shadow-sm animate__animated animate__fadeIn">
         <div class="card-body">
           <div>
             <div class="d-flex justify-content-between">
               <!-- title -->
-              <a class="card-title" href="/users/${username}"
+              <a class="card-title text-decoration-none link-dark" href="/users/${username}"
                 ><h5>${username}</h5></a
               >
 
@@ -93,6 +96,9 @@ const postComment = (btn) => {
   })();
 };
 
+/**
+ * setting variable to local storage
+ */
 const setVideoIdLocalStorage = (btn) => {
   const videoId = btn.parentNode.children[1].value;
   window.localStorage.setItem("videoId", videoId);
@@ -101,6 +107,9 @@ const setVideoIdLocalStorage = (btn) => {
   window.localStorage.setItem("userId", userId);
 };
 
+/**
+ * delete handle for DELETE request
+ */
 const deleteVideo = (btn) => {
   const videoId = window.localStorage.getItem("videoId");
   const userId = window.localStorage.getItem("userId");
