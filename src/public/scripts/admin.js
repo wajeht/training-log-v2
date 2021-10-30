@@ -25,10 +25,12 @@ const postComment = (btn) => {
               >
 
               <!-- trash can -->
-              <a href="#" class="link-secondary text-decoration-none"
-                ><i class="bi bi-trash"></i
-              ></a>
-            </div>
+              <% if (videoDetails.user_id == user.id) { %>
+                <a href="#" class="link-secondary text-decoration-none"
+                  ><i class="bi bi-trash"></i
+                ></a>
+              <% } %>
+             </div>
 
             <p class="card-text">${comment}</p>
             <p class="card-text">
@@ -96,6 +98,65 @@ const postComment = (btn) => {
       commentSection.prepend(newError(err));
     }
   })();
+};
+
+const deleteComment = (btn) => {
+  const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
+  const video_user_id = window.localStorage.getItem("video_user_id");
+  const comment_id = window.localStorage.getItem("comment_id");
+  const session_user_id = window.localStorage.getItem("session_user_id");
+
+  (async () => {
+    try {
+      const res = await fetch(`/comments/${comment_id}`, {
+        method: "DELETE",
+        headers: {
+          "csrf-token": csrf,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          video_user_id,
+          comment_id,
+          session_user_id,
+        }),
+      });
+
+      if (!res.ok) {
+        alert("err");
+      }
+
+      if (document.querySelector("#single-video-page")) {
+        document
+          .querySelector(`#comment-id${comment_id}`)
+          .classList.add("animate__animated");
+        document
+          .querySelector(`#comment-id${comment_id}`)
+          .classList.add("animate__zoomOut");
+        document
+          .querySelector(`#comment-id${comment_id}`)
+          .classList.add("animate__fast");
+        setTimeout(() => {
+          document.querySelector(`#comment-id${comment_id}`).remove();
+        }, 400);
+      }
+    } catch (err) {
+      document.body.prepend(newToast("danger", err));
+      const myToastEl = document.getElementById("toast");
+      const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+      myToast.show();
+    }
+  })();
+};
+
+const setCommentIdToLocalStorage = (btn) => {
+  const video_user_id = btn.parentNode.children[1].value;
+  const comment_id =
+    btn.parentNode.parentNode.parentNode.parentNode.id.split("comment-id")[1];
+  const session_user_id = btn.parentNode.children[2].value;
+
+  window.localStorage.setItem("video_user_id", video_user_id);
+  window.localStorage.setItem("comment_id", comment_id);
+  window.localStorage.setItem("session_user_id", session_user_id);
 };
 
 /**

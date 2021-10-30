@@ -8,6 +8,7 @@ class Comment {
         "user.username",
         "user.profile_picture_url",
         "comment.id",
+        "comment.user_id",
         "comment.comment",
         "comment.date"
       )
@@ -29,7 +30,9 @@ class Comment {
       .returning(["comment", "date", "video_id", "user_id"]);
   };
 
-  
+  static deleteComment= (comment_id) => {
+    return db.del().from("comment").where({ id: comment_id });
+  };
 }
 
 module.exports = Comment;

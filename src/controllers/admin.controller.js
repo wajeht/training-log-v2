@@ -152,6 +152,26 @@ const postComment = async (req, res, next) => {
   }
 };
 
+const deleteComment = async (req, res, next) => {
+  try {
+    const { video_user_id, comment_id, session_user_id } = req.body;
+
+    if (video_user_id != session_user_id) {
+      throw new Error("You are not authorized!");
+    }
+
+    const deleted = await Comment.deleteComment(comment_id);
+
+    if (!deleted) {
+      throw new Error("Something went wrong while deleting!");
+    }
+
+    res.status(200).json({ message: "ok" });
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+};
+
 module.exports = {
   postVideo,
   getVideo,
@@ -160,4 +180,5 @@ module.exports = {
   getUser,
   getSearch,
   postComment,
+  deleteComment,
 };

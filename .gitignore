@@ -7,11 +7,13 @@ yarn-error.log*
 lerna-debug.log*
 
 # Mac stuff
-.DS_Store
-/.DS_store
+.DS_Store/
+*/*.DS_Store
 data/*
 ./data/*
 data
+/.DS_Store
+.DS_Store
 
 #PostgresSQL password
 .pg_password.sh

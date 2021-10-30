@@ -12,16 +12,19 @@ const {
   getUser,
   postComment,
   deleteVideo,
+  deleteComment,
 } = require("../controllers/admin.controller.js");
 
-router.get("/search/", loginRequired, getSearch);
+router.get("/search", loginRequired, getSearch);
 router.get("/videos", loginRequired, getVideos);
-router.get("/videos/:id", getVideo);
+
 router.get("/users/:username", loginRequired, getUser);
 
-router.delete("/videos/:id", deleteVideo);
-
+router.get("/videos/:id", getVideo);
+router.delete("/videos/:id", loginRequired, deleteVideo);
 router.post("/videos", uploadVideo, postVideo);
+
 router.post("/comments/:id", loginRequired, postComment);
+router.delete("/comments/:id", loginRequired, deleteComment);
 
 module.exports = router;
