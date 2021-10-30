@@ -4,6 +4,7 @@ const Comment = require("../models/comment.model.js");
 
 const { takeScreenshot } = require("../../util/take-screenshot.js");
 const { minifyImage } = require("../../util/minify-image.js");
+const { deleteLocalVideo } = require("../../util/delete-video.js");
 
 const postVideo = async (req, res, next) => {
   try {
@@ -40,8 +41,6 @@ const getVideo = async (req, res, next) => {
     const { id } = req.params;
     const [videoDetails] = await Video.getVideoDetails(id);
 
-    console.log(videoDetails);
-
     if (!videoDetails) {
       throw new Error("Cannot find the video");
     }
@@ -64,24 +63,23 @@ const deleteVideo = async (req, res) => {
   try {
     const { videoId, userId } = req.body;
 
-    console.log(req.session.user.id);
-
     if (userId != req.session.user.id) {
       throw new Error("not authorized!");
     }
+
+    const doneDeletingLocalFiles = await deleteLocalVideo(videoId);
 
     const deleted = await Video.deleteVideoWithVideoIdAndUserId(
       videoId,
       userId
     );
 
-    if (!deleted) {
+    if (!deleted || !doneDeletingLocalFiles) {
       throw new Error("Something went wrong with your request!");
     }
 
     return res.status(200).json({ message: "success!" });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ message: err });
   }
 };
