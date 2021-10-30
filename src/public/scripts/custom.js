@@ -37,6 +37,22 @@ if (title == homePage) {
 }
 
 /**
+ * add video modal
+ */
+const avfm = document.querySelector("#addVideoFormModal");
+const avcb = document.querySelector("#add-video_cancel-button");
+const avsb = document.querySelector("#add-video_submit-button");
+if (avfm) {
+  if (avsb) {
+    avfm.addEventListener("submit", () => {
+      avcb.remove();
+      avsb.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Uploading...`;
+      avsb.disabled = true;
+    });
+  }
+}
+
+/**
  * sign in modal
  */
 const siffm = document.getElementById("signinFormFromModal");

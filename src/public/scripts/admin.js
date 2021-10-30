@@ -41,7 +41,7 @@ const postComment = (btn) => {
   };
 
   /**
-   * Error message html
+   * Error message html for comment section
    */
   const newError = (message) => {
     const e = document.createElement("div");
@@ -133,62 +133,87 @@ const deleteVideo = (btn) => {
   }
 
   (async () => {
-    fetch(`/videos/${videoId}`, {
-      method: "DELETE",
-      headers: {
-        "csrf-token": csrf,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ videoId, userId }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        const { message } = res;
-
-        if (message === "success!") {
-          // if we are on single video details page
-          // we don't want to animate the deleting
-          // but redirect it to videos page after
-          // 400  full mil seconds
-          if (document.querySelector("#single-video-page")) {
-            document
-              .getElementById(`single-video-page`)
-              .classList.add("animate__animated");
-
-            document
-              .getElementById(`single-video-page`)
-              .classList.add("animate__zoomOut");
-
-            document
-              .getElementById(`single-video-page`)
-              .classList.add("animate__fast");
-            setTimeout(() => {
-              document.getElementById(`single-video-page`).remove();
-            }, 400);
-
-            setTimeout(() => {
-              return (document.location.href = "/videos");
-            }, 400);
-          }
-
-          document
-            .getElementById(`video-card${videoId}`)
-            .classList.add("animate__animated");
-
-          document
-            .getElementById(`video-card${videoId}`)
-            .classList.add("animate__zoomOut");
-
-          document
-            .getElementById(`video-card${videoId}`)
-            .classList.add("animate__fast");
-          setTimeout(() => {
-            document.getElementById(`video-card${videoId}`).remove();
-          }, 400);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+    try {
+      const res = await fetch(`/videos/${videoId}`, {
+        method: "DELETE",
+        headers: {
+          "csrf-token": csrf,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ videoId, userId }),
       });
+
+      if (!res.ok) {
+        throw new Error("some went wrong!");
+      }
+
+      if (document.querySelector("#single-video-page")) {
+        document
+          .getElementById(`single-video-page`)
+          .classList.add("animate__animated");
+
+        document
+          .getElementById(`single-video-page`)
+          .classList.add("animate__zoomOut");
+
+        document
+          .getElementById(`single-video-page`)
+          .classList.add("animate__fast");
+        setTimeout(() => {
+          document.getElementById(`single-video-page`).remove();
+        }, 400);
+
+        setTimeout(() => {
+          return (document.location.href = "/videos");
+        }, 400);
+      }
+
+      document
+        .getElementById(`video-card${videoId}`)
+        .classList.add("animate__animated");
+
+      document
+        .getElementById(`video-card${videoId}`)
+        .classList.add("animate__zoomOut");
+
+      document
+        .getElementById(`video-card${videoId}`)
+        .classList.add("animate__fast");
+      setTimeout(() => {
+        document.getElementById(`video-card${videoId}`).remove();
+      }, 400);
+    } catch (err) {
+      document.body.prepend(newToast("danger", err));
+      const myToastEl = document.getElementById("toast");
+      const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+      myToast.show();
+    }
   })();
+};
+
+/**
+ *  toast html
+ */
+const newToast = (type, message) => {
+  const html = document.createElement("div");
+  html.innerHTML = `
+  <div
+  id="toast"
+  class="toast align-items-center text-white bg-${type} border-0 position-fixed top-50 start-50 translate-middle p-3" style="z-index: 11"
+  role="alert"
+  aria-live="assertive"
+  aria-atomic="true"
+  >
+    <div class="d-flex">
+      <div class="toast-body">${message}</div>
+      <button
+        type="button"
+        class="btn-close btn-close-white me-2 m-auto"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+  </div>
+  `;
+  return html;
 };
