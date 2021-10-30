@@ -1,5 +1,7 @@
 {
   "cSpell.words": [
+    "cleandb",
+    "knexfile",
     "middlewares",
     "referrerpolicy",
     "resave",
