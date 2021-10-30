@@ -24,12 +24,24 @@ class User {
       .where({ "user.username": username });
   };
 
-  static postAddNewUser = (username, email, password) => {
+  static postAddNewUser = (
+    name,
+    age,
+    weight,
+    gender,
+    username,
+    password,
+    email
+  ) => {
     return db
       .insert({
+        name: name,
+        age: age,
+        weight: weight,
+        gender: gender,
         username: username,
-        email: email,
         password: password,
+        email: email,
       })
       .into("user");
   };

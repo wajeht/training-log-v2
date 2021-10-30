@@ -8,7 +8,7 @@ exports.up = (knex) => {
     table.string("username").notNullable().unique();
     table.string("password").notNullable();
     table.string("email").notNullable().unique();
-    table.string("profile_picture_url");
+    table.string("profile_picture_url").defaultTo("/images/rick.jpg");
     table.timestamps();
   });
 };

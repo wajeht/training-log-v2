@@ -84,14 +84,22 @@ const postLogout = (req, res, next) => {
 
 const postSignup = async (req, res, next) => {
   try {
-    const { username, email, password } = req.body;
+    const { name, age, weight, gender, username, email, password } = req.body;
     const [doesUserExist] = await User.getCheckToSeeUserExist(username, email);
 
     // if user does not exist
     // hash the password and signup
     if (doesUserExist == undefined) {
       const hashedPassword = await bcrypt.hash(password, 14);
-      const user = await User.postAddNewUser(username, email, hashedPassword);
+      const user = await User.postAddNewUser(
+        name,
+        age,
+        weight,
+        gender,
+        username,
+        hashedPassword,
+        email
+      );
 
       req.flash("success", "you have successfully signed up!");
       return res.redirect("/signin");
