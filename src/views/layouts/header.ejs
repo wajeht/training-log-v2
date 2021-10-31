@@ -1,25 +1,18 @@
-<header class="sticky-top shadow-sm" style="border-bottom: 1px solid #383d3f">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header
+  class="sticky-top navbar-dark bg-dark shadow-sm"
+  style="border-bottom: 1px solid #383d3f"
+>
+  <div class="px-4">
     <div class="container">
-      <a class="navbar-brand" href="/">
-        <i class="bi bi-journal-richtext"></i>
-        TrainingLog
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <%- include('../partials/nav-ul.ejs') %> <%-
-        include('../partials/auth/nav-auth.ejs') %>
-      </div>
+      <nav class="navbar">
+        <a class="navbar-brand" href="/">
+          <i class="bi bi-journal-richtext"></i>
+          TrainingLog
+        </a>
+
+        <!-- nav auth -->
+        <%- include('../partials/auth/nav-auth.ejs') %>
+      </nav>
     </div>
-  </nav>
+  </div>
 </header>
