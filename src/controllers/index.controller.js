@@ -71,6 +71,16 @@ const getAbout = (req, res, next) => {
   }
 };
 
+const getSettings = (req, res, next) => {
+  try {
+    res.render("pages/settings.ejs", {
+      pageTitle: "TrainingLog: Settings",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getIndex,
   getContact,
@@ -78,4 +88,5 @@ module.exports = {
   getAbout,
   getTerms,
   getPrivacy,
+  getSettings,
 };

@@ -1,0 +1,128 @@
+<section class="px-4 py-5">
+  <div class="container">
+    <div class="row gy-3 position-relative">
+      <!-- Account settinngs-->
+      <div class="col-4">
+        <div class="card shadow-sm">
+          <div class="list-group" id="list-tab" role="tablist">
+            <div class="card-body">
+              <h5 class="card-title mb-3">Profile Settings</h5>
+            </div>
+            <a
+              class="list-group-item list-group-item-action active"
+              id="list-home-list"
+              data-bs-toggle="list"
+              href="#list-account"
+              role="tab"
+              aria-controls="list-home"
+              >Account</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              id="list-profile-list"
+              data-bs-toggle="list"
+              href="#list-password"
+              role="tab"
+              aria-controls="list-profile"
+              >Password</a
+            >
+            <a
+              class="list-group-item list-group-item-action"
+              id="list-messages-list"
+              data-bs-toggle="list"
+              href="#list-delete"
+              role="tab"
+              aria-controls="list-messages"
+              >Delete account</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+          <div
+            class="tab-pane fade show active"
+            id="list-account"
+            role="tabpanel"
+            aria-labelledby="list-home-list"
+          >
+            <!-- profile setting -->
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Profile Settings</h5>
+                <div>
+                  <label for="">Name</label>
+                  <input type="text" />
+                </div>
+                <div>
+                  <label for="">Bio</label>
+                  <textarea name="" id="" cols="30" rows="3"></textarea>
+                </div>
+                <button>Save changes</button>
+              </div>
+            </div>
+
+            <!-- private info -->
+            <div class="card shadow-sm mb-3">
+              <div class="card-body">
+                <h5 class="card-title mb-3">Private info</h5>
+                <div>
+                  <label for="">Name</label>
+                  <input type="text" />
+                </div>
+                <div>
+                  <label for="">Bio</label>
+                  <textarea name="" id="" cols="30" rows="3"></textarea>
+                </div>
+                <button>Save changes</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- password -->
+          <div
+            class="tab-pane fade show card shadow-sm"
+            id="list-password"
+            role="tabpanel"
+            aria-labelledby="list-home-list"
+          >
+            <div class="card-body">
+              <h5 class="card-title mb-3">Password</h5>
+              <div>
+                <label for="">Name</label>
+                <input type="text" />
+              </div>
+              <div>
+                <label for="">Bio</label>
+                <textarea name="" id="" cols="30" rows="3"></textarea>
+              </div>
+              <button>Save changes</button>
+            </div>
+          </div>
+
+          <!-- delete -->
+          <div
+            class="tab-pane fade show card shadow-sm"
+            id="list-delete"
+            role="tabpanel"
+            aria-labelledby="list-home-list"
+          >
+            <div class="card-body">
+              <h5 class="card-title mb-3">Delete your account</h5>
+              <div>
+                <label for="">Name</label>
+                <input type="text" />
+              </div>
+              <div>
+                <label for="">Bio</label>
+                <textarea name="" id="" cols="30" rows="3"></textarea>
+              </div>
+              <button>Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
