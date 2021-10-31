@@ -8,7 +8,7 @@
     <div class="row gy-3 position-relative">
       <!-- main video -->
       <div class="col-lg-9 col-sm-12">
-        <div id="video-card<%= videoDetails.id %>" class="card shadow-sm">
+        <div id="video-card<%= videoDetails.id %>" class="card shadow-sm mb-3">
           <video
             controls
             preload="none"
@@ -87,13 +87,13 @@
             <% } %>
           </div>
         </div>
+
+        <!-- user's comment -->
+        <%- include('../partials/auth/videos-comments.ejs') %>
+
+        <!-- sign in to comment -->
+        <%- include('../partials/auth/post-a-comment.ejs') %>
       </div>
-
-      <!-- user's comment -->
-      <%- include('../partials/auth/videos-comments.ejs') %>
-
-      <!-- sign in to comment -->
-      <%- include('../partials/auth/post-a-comment.ejs') %>
 
       <!-- recent video collection -->
       <%- include('../partials/recent-videos.ejs') %>

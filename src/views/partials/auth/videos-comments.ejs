@@ -1,7 +1,7 @@
 <!-- delete comment confirmation -->
 <%- include('../auth/delete-comment-confirmation-modal.ejs') %>
 
-<div id="video_comments" class="col-lg-9 col-sm-12">
+<div id="video_comments">
   <% for (const comment of comments) { %>
   <div id="comment-id<%= comment.id %>" class="card shadow-sm mb-3">
     <div class="card-body">

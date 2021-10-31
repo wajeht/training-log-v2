@@ -166,6 +166,8 @@ const setVideoIdLocalStorage = (btn) => {
   const videoId = btn.parentNode.children[1].value;
   window.localStorage.setItem("videoId", videoId);
 
+  console.log(videoId, "local()");
+
   const userId = btn.parentNode.children[0].value;
   window.localStorage.setItem("userId", userId);
 };
@@ -177,6 +179,8 @@ const deleteVideo = (btn) => {
   let userId = window.localStorage.getItem("userId");
   const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
   let videoId = window.localStorage.getItem("videoId");
+
+  console.log(videoId, "delteVideo()");
 
   // grab the videoId manually on single video page
   // because on regular page, as soon as user click

@@ -115,30 +115,30 @@ if (myInput && myModal) {
 /**
  * This will take care of card layout on video details page
  */
-window.addEventListener("DOMContentLoaded", () => {
-  const recentVideo = document.querySelector("#recent-video");
-  if (recentVideo) {
-    if (window.innerWidth <= 992) {
-      recentVideo.classList.remove("position-absolute");
-      // recentVideo.childNodes[1].classList.remove("row");
-      recentVideo.childNodes[1].classList.add("d-flex");
-      recentVideo.childNodes[1].classList.add("gap-3");
-    }
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 992) {
-        recentVideo.classList.remove("position-absolute");
-        // recentVideo.childNodes[1].classList.remove("row");
-        recentVideo.childNodes[1].classList.add("d-flex");
-        recentVideo.childNodes[1].classList.add("gap-3");
-      } else if (window.innerWidth >= 992) {
-        recentVideo.classList.add("position-absolute");
-        // recentVideo.childNodes[1].classList.add("row");
-        recentVideo.childNodes[1].classList.remove("d-flex");
-        // recentVideo.childNodes[1].classList.remove("gap-3");
-      }
-    });
-  }
-});
+// window.addEventListener("DOMContentLoaded", () => {
+//   const recentVideo = document.querySelector("#recent-video");
+//   if (recentVideo) {
+//     if (window.innerWidth <= 992) {
+//       recentVideo.classList.remove("position-absolute");
+//       // recentVideo.childNodes[1].classList.remove("row");
+//       recentVideo.childNodes[1].classList.add("d-flex");
+//       recentVideo.childNodes[1].classList.add("gap-3");
+//     }
+//     window.addEventListener("resize", () => {
+//       if (window.innerWidth <= 992) {
+//         recentVideo.classList.remove("position-absolute");
+//         // recentVideo.childNodes[1].classList.remove("row");
+//         recentVideo.childNodes[1].classList.add("d-flex");
+//         recentVideo.childNodes[1].classList.add("gap-3");
+//       } else if (window.innerWidth >= 992) {
+//         recentVideo.classList.add("position-absolute");
+//         // recentVideo.childNodes[1].classList.add("row");
+//         recentVideo.childNodes[1].classList.remove("d-flex");
+//         // recentVideo.childNodes[1].classList.remove("gap-3");
+//       }
+//     });
+//   }
+// });
 
 /**
  * typed.js initialization
