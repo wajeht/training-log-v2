@@ -1,36 +1,36 @@
 <section class="px-4 py-5">
   <div class="container">
     <div class="row gy-3 position-relative">
-      <!-- Account settinngs-->
+      <!-- Account settings -->
       <div class="col-4">
         <div class="card shadow-sm">
           <div class="list-group" id="list-tab" role="tablist">
             <div class="card-body">
-              <h5 class="card-title mb-3">Profile Settings</h5>
+              <h5 class="card-title mb-3">Edit Profile</h5>
             </div>
             <a
               class="list-group-item list-group-item-action active"
               id="list-home-list"
               data-bs-toggle="list"
-              href="#list-account"
+              href="#list-edit-profile"
               role="tab"
               aria-controls="list-home"
-              >Account</a
+              >Edit profile</a
             >
             <a
               class="list-group-item list-group-item-action"
               id="list-profile-list"
               data-bs-toggle="list"
-              href="#list-password"
+              href="#list-change-password"
               role="tab"
               aria-controls="list-profile"
-              >Password</a
+              >Change password</a
             >
             <a
               class="list-group-item list-group-item-action"
               id="list-messages-list"
               data-bs-toggle="list"
-              href="#list-delete"
+              href="#list-delete-account"
               role="tab"
               aria-controls="list-messages"
               >Delete account</a
@@ -41,84 +41,207 @@
 
       <div class="col-8">
         <div class="tab-content" id="nav-tabContent">
+          <!-- edit profile -->
           <div
             class="tab-pane fade show active"
-            id="list-account"
+            id="list-edit-profile"
             role="tabpanel"
             aria-labelledby="list-home-list"
           >
-            <!-- profile setting -->
+            <!-- edit profile form -->
             <div class="card shadow-sm mb-3">
               <div class="card-body">
-                <h5 class="card-title mb-3">Profile Settings</h5>
-                <div>
-                  <label for="">Name</label>
-                  <input type="text" />
-                </div>
-                <div>
-                  <label for="">Bio</label>
-                  <textarea name="" id="" cols="30" rows="3"></textarea>
-                </div>
-                <button>Save changes</button>
-              </div>
-            </div>
+                <h5 class="card-title mb-3">Edit profile</h5>
+                <form
+                  id="signupFormFromSinglePage"
+                  action="/signup"
+                  method="post"
+                >
+                  <!-- Name -->
+                  <div class="form-floating mb-3">
+                    <input
+                      name="name"
+                      type="text"
+                      class="form-control"
+                      id="floatingInput"
+                      placeholder="name"
+                      required
+                    />
+                    <label for="floatingInput">Name</label>
+                  </div>
 
-            <!-- private info -->
-            <div class="card shadow-sm mb-3">
-              <div class="card-body">
-                <h5 class="card-title mb-3">Private info</h5>
-                <div>
-                  <label for="">Name</label>
-                  <input type="text" />
-                </div>
-                <div>
-                  <label for="">Bio</label>
-                  <textarea name="" id="" cols="30" rows="3"></textarea>
-                </div>
-                <button>Save changes</button>
+                  <!-- username -->
+                  <div class="form-floating mb-3">
+                    <input
+                      name="username"
+                      type="text"
+                      class="form-control"
+                      id="floatingInput"
+                      placeholder="name"
+                      required
+                    />
+                    <label for="floatingInput">Username</label>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-floating mb-3">
+                    <input
+                      name="email"
+                      type="text"
+                      class="form-control"
+                      id="floatingInput"
+                      placeholder="name"
+                      required
+                    />
+                    <label for="floatingInput">Email</label>
+                  </div>
+
+                  <!-- Gender -->
+                  <div class="form-floating mb-3">
+                    <input
+                      name="gender"
+                      type="text"
+                      class="form-control"
+                      id="floatingInput"
+                      placeholder="name"
+                      required
+                    />
+                    <label for="floatingInput">Gender</label>
+                  </div>
+
+                  <!-- Bio -->
+                  <div class="form-floating mb-3">
+                    <textarea
+                      class="form-control"
+                      name="bio"
+                      placeholder="Tell something about yourself"
+                      id="floatingInput"
+                      style="height: 150px"
+                    ></textarea>
+                    <label for="floatingInput">Biography</label>
+                  </div>
+                  <button
+                    id="public-info-save-changes"
+                    type="button"
+                    class="btn btn-dark"
+                  >
+                    Save changes
+                  </button>
+                </form>
               </div>
             </div>
           </div>
 
-          <!-- password -->
+          <!-- edit password form -->
           <div
             class="tab-pane fade show card shadow-sm"
-            id="list-password"
+            id="list-change-password"
             role="tabpanel"
             aria-labelledby="list-home-list"
           >
             <div class="card-body">
-              <h5 class="card-title mb-3">Password</h5>
-              <div>
-                <label for="">Name</label>
-                <input type="text" />
-              </div>
-              <div>
-                <label for="">Bio</label>
-                <textarea name="" id="" cols="30" rows="3"></textarea>
-              </div>
-              <button>Save changes</button>
+              <h5 class="card-title mb-3">Change password</h5>
+              <form
+                id="signupFormFromSinglePage"
+                action="/signup"
+                method="post"
+              >
+                <!-- old password -->
+                <div class="form-floating mb-3">
+                  <input
+                    name="old-password"
+                    type="password"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="old password"
+                    required
+                  />
+                  <label for="floatingInput">Old password</label>
+                </div>
+
+                <!-- new password -->
+                <div class="form-floating mb-3">
+                  <input
+                    name="new-password"
+                    type="password"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="new password"
+                    required
+                  />
+                  <label for="floatingInput">New password</label>
+                </div>
+
+                <!-- confirm new password  -->
+                <div class="form-floating mb-3">
+                  <input
+                    name="confirm-new-password"
+                    type="password"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="confirm new password"
+                    required
+                  />
+                  <label for="floatinginput">Password</label>
+                </div>
+
+                <button
+                  id="public-info-save-changes"
+                  type="button"
+                  class="btn btn-dark"
+                >
+                  Change password
+                </button>
+              </form>
             </div>
           </div>
 
-          <!-- delete -->
+          <!-- delete account -->
           <div
             class="tab-pane fade show card shadow-sm"
-            id="list-delete"
+            id="list-delete-account"
             role="tabpanel"
             aria-labelledby="list-home-list"
           >
             <div class="card-body">
-              <h5 class="card-title mb-3">Delete your account</h5>
-              <div>
-                <label for="">Name</label>
-                <input type="text" />
-              </div>
-              <div>
-                <label for="">Bio</label>
-                <textarea name="" id="" cols="30" rows="3"></textarea>
-              </div>
-              <button>Save changes</button>
+              <h5 class="card-title mb-3">Delete account</h5>
+              <form
+                id="signupFormFromSinglePage"
+                action="/signup"
+                method="post"
+              >
+                <!-- Why -->
+                <div class="form-floating mb-3">
+                  <textarea
+                    class="form-control"
+                    name="delete"
+                    placeholder="Why do you want to delete?"
+                    id="floatingInput"
+                    style="height: 150px"
+                  ></textarea>
+                  <label for="floatingInput">Why do you want to delete?</label>
+                </div>
+
+                <!-- password -->
+                <div class="form-floating mb-3">
+                  <input
+                    name="email"
+                    type="password"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Re-enter your password"
+                    required
+                  />
+                  <label for="floatingInput">Re-enter your password</label>
+                </div>
+                <button
+                  id="public-info-save-changes"
+                  type="button"
+                  class="btn btn-dark"
+                >
+                  Delete
+                </button>
+              </form>
             </div>
           </div>
         </div>

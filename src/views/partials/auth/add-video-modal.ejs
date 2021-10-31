@@ -9,14 +9,13 @@
   <div
     class="
       modal-dialog modal-dialog-centered
-      mx-5 mx-sm-auto mx-md-auto mx-lg-auto
+      mx-4 mx-sm-auto mx-md-auto mx-lg-auto
     "
   >
     <div class="modal-content">
       <div class="modal-body">
         <form
           id="addVideoFormModal"
-          class="p-3 p-md-3"
           action="/videos?_csrf=<%= csrfToken %>"
           method="post"
           enctype="multipart/form-data"
