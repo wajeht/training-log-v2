@@ -19,7 +19,17 @@ class User {
 
   static getUserDetails = (username) => {
     return db
-      .select("id", "profile_picture_url", "username")
+      .select(
+        "id",
+        "profile_picture_url",
+        "name",
+        "username",
+        "biography",
+        "age",
+        "weight",
+        "gender",
+        "email"
+      )
       .from("user")
       .where({ "user.username": username });
   };
@@ -44,6 +54,30 @@ class User {
         email: email,
       })
       .into("user");
+  };
+
+  static postUpdateProfile = (
+    id,
+    name,
+    username,
+    email,
+    age,
+    weight,
+    gender,
+    biography
+  ) => {
+    return db
+      .update({
+        name: name,
+        username: username,
+        email: email,
+        age: age,
+        weight: weight,
+        gender: gender,
+        biography,
+      })
+      .from("user")
+      .where({ id: id });
   };
 }
 

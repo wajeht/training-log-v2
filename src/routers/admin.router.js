@@ -13,6 +13,7 @@ const {
   postComment,
   deleteVideo,
   deleteComment,
+  updateEditProfile,
 } = require("../controllers/admin.controller.js");
 
 router.get("/search", loginRequired, getSearch);
@@ -26,5 +27,7 @@ router.post("/videos", uploadVideo, postVideo);
 
 router.post("/comments/:id", loginRequired, postComment);
 router.delete("/comments/:id", loginRequired, deleteComment);
+
+router.put("/settings/edit-profile", loginRequired, updateEditProfile);
 
 module.exports = router;

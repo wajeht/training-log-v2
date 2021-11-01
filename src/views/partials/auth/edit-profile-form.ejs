@@ -1,0 +1,138 @@
+<!-- edit profile -->
+<div
+  class="tab-pane fade show active"
+  id="list-edit-profile"
+  role="tabpanel"
+  aria-labelledby="list-home-list"
+>
+  <!-- edit profile form -->
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <h5 class="card-title mb-3">Edit profile</h5>
+      <form
+        id="edit-profile-form"
+        action="/settings/edit-profile"
+        method="post"
+      >
+        <!-- Name -->
+        <div class="form-floating mb-3">
+          <input
+            name="name"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name"
+            value="<%= userDetails.name %>"
+            required
+          />
+          <label for="floatingInput">Name</label>
+        </div>
+
+        <!-- username -->
+        <div class="form-floating mb-3">
+          <input
+            name="username"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name"
+            value="<%= userDetails.username %>"
+            required
+          />
+          <label for="floatingInput">Username</label>
+        </div>
+
+        <!-- Email -->
+        <div class="form-floating mb-3">
+          <input
+            name="email"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name"
+            value="<%= userDetails.email %>"
+            required
+          />
+          <label for="floatingInput">Email</label>
+        </div>
+
+        <!-- Age -->
+        <div class="form-floating mb-3">
+          <input
+            name="age"
+            type="number"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name"
+            value="<%= userDetails.age %>"
+            required
+          />
+          <label for="floatingInput">Age</label>
+        </div>
+
+        <!-- weight -->
+        <div class="form-floating mb-3">
+          <input
+            name="weight"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="weight"
+            value="<%= userDetails.weight %>"
+            required
+          />
+          <label for="floatingInput">Gender</label>
+        </div>
+
+        <!-- Gender -->
+        <div class="form-floating mb-3">
+          <input
+            name="gender"
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="name"
+            value="<%= userDetails.gender %>"
+            required
+          />
+          <label for="floatingInput">Gender</label>
+        </div>
+
+        <!-- Bio -->
+        <div class="form-floating mb-3">
+          <textarea
+            class="form-control"
+            name="biography"
+            placeholder="Tell something about yourself"
+            id="floatingInput"
+            style="height: 150px"
+          >
+<%= userDetails.biography %></textarea
+          >
+          <label for="floatingInput">Biography</label>
+        </div>
+
+        <!--  -->
+        <input type="hidden" id="id" name="id" value="<%= userDetails.id %>" />
+
+        <!-- csrf token -->
+        <input
+          type="hidden"
+          id="csrfToken"
+          name="_csrf"
+          value="<%= csrfToken %>"
+        />
+
+        <!-- submit button -->
+        <button
+          id="edit-profile-save-changes"
+          type="button"
+          class="btn btn-dark"
+          onclick="editProfile(this)"
+        >
+          Save changes
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

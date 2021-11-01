@@ -23,18 +23,11 @@ const postComment = (btn) => {
               <a class="card-title text-decoration-none link-dark" href="/users/${username}"
                 ><h5>${username}</h5></a
               >
-
-              <!-- trash can -->
-              <% if (videoDetails.user_id == user.id) { %>
-                <a href="#" class="link-secondary text-decoration-none"
-                  ><i class="bi bi-trash"></i
-                ></a>
-              <% } %>
              </div>
 
             <p class="card-text">${comment}</p>
             <p class="card-text">
-              <small class="text-muted">${new Date().toISOString()}</small>
+              <small class="text-muted">${new Date().toLocaleDateString()}</small>
             </p>
           </div>
         </div>
@@ -166,8 +159,6 @@ const setVideoIdLocalStorage = (btn) => {
   const videoId = btn.parentNode.children[1].value;
   window.localStorage.setItem("videoId", videoId);
 
-  console.log(videoId, "local()");
-
   const userId = btn.parentNode.children[0].value;
   window.localStorage.setItem("userId", userId);
 };
@@ -179,8 +170,6 @@ const deleteVideo = (btn) => {
   let userId = window.localStorage.getItem("userId");
   const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
   let videoId = window.localStorage.getItem("videoId");
-
-  console.log(videoId, "delteVideo()");
 
   // grab the videoId manually on single video page
   // because on regular page, as soon as user click
@@ -281,4 +270,55 @@ const newToast = (type, message) => {
   </div>
   `;
   return html;
+};
+
+const editProfile = (btn) => {
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...`;
+
+  const id = btn.parentNode.querySelector("[name=id]").value;
+  const name = btn.parentNode.querySelector("[name=name]").value;
+  const username = btn.parentNode.querySelector("[name=username]").value;
+  const email = btn.parentNode.querySelector("[name=email]").value;
+  const age = btn.parentNode.querySelector("[name=age]").value;
+  const gender = btn.parentNode.querySelector("[name=gender]").value;
+  const biography = btn.parentNode.querySelector("[name=biography]").value;
+  const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
+
+  (async () => {
+    try {
+      const res = await fetch("/settings/edit-profile", {
+        method: "PUT",
+        headers: {
+          "csrf-token": csrf,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          username,
+          email,
+          age,
+          gender,
+          biography,
+          csrf,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Something went wrong while updating!");
+      }
+      const data = await res.json();
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerText = "Save changes";
+      }, 1000);
+    } catch (err) {
+      document.body.prepend(newToast("danger", err));
+      const myToastEl = document.getElementById("toast");
+      const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+      myToast.show();
+    }
+  })();
 };

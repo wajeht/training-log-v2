@@ -172,6 +172,32 @@ const deleteComment = async (req, res, next) => {
   }
 };
 
+const updateEditProfile = async (req, res, next) => {
+  const { id, name, username, email, age, weight, gender, biography } =
+    req.body;
+
+  try {
+    const updated = await User.postUpdateProfile(
+      id,
+      name,
+      username,
+      email,
+      age,
+      weight,
+      gender,
+      biography
+    );
+
+    if (!updated) {
+      throw new Error("Something went wrong while updating!");
+    }
+
+    res.status(200).json({ message: "ok" });
+  } catch (err) {
+    res.status(500).json({ message: "failed!", err });
+  }
+};
+
 module.exports = {
   postVideo,
   getVideo,
@@ -181,4 +207,5 @@ module.exports = {
   getSearch,
   postComment,
   deleteComment,
+  updateEditProfile,
 };

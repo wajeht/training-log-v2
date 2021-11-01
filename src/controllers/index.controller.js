@@ -71,10 +71,14 @@ const getAbout = (req, res, next) => {
   }
 };
 
-const getSettings = (req, res, next) => {
+const getSettings = async (req, res, next) => {
+  const { username } = req.session.user;
+  const [userDetails] = await User.getUserDetails(username);
+
   try {
     res.render("pages/settings.ejs", {
       pageTitle: "TrainingLog: Settings",
+      userDetails,
     });
   } catch (err) {
     next(err);
