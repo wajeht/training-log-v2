@@ -2,6 +2,8 @@ const Video = require("../models/video.model.js");
 const User = require("../models/user.model.js");
 const Comment = require("../models/comment.model.js");
 
+const bcrypt = require("bcryptjs");
+
 const { takeScreenshot } = require("../../util/take-screenshot.js");
 const { minifyImage } = require("../../util/minify-image.js");
 const { deleteLocalVideo } = require("../../util/delete-video.js");
@@ -198,6 +200,42 @@ const updateEditProfile = async (req, res, next) => {
   }
 };
 
+const updateChangePassword = async (req, res, next) => {
+  const { oldPassword, newPassword, confirmNewPassword, userId } = req.body;
+
+  try {
+    const { id } = req.session.user;
+
+    if (Number.parseInt(userId) != id) {
+      throw new Error("You are not authorized!");
+    }
+
+    const [user] = await User.getUserDetailsById(id);
+
+    const samePassword = await bcrypt.compare(oldPassword, user.password);
+
+    if (!samePassword) {
+      throw new Error("wrong old password!");
+    }
+
+    if (newPassword != confirmNewPassword) {
+      throw new Error("re-enter your new password!");
+    }
+
+    const newHashedPassword = await bcrypt.hash(confirmNewPassword, 14);
+
+    const updated = await User.updateChangePassword(id, newHashedPassword);
+
+    if (!updated) {
+      throw new Error("something went wrong updating your password");
+    }
+
+    res.status(200).json({ message: "ok" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 module.exports = {
   postVideo,
   getVideo,
@@ -208,4 +246,5 @@ module.exports = {
   postComment,
   deleteComment,
   updateEditProfile,
+  updateChangePassword,
 };

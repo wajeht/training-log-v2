@@ -14,6 +14,7 @@ const {
   deleteVideo,
   deleteComment,
   updateEditProfile,
+  updateChangePassword,
 } = require("../controllers/admin.controller.js");
 
 router.get("/search", loginRequired, getSearch);
@@ -29,5 +30,6 @@ router.post("/comments/:id", loginRequired, postComment);
 router.delete("/comments/:id", loginRequired, deleteComment);
 
 router.put("/settings/edit-profile", loginRequired, updateEditProfile);
+router.put("/settings/change-password", loginRequired, updateChangePassword);
 
 module.exports = router;

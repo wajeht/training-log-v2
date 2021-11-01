@@ -23,6 +23,7 @@ class User {
         "id",
         "name",
         "username",
+        "password",
         "biography",
         "age",
         "weight",
@@ -71,6 +72,10 @@ class User {
         email: email,
       })
       .into("user");
+  };
+
+  static updateChangePassword = (id, newPassword) => {
+    return db.update({ password: newPassword }).from("user").where({ id: id });
   };
 
   static postUpdateProfile = (

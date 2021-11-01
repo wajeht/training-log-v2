@@ -306,24 +306,93 @@ const editProfile = (btn) => {
         }),
       });
 
-      if (!res.ok) {
-        throw new Error("Something went wrong while updating!");
-      }
       const data = await res.json();
+
+      if (!res.ok) {
+        throw {
+          statusCode: res.status,
+          ...data,
+        };
+      }
 
       setTimeout(() => {
         btn.disabled = false;
         btn.innerText = "Save changes";
+
+        document.body.prepend(newToast("success", "updated!"));
+        const myToastEl = document.getElementById("toast");
+        const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+        myToast.show();
       }, 1000);
 
       // have to update this manually because since we use ajax
       // to update user setting, the username link has already loaded
       // from previous request. after ajax call, we gotta do it manually
       usernameLink.href = `/users/${username}`;
-
-
     } catch (err) {
-      document.body.prepend(newToast("danger", err));
+      document.body.prepend(newToast("danger", err.message));
+      const myToastEl = document.getElementById("toast");
+      const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+      myToast.show();
+    }
+  })();
+};
+
+const changePassword = (btn) => {
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...`;
+
+  const userId = btn.parentNode.querySelector("[name=userId]").value;
+  const oldPassword = btn.parentNode.querySelector("[name=oldPassword]").value;
+  const newPassword = btn.parentNode.querySelector("[name=newPassword]").value;
+  const confirmNewPassword = btn.parentNode.querySelector(
+    "[name=confirmNewPassword]"
+  ).value;
+  const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
+
+  (async () => {
+    try {
+      // check for empty
+      if (newPassword == "" || confirmNewPassword == "" || oldPassword == "") {
+        throw new Error("cannot be empty");
+      }
+
+      const res = await fetch("/settings/change-password", {
+        method: "PUT",
+        headers: {
+          "csrf-token": csrf,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId,
+          oldPassword,
+          newPassword,
+          confirmNewPassword,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw {
+          statusCode: res.status,
+          ...data,
+        };
+      }
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerText = "Change password";
+
+        document.body.prepend(newToast("success", "updated!"));
+        const myToastEl = document.getElementById("toast");
+        const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+        myToast.show();
+      }, 1000);
+    } catch (err) {
+      btn.disabled = false;
+      btn.innerText = "Change password";
+      document.body.prepend(newToast("danger", err.message));
       const myToastEl = document.getElementById("toast");
       const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
       myToast.show();
