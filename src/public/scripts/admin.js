@@ -284,6 +284,7 @@ const editProfile = (btn) => {
   const gender = btn.parentNode.querySelector("[name=gender]").value;
   const biography = btn.parentNode.querySelector("[name=biography]").value;
   const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
+  const usernameLink = document.querySelector("#username-link");
 
   (async () => {
     try {
@@ -314,6 +315,13 @@ const editProfile = (btn) => {
         btn.disabled = false;
         btn.innerText = "Save changes";
       }, 1000);
+
+      // have to update this manually because since we use ajax
+      // to update user setting, the username link has already loaded
+      // from previous request. after ajax call, we gotta do it manually
+      usernameLink.href = `/users/${username}`;
+
+
     } catch (err) {
       document.body.prepend(newToast("danger", err));
       const myToastEl = document.getElementById("toast");
