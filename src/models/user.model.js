@@ -5,6 +5,10 @@ class User {
     return db.select().from("user");
   };
 
+  static deleteUser = (userId) => {
+    return db.del().from("user").where({ id: userId });
+  };
+
   static getCheckToSeeUserExist = (username, email) => {
     return db
       .select()

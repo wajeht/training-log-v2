@@ -7,6 +7,7 @@ const bcrypt = require("bcryptjs");
 const { takeScreenshot } = require("../../util/take-screenshot.js");
 const { minifyImage } = require("../../util/minify-image.js");
 const { deleteLocalVideo } = require("../../util/delete-video.js");
+const { deleteAllUserVideos } = require("../../util/delete-video.js");
 
 const postVideo = async (req, res, next) => {
   try {
@@ -236,6 +237,47 @@ const updateChangePassword = async (req, res, next) => {
   }
 };
 
+const postDeleteAccount = async (req, res, next) => {
+  try {
+    const { id, why, password } = req.body;
+    const [user] = await User.getUserDetailsById(Number.parseInt(id));
+
+    if (Number.parseInt(id) != req.session.user.id) {
+      throw new Error("you are not authorized!");
+    }
+
+    const samePassword = await bcrypt.compare(password, user.password);
+
+    if (!samePassword) {
+      throw new Error("wrong password!");
+    }
+
+    const doneDeletingLocalFiles = await deleteAllUserVideos(user.id);
+    const doneDeletingVideoDatabase = await Video.deleteAllUserVideosWithUserId(
+      user.id
+    );
+
+    if (!doneDeletingVideoDatabase || !doneDeletingLocalFiles) {
+      throw new Error("something went wrong while deleting your videos!");
+    }
+
+    const doneDeletingUser = await User.deleteUser(user.id);
+
+    if (!doneDeletingUser) {
+      throw new Error("something went wrong while deleting your account!");
+    }
+
+    req.flash("success", "you account has been deleted!");
+
+    req.session.isLoggedIn = false;
+    req.session.user = undefined;
+    res.redirect("/signin");
+    req.session.destroy();
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   postVideo,
   getVideo,
@@ -245,6 +287,7 @@ module.exports = {
   getSearch,
   postComment,
   deleteComment,
+  postDeleteAccount,
   updateEditProfile,
   updateChangePassword,
 };

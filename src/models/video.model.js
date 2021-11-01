@@ -12,6 +12,10 @@ class Video {
     });
   };
 
+  static deleteAllUserVideosWithUserId = (userId) => {
+    return db.del().from("video").where({ "video.user_id": userId });
+  };
+
   static getAllVideosWithUserDetails = () => {
     return db
       .select(
@@ -33,6 +37,7 @@ class Video {
         "video.user_id",
         "user.username",
         "user.profile_picture_url",
+        "video.video_url",
         "video.screenshot_url",
         "video.id",
         "video.title"

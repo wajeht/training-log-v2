@@ -1,0 +1,51 @@
+<div
+  class="tab-pane fade show card shadow-sm"
+  id="list-delete-account"
+  role="tabpanel"
+  aria-labelledby="list-home-list"
+>
+  <div class="card-body">
+    <h5 class="card-title mb-3">Delete account</h5>
+    <form action="/settings/delete-account" method="post">
+      
+      <!-- user id -->
+      <input type="hidden" id="id" name="id" value="<%= userDetails.id %>" />
+
+      <!-- csrf token -->
+      <input
+        type="hidden"
+        id="csrfToken"
+        name="_csrf"
+        value="<%= csrfToken %>"
+      />
+
+      <!-- Why -->
+      <div class="form-floating mb-3">
+        <textarea
+          class="form-control"
+          name="why"
+          placeholder="Why do you want to delete?"
+          id="why"
+          style="height: 150px"
+        ></textarea>
+        <label for="floatingInput">Why do you want to delete?</label>
+      </div>
+
+      <!-- password -->
+      <div class="form-floating mb-3">
+        <input
+          name="password"
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Re-enter your password"
+          required
+        />
+        <label for="floatingInput">Re-enter your password</label>
+      </div>
+      <button id="public-info-save-changes" type="submit" class="btn btn-dark">
+        Delete
+      </button>
+    </form>
+  </div>
+</div>
