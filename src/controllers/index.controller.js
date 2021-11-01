@@ -72,8 +72,8 @@ const getAbout = (req, res, next) => {
 };
 
 const getSettings = async (req, res, next) => {
-  const { username } = req.session.user;
-  const [userDetails] = await User.getUserDetails(username);
+  const { id } = req.session.user;
+  const [userDetails] = await User.getUserDetailsById(id);
 
   try {
     res.render("pages/settings.ejs", {

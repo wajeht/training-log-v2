@@ -1,7 +1,22 @@
-const localVariables = (req, res, next) => {
+const User = require("../models/user.model.js");
+
+const localVariables = async (req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   res.locals.isAuthenticated = req.session.isLoggedIn;
-  res.locals.user = req.session.user;
+
+  let user;
+
+  // since this runs on every request
+  // this will fetch the latest info
+  // about user. fixed form setting
+  // update page.
+  if (req.session.user) {
+    const { id } = req.session.user;
+    [user] = await User.getUserDetailsById(id);
+  }
+
+  res.locals.user = user;
+
   next();
 };
 

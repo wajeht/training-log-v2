@@ -1,9 +1,8 @@
 <% if (isAuthenticated) { %>
-<div class="d-flex">
+
+<div class="d-flex align-items-center">
   <!-- search form -->
-  <form class="d-flex" method="get" action="/search?">
-    <input class="form-control" type="search" placeholder="Search" name="q" />
-  </form>
+  <%- include("../auth/search-form.ejs") %>
 
   <!-- add -->
   <a href="" data-bs-toggle="modal" data-bs-target="#addPostModal">

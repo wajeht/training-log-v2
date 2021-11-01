@@ -1,0 +1,22 @@
+<style>
+  #search {
+    width: 5.5em;
+    height: 1.7em;
+    transition: width 0.5s ease;
+  }
+
+  #search:focus {
+    width: 200px;
+  }
+</style>
+
+<form method="get" action="/search?">
+  <input
+    name="q"
+    id="search"
+    class="form-control"
+    type="text"
+    placeholder="search..."
+    aria-label="search"
+  />
+</form>

@@ -17,6 +17,23 @@ class User {
     return db.select().from("user").where({ email: email });
   };
 
+  static getUserDetailsById = (id) => {
+    return db
+      .select(
+        "id",
+        "name",
+        "username",
+        "biography",
+        "age",
+        "weight",
+        "gender",
+        "email",
+        "profile_picture_url"
+      )
+      .from("user")
+      .where({ "user.id": id });
+  };
+
   static getUserDetails = (username) => {
     return db
       .select(
