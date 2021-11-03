@@ -1,0 +1,107 @@
+<style>
+  #profilePicture::before {
+    content: "Picture";
+    position: absolute;
+    z-index: 2;
+    display: block;
+    background-color: #eaecef;
+    width: 90px;
+  }
+</style>
+
+<!-- picture -->
+<div class="d-flex justify-content-center align-items-center">
+  <img
+    class="img-fluid img-thumbnail shadow-sm mb-3"
+    style="width: 200px; height: 200px; object-fit: cover; border-radius: 50%"
+    id="imagePreview"
+    src="<%= userDetails.profile_picture_url %> "
+    alt="your image"
+  />
+</div>
+
+<!-- file form -->
+<div class="custom-file mb-3">
+  <!-- form -->
+  <form id="updateProfilePictureForm">
+    <!-- user id -->
+    <input
+      type="hidden"
+      id="userId"
+      name="userId"
+      value="<%= userDetails.id %>"
+    />
+
+    <!-- csrf token -->
+    <input type="hidden" id="csrfToken" name="_csrf" value="<%= csrfToken %>" />
+
+    <!-- file -->
+    <input
+      class="form-control"
+      accept=".png, .jpg, .jpeg .gif"
+      type="file"
+      id="profilePicture"
+      name="profilePicture"
+      title="choose a picture"
+    />
+  </form>
+</div>
+
+<script>
+  profilePicture.onchange = (evt) => {
+    const [file] = profilePicture.files;
+    if (file) {
+      imagePreview.src = URL.createObjectURL(file);
+      const csrf = document.querySelector(
+        "#updateProfilePictureForm #csrfToken"
+      ).value;
+
+      const profilePicture = document.querySelector("#profilePicture");
+      const userId = document.querySelector("#userId").value;
+
+      const thisForm = document.getElementById("updateProfilePictureForm");
+      const formData = new FormData(thisForm);
+
+      const navBarProfilePicture = document.querySelector(
+        "#navBarProfilePicture"
+      );
+
+      (async () => {
+        try {
+          const res = await fetch("/settings/update-profile-image", {
+            method: "PUT",
+            headers: {
+              "csrf-token": csrf,
+            },
+            body: formData,
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw {
+              statusCode: res.status,
+              ...data,
+            };
+          }
+
+          navBarProfilePicture.src = URL.createObjectURL(
+            profilePicture.files[0]
+          );
+
+          document.body.prepend(
+            newToast("success", "profile picture updated successfully!")
+          );
+          const myToastEl = document.getElementById("toast");
+          const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+          myToast.show();
+        } catch (err) {
+          document.body.prepend(newToast("danger", err.message));
+          const myToastEl = document.getElementById("toast");
+          const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+          myToast.show();
+        }
+      })();
+    }
+  };
+</script>

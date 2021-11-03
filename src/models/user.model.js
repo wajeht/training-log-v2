@@ -82,6 +82,13 @@ class User {
     return db.update({ password: newPassword }).from("user").where({ id: id });
   };
 
+  static updateProfileImage = (profile_picture_url, user_id) => {
+    return db
+      .update({ profile_picture_url: profile_picture_url })
+      .from("user")
+      .where({ id: user_id });
+  };
+
   static postUpdateProfile = (
     id,
     name,

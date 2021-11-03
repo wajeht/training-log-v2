@@ -4,6 +4,10 @@ const Comment = require("../models/comment.model.js");
 
 const bcrypt = require("bcryptjs");
 
+const fs = require("fs");
+const path = require("path");
+
+const { root } = require("../../util/directory.js");
 const { takeScreenshot } = require("../../util/take-screenshot.js");
 const { minifyImage } = require("../../util/minify-image.js");
 const { deleteLocalVideo } = require("../../util/delete-video.js");
@@ -239,7 +243,7 @@ const updateChangePassword = async (req, res, next) => {
 
 const postDeleteAccount = async (req, res, next) => {
   try {
-    const { id, why, password } = req.body;
+    const { id, password } = req.body;
     const [user] = await User.getUserDetailsById(Number.parseInt(id));
 
     if (Number.parseInt(id) != req.session.user.id) {
@@ -278,6 +282,39 @@ const postDeleteAccount = async (req, res, next) => {
   }
 };
 
+const updateProfileImage = async (req, res, next) => {
+  try {
+    const picture = `/${req.file.path}`;
+    let { userId } = req.body;
+    userId = Number.parseInt(userId);
+
+    if (userId != req.session.user.id) {
+      throw new Error("You're not authorized!");
+    }
+
+    const [userDetails] = await User.getUserDetailsById(userId);
+    const old_profile_picture_url = userDetails.profile_picture_url;
+
+    // don't delete  picture
+    if (old_profile_picture_url.split("/")[2] != "rick.jpg") {
+      fs.unlink(path.join(root, old_profile_picture_url), (err) => {
+        if (err) throw err;
+      });
+    }
+
+    const updated = await User.updateProfileImage(picture, userId);
+
+    if (!updated) {
+      throw new Error("something went wrong while updating!");
+    }
+
+    res.status(200).json({ message: "ok" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
 module.exports = {
   postVideo,
   getVideo,
@@ -289,5 +326,6 @@ module.exports = {
   deleteComment,
   postDeleteAccount,
   updateEditProfile,
+  updateProfileImage,
   updateChangePassword,
 };

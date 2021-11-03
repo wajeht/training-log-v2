@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { loginRequired } = require("../middlewares/auth.js");
-const { uploadVideo } = require("../middlewares/upload-file.js");
+const { uploadVideo, uploadPicture } = require("../middlewares/upload-file.js");
 
 const {
   getSearch,
@@ -15,6 +15,7 @@ const {
   deleteComment,
   postDeleteAccount,
   updateEditProfile,
+  updateProfileImage,
   updateChangePassword,
 } = require("../controllers/admin.controller.js");
 
@@ -32,6 +33,12 @@ router.delete("/comments/:id", loginRequired, deleteComment);
 
 router.put("/settings/edit-profile", loginRequired, updateEditProfile);
 router.put("/settings/change-password", loginRequired, updateChangePassword);
+router.put(
+  "/settings/update-profile-image",
+  loginRequired,
+  uploadPicture,
+  updateProfileImage
+);
 
 router.post("/settings/delete-account", loginRequired, postDeleteAccount);
 

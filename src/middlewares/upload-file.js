@@ -34,7 +34,9 @@ const upload = multer({
 });
 
 const uploadVideo = upload.single("video");
+const uploadPicture = upload.single("profilePicture");
 
 module.exports = {
   uploadVideo,
+  uploadPicture,
 };

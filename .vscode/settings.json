@@ -3,6 +3,7 @@
     "cleandb",
     "knexfile",
     "middlewares",
+    "mozjpeg",
     "referrerpolicy",
     "resave",
     "restartdb",
@@ -16,6 +17,7 @@
     "signup",
     "subfsp",
     "suffsp",
-    "tablename"
+    "tablename",
+    "wajeht"
   ]
 }

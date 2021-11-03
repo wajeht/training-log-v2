@@ -9,6 +9,30 @@
   <div class="card shadow-sm mb-3">
     <div class="card-body">
       <h5 class="card-title mb-3">Edit profile</h5>
+
+      <!-- profile picture upload -->
+      <!-- <div
+        class="
+          mb-3
+          d-flex
+          flex-column
+          justify-content-center
+          align-items-center
+        "
+      >
+        <img
+          src="<%= userDetails.profile_picture_url %> "
+          class="img-fluid mb-2"
+          style="border-radius: 50%; height: 225px; width: 225px"
+          id="wizardPicturePreview"
+          title=""
+        />
+        <h6>change picture</h6>
+      </div> -->
+
+      <%- include('../auth/change-picture.ejs') %>
+
+      <!-- form -->
       <form
         id="edit-profile-form"
         action="/settings/edit-profile"
