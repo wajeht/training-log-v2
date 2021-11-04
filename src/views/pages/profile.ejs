@@ -30,7 +30,7 @@
         <div class="col-8">
           <div class="card-body">
             <h5 class="card-title"><%= userDetails.userInfo.username %></h5>
-            <p><%= userDetails.userInfo.biography %></p>
+            <p><%= userDetails.userInfo.biography.length == 0 ? "Please update your bio via settings" : userDetails.userInfo.biography %></p>
           </div>
         </div>
       </div>
