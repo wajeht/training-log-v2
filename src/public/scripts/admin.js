@@ -309,6 +309,10 @@ const editProfile = (btn) => {
       const data = await res.json();
 
       if (!res.ok) {
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerText = "Save changes";
+        }, 500);
         throw {
           statusCode: res.status,
           ...data,

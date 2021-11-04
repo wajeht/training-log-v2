@@ -184,6 +184,14 @@ const updateEditProfile = async (req, res, next) => {
     req.body;
 
   try {
+    if (biography.length > 255) {
+      throw new Error("must be less than 255 words");
+    }
+
+    if (username == "" || email == "") {
+      throw new Error("username or email must not be empty ");
+    }
+
     const updated = await User.postUpdateProfile(
       id,
       name,
@@ -201,7 +209,7 @@ const updateEditProfile = async (req, res, next) => {
 
     res.status(200).json({ message: "ok" });
   } catch (err) {
-    res.status(500).json({ message: "failed!", err });
+    res.status(500).json({ message: err.message });
   }
 };
 
