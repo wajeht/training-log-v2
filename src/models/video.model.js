@@ -92,9 +92,12 @@ class Video {
   static getAllVideosThatMatchesSearchParams = (query) => {
     return db
       .select(
-        "user.username",
-        "user.profile_picture_url",
-        "video.screenshot_url",
+        "video.user_id",
+        "user.id",
+        "screenshot_url",
+        "profile_picture_url",
+        "description",
+        "username",
         "video.id",
         "video.title"
       )

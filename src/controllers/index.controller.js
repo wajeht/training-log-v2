@@ -17,8 +17,6 @@ const getIndex = async (req, res, next) => {
 
     const videos = await Video.getAllVideosWithUserDetails(videosPerPage, page);
 
-    console.log(videos.length);
-
     res.render("pages/home.ejs", {
       pageTitle: "TrainingLog",
       videos,

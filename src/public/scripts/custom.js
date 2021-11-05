@@ -2,7 +2,7 @@
  * global spinner
  */
 const title = document.title;
-const regex = /users|videos|video|Videos|profile|400|500/;
+const regex = /users|videos|video|Videos|profile|400|500|Search/;
 const homePage = "TrainingLog";
 const url = window.location.href;
 
