@@ -9,14 +9,23 @@ const getIndex = async (req, res, next) => {
       return res.redirect("/videos");
     }
 
-    const videos = await Video.getAllVideosWithUserDetails();
+    const videosPerPage = 8;
+    const page = req.query.page || 1;
+
+    let [count] = await Video.countAllVideos();
+    count = Number.parseInt(count.count);
+
+    const videos = await Video.getAllVideosWithUserDetails(videosPerPage, page);
+
+    console.log(videos.length);
 
     res.render("pages/home.ejs", {
       pageTitle: "TrainingLog",
       videos,
+      current: page,
+      pages: Math.ceil(count / videosPerPage),
     });
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
