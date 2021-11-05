@@ -93,11 +93,19 @@ const deleteVideo = async (req, res) => {
 
 const getVideos = async (req, res, next) => {
   try {
-    const videos = await Video.getAllVideosWithUserDetails();
+    const videosPerPage = 16;
+    const page = req.query.page || 1;
+
+    let [count] = await Video.countAllVideos();
+    count = Number.parseInt(count.count);
+
+    const videos = await Video.getAllVideosWithUserDetails(videosPerPage, page);
 
     res.render("pages/videos.ejs", {
       pageTitle: "TrainingLog: Videos",
       videos,
+      current: page,
+      pages: Math.ceil(count / videosPerPage),
     });
   } catch (err) {
     next(err);

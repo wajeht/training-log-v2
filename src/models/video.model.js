@@ -16,7 +16,7 @@ class Video {
     return db.del().from("video").where({ "video.user_id": userId });
   };
 
-  static getAllVideosWithUserDetails = () => {
+  static getAllVideosWithUserDetails = (videosPerPage, page) => {
     return db
       .select(
         "video.user_id",
@@ -27,8 +27,14 @@ class Video {
         "video.title"
       )
       .from("video")
+      .limit(videosPerPage)
+      .offset((page - 1) * videosPerPage)
       .join("user", "user.id", "video.user_id")
       .orderBy("video.id", "desc");
+  };
+
+  static countAllVideos = () => {
+    return db.count().from("video");
   };
 
   static getAllVideosThatMatchesUsername = (username) => {
