@@ -1,0 +1,116 @@
+<section class="bg-dark border-bottom">
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3 text-white">
+          JawStrength
+          <span style="color: #f1b980">presents</span>
+        </h1>
+        <p
+          class="col-lg-10 fs-4 text-light description"
+          style="height: 105px"
+        ></p>
+        <div>
+          <a href="/about" class="btn btn-outline-light">Learn more</a>
+        </div>
+      </div>
+
+      <!-- signup -->
+      <div
+        class="
+          col-md-10
+          mx-auto
+          col-lg-5
+          pt-5
+          animate__animated animate__zoomIn animate__faster
+        "
+      >
+        <div class="card shadow-sm animate__animated animate__fadeIn">
+          <div class="card-body">
+            <form
+              id="signupFormFromSinglePage"
+              class="p-3 p-md-3"
+              action="/signup"
+              method="post"
+            >
+              <!-- text -->
+              <div class="text-center mb-4">
+                <h4>Sign up</h4>
+                <p>
+                  Already have an account? <a href="/signin">Sign in</a> here
+                </p>
+              </div>
+              <!-- username -->
+              <div class="form-floating mb-3">
+                <input
+                  name="username"
+                  type="text"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="username"
+                  required
+                />
+                <label for="floatingInput">Username</label>
+              </div>
+              <!-- email -->
+              <div class="form-floating mb-3">
+                <input
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="name@example.com"
+                  required
+                />
+                <label for="floatingInput">Email address</label>
+              </div>
+              <!-- password -->
+              <div class="form-floating mb-3">
+                <input
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                  required
+                />
+                <label for="floatingPassword">Password</label>
+              </div>
+              <!-- password -->
+              <div class="form-floating mb-3">
+                <input
+                  name="password"
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Confirm password"
+                  required
+                />
+                <label for="floatingPassword">Confirm password</label>
+              </div>
+
+              <input
+                type="hidden"
+                id="csrfToken"
+                name="_csrf"
+                value="<%= csrfToken %>"
+              />
+              <!-- button -->
+              <button
+                id="signupButtonFromSinglePage"
+                class="w-100 btn btn-lg btn-dark"
+                type="submit"
+              >
+                Sign up
+              </button>
+              <hr class="my-4" />
+              <small class="text-muted"
+                >By clicking Sign up, you agree to the terms of use.</small
+              >
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
