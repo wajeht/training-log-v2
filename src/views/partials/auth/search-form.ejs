@@ -1,8 +1,11 @@
 <style>
   #search {
-    width: 5.5em;
+    width: 0;
     height: 1.7em;
     transition: width 0.5s ease;
+    background: transparent;
+    color: white;
+    border: none;
   }
 
   #search:focus {
@@ -10,7 +13,12 @@
   }
 </style>
 
-<form method="get" action="/search?">
+<form
+  method="get"
+  action="/search?"
+  class="d-flex align-items-center justify-content-center"
+  style="position: relative"
+>
   <input
     name="q"
     id="search"
@@ -18,5 +26,17 @@
     type="text"
     placeholder="search..."
     aria-label="search"
+    style="position: absolute; right: 0"
   />
+  <div
+    class="d-flex justify-content-center align-items-center"
+    style="
+      background-color: white;
+      width: 1.7em;
+      height: 1.7em;
+      border-radius: 50%;
+    "
+  >
+    <i class="bi bi-search"></i>
+  </div>
 </form>
