@@ -147,13 +147,11 @@ const description = document.getElementsByClassName("description");
 if (description.length != 0) {
   new Typed(".description", {
     strings: [
-      "A full-stack web application to log training videos with the respect to weekly session. <i>For the athletes!</i>",
-      "A full-stack web application to log training videos with the respect to weekly session. <i>Built by an athlete!</i>",
+      "A full-stack web application to log training videos with the respect to your privacy. <i>For the athletes!</i>",
+      "A full-stack web application to log training videos with the respect to your privacy. <i>Built by an athlete!</i>",
     ],
     typeSpeed: 0,
     backSpeed: 0,
     smartBackspace: true, // this is a default
   });
 }
-
-
