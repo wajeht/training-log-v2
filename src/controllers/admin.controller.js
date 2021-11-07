@@ -15,8 +15,10 @@ const { deleteAllUserVideos } = require("../../util/delete-video.js");
 
 const postVideo = async (req, res, next) => {
   try {
-    const { date, title, description, userId } = req.body;
+    const { title, description, userId } = req.body;
     const video = `/${req.file.path}`;
+
+    const date = new Date().toLocaleDateString();
 
     const screenshotUrl = await takeScreenshot(video);
 
