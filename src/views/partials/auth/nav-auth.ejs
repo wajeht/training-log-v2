@@ -1,5 +1,15 @@
 <% if (isAuthenticated) { %>
+<!-- css -->
+<style>
+  #addPostModalFont {
+    color: white;
+  }
+  #addPostModalFont:hover {
+    color: #DFDFDF;
+  }
+</style>
 
+<!-- html -->
 <div class="d-flex align-items-center">
   <!-- search form -->
   <%- include("../auth/search-form.ejs") %>
@@ -7,7 +17,8 @@
   <!-- add -->
   <a href="" data-bs-toggle="modal" data-bs-target="#addPostModal">
     <i
-      class="bi bi-plus-circle-fill text-light mx-2"
+      id="addPostModalFont"
+      class="bi bi-plus-circle-fill mx-2"
       style="font-size: 1.7em"
     ></i>
   </a>

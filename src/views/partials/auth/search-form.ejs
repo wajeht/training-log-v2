@@ -1,4 +1,12 @@
+<!-- css -->
 <style>
+  #searchIcon {
+    background-color: white;
+  }
+
+  #searchIcon:hover {
+    background-color: #dfdfdf;
+  }
   #search {
     width: 0;
     height: 1.7em;
@@ -9,10 +17,11 @@
   }
 
   #search:focus {
-    width: 200px;
+    width: 150px;
   }
 </style>
 
+<!-- html -->
 <form
   method="get"
   action="/search?"
@@ -26,17 +35,36 @@
     type="text"
     placeholder="search..."
     aria-label="search"
-    style="position: absolute; right: 0"
+    style="position: absolute; right: 0; padding-right: 2.2em"
   />
   <div
+    id="searchIcon"
     class="d-flex justify-content-center align-items-center"
     style="
-      background-color: white;
       width: 1.7em;
       height: 1.7em;
       border-radius: 50%;
+      z-index: 99;
+      cursor: pointer;
     "
   >
     <i class="bi bi-search"></i>
   </div>
 </form>
+
+<!-- script -->
+<script>
+  // when search icon is clicked
+  document.querySelector("#searchIcon").addEventListener("click", (e) => {
+    const clicked = document.querySelector("#searchIcon").contains(e.target);
+
+    // brin out the search box
+    if (clicked) {
+      document.querySelector("#searchIcon").style.zIndex = "-1";
+      document.querySelector("#search").focus();
+    }
+
+    // hide the box
+    document.querySelector("#searchIcon").style.zIndex = "99";
+  });
+</script>
