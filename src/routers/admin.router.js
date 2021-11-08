@@ -10,6 +10,7 @@ const {
   postVideo,
   getVideos,
   getUser,
+  postContact,
   postComment,
   deleteVideo,
   deleteComment,
@@ -18,6 +19,8 @@ const {
   updateProfileImage,
   updateChangePassword,
 } = require("../controllers/admin.controller.js");
+
+router.post("/contact", postContact);
 
 router.get("/search", loginRequired, getSearch);
 

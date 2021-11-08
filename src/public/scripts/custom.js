@@ -6,7 +6,8 @@ const regex = /users|videos|video|Videos|profile|400|500|Search/;
 const homePage = "TrainingLog";
 const url = window.location.href;
 
-if (title.match(regex) || url.match(regex)) {
+if (title.match(regex) || url.match(regex) || title.split(" ")[1] == '404') {
+  console.log(title, url);
   document.onreadystatechange = () => {
     if (document.readyState !== "complete") {
       document.querySelector("main").style.visibility = "hidden";

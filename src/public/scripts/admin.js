@@ -403,3 +403,80 @@ const changePassword = (btn) => {
     }
   })();
 };
+
+/**
+ * contact from coaching section
+ */
+const postContactOnCoachingSection = (btn) => {
+  let name = btn.parentNode.parentNode.querySelector("[name=name]").value;
+  let email = btn.parentNode.parentNode.querySelector("[name=name]").value;
+  let message = btn.parentNode.parentNode.querySelector("[name=name]").value;
+  const csrf = btn.parentNode.querySelector("#csrfToken").value;
+
+  var emailValidator =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  (async () => {
+    try {
+      // empty check
+      if (!name || !email || !message) {
+        throw Error("must not be empty!");
+      }
+
+      // if (!email.match(emailValidator)) {
+      //   throw Error("must be an email!");
+      // }
+
+      const res = await fetch("/contact", {
+        method: "POST",
+        headers: {
+          "csrf-token": csrf,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw {
+          statusCode: res.status,
+          ...data,
+        };
+      }
+
+      // show spinner
+      btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...`;
+      btn.disabled = true;
+
+      // after 1 sec
+      setTimeout(() => {
+        // change btn text to send
+        btn.disabled = false;
+        btn.innerText = "Send";
+
+        // show a toast saying success
+        document.body.prepend(
+          newToast("success", "Sent! we'll get back to you ASAP!")
+        );
+        const myToastEl = document.getElementById("toast");
+        const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+        myToast.show();
+
+        // reset the form
+        document.querySelector("#contactFormCoachingSection").reset();
+      }, 1000);
+
+      // reset the form
+    } catch (err) {
+      document.body.prepend(newToast("danger", err.message));
+      const myToastEl = document.getElementById("toast");
+      const myToast = bootstrap.Toast.getOrCreateInstance(myToastEl);
+      myToast.show();
+    }
+  })();
+};

@@ -2,8 +2,6 @@ const Video = require("../models/video.model.js");
 const User = require("../models/user.model.js");
 const Comment = require("../models/comment.model.js");
 
-const bcrypt = require("bcryptjs");
-
 const fs = require("fs");
 const path = require("path");
 
@@ -12,6 +10,21 @@ const { takeScreenshot } = require("../../util/take-screenshot.js");
 const { minifyImage } = require("../../util/minify-image.js");
 const { deleteLocalVideo } = require("../../util/delete-video.js");
 const { deleteAllUserVideos } = require("../../util/delete-video.js");
+const config = require("../../config/config.js");
+
+const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
+
+const smtpConfig = {
+  host: config.email.host,
+  port: config.email.port,
+  secure: config.email.secure,
+  auth: {
+    user: config.email.auth_user,
+    pass: config.email.auth_pass,
+  },
+};
+const transporter = nodemailer.createTransport(smtpConfig);
 
 const postVideo = async (req, res, next) => {
   try {
@@ -333,6 +346,27 @@ const updateProfileImage = async (req, res, next) => {
   }
 };
 
+const postContact = (req, res, next) => {
+  const { name, email, message } = req.body;
+
+  try {
+    transporter.sendMail({
+      to: `${config.sendGrid.fromEmail}`,
+      from: `${name} <${config.sendGrid.fromEmail}>`,
+      subject: `traininglog.tv's contact page`,
+      html: `
+		<p>${name}</p>
+		<p>${email}</p>
+		<p>${message}</p>
+		`,
+    });
+
+    res.status(200).json({ message: "ok" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 module.exports = {
   postVideo,
   getVideo,
@@ -340,6 +374,7 @@ module.exports = {
   getVideos,
   getUser,
   getSearch,
+  postContact,
   postComment,
   deleteComment,
   postDeleteAccount,
