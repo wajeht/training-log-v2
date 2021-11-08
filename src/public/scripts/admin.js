@@ -409,8 +409,8 @@ const changePassword = (btn) => {
  */
 const postContact = (btn) => {
   let name = btn.parentNode.parentNode.querySelector("[name=name]").value;
-  let email = btn.parentNode.parentNode.querySelector("[name=name]").value;
-  let message = btn.parentNode.parentNode.querySelector("[name=name]").value;
+  let email = btn.parentNode.parentNode.querySelector("[name=email]").value;
+  let message = btn.parentNode.parentNode.querySelector("[name=message]").value;
   const csrf = btn.parentNode.querySelector("#csrfToken").value;
 
   var emailValidator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -418,8 +418,12 @@ const postContact = (btn) => {
   (async () => {
     try {
       // empty check
-      if (!name || !message || !email.match(emailValidator)) {
-        throw Error("must not be empty!");
+      if (name === "" || message === "") {
+        throw new Error("must not be empty!");
+      }
+
+      if (!email.match(emailValidator)) {
+        throw new Error("must be a valid email!");
       }
 
       const res = await fetch("/contact", {
