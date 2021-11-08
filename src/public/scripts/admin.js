@@ -413,19 +413,14 @@ const postContact = (btn) => {
   let message = btn.parentNode.parentNode.querySelector("[name=name]").value;
   const csrf = btn.parentNode.querySelector("#csrfToken").value;
 
-  var emailValidator =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var emailValidator = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
   (async () => {
     try {
       // empty check
-      if (!name || !email || !message) {
+      if (!name || !message || !email.match(emailValidator)) {
         throw Error("must not be empty!");
       }
-
-      // if (!email.match(emailValidator)) {
-      //   throw Error("must be an email!");
-      // }
 
       const res = await fetch("/contact", {
         method: "POST",
