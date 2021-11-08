@@ -5,7 +5,7 @@
       <div class="col-12 col-sm-10 col-md-8 col-lg-6 mx-auto">
         <div class="card shadow-sm animate__animated animate__fadeIn">
           <div class="card-body">
-            <form id="signinFormFromSinglePage" action="/contact" method="post">
+            <form id="contactForm">
               <!-- text -->
               <div class="mb-4">
                 <h4>Contact</h4>
@@ -60,7 +60,8 @@
                 <button
                   id="signinButtonFromSinglePage"
                   class="w-100 btn btn-lg btn-dark"
-                  type="submit"
+                  type="button"
+                  onclick="postContact(this)"
                 >
                   Send
                 </button>

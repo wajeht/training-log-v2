@@ -407,7 +407,7 @@ const changePassword = (btn) => {
 /**
  * contact from coaching section
  */
-const postContactOnCoachingSection = (btn) => {
+const postContact = (btn) => {
   let name = btn.parentNode.parentNode.querySelector("[name=name]").value;
   let email = btn.parentNode.parentNode.querySelector("[name=name]").value;
   let message = btn.parentNode.parentNode.querySelector("[name=name]").value;
@@ -468,7 +468,7 @@ const postContactOnCoachingSection = (btn) => {
         myToast.show();
 
         // reset the form
-        document.querySelector("#contactFormCoachingSection").reset();
+        document.querySelector("#contactForm").reset();
       }, 1000);
 
       // reset the form
