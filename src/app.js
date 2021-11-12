@@ -36,7 +36,12 @@ const csurf = require("csurf");
 var csrfProtection = csurf({ cookie: false });
 
 app.use(cors());
-// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+
 // app.use(morgan("combined"));
 app.use(compression());
 

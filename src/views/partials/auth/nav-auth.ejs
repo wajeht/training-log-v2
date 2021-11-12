@@ -1,10 +1,12 @@
 <% if (isAuthenticated) { %>
 <!-- css -->
 <style>
-  #addPostModalFont {
+  #addPostModalFont,
+  #videosList {
     color: white;
   }
-  #addPostModalFont:hover {
+  #addPostModalFont:hover,
+  #videosList:hover {
     color: #dfdfdf;
   }
 
@@ -17,6 +19,15 @@
 <div class="d-flex align-items-center">
   <!-- search form -->
   <%- include("../auth/search-form.ejs") %>
+
+  <!-- videos -->
+  <a href="/videos"
+    ><i
+      id="videosList"
+      class="bi bi-play-circle-fill ms-2"
+      style="font-size: 1.7em"
+    ></i>
+  </a>
 
   <!-- add -->
   <a href="" data-bs-toggle="modal" data-bs-target="#addPostModal">

@@ -93,6 +93,9 @@ const postComment = (btn) => {
   })();
 };
 
+/**
+ * delete comment
+ */
 const deleteComment = (btn) => {
   const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
   const video_user_id = window.localStorage.getItem("video_user_id");
@@ -141,6 +144,9 @@ const deleteComment = (btn) => {
   })();
 };
 
+/**
+ * setting specific value to local storage
+ */
 const setCommentIdToLocalStorage = (btn) => {
   const video_user_id = btn.parentNode.children[1].value;
   const comment_id =
@@ -272,6 +278,9 @@ const newToast = (type, message) => {
   return html;
 };
 
+/**
+ * edit profile
+ */
 const editProfile = (btn) => {
   btn.disabled = true;
   btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...`;
@@ -342,6 +351,9 @@ const editProfile = (btn) => {
   })();
 };
 
+/**
+ * change password
+ */
 const changePassword = (btn) => {
   btn.disabled = true;
   btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...`;
