@@ -6,7 +6,6 @@ require("dotenv").config({
 });
 
 module.exports = {
-  env: process.env.NODE_ENV,
   database: {
     host: process.env.DB_HOST,
     username: process.env.DB_USERNAME,
@@ -15,9 +14,7 @@ module.exports = {
     port: process.env.DB_PORT,
     url: process.env.DATABASE_URL,
   },
-  port: {
-    serverPort: process.env.PORT,
-  },
+  port: process.env.PORT,
   cookie: {
     secret: process.env.COOKIE_SECRET,
   },

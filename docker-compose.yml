@@ -1,5 +1,19 @@
 version: "3.9"
 services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    networks:
+      - training-log-v2-app
+    volumes:
+      - postgres-data:/data/postgres
+      
   web:
     image: training-log-v2-web
     build: ./
@@ -11,22 +25,8 @@ services:
     depends_on:
       - postgres
 
-  postgres:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-    ports:
-      - "5432:5432"
-    networks:
-      - training-log-v2-app
-    volumes:
-      - postgres-data:/data/postgres
-
 networks:
-  training-vlog-app:
+  training-log-v2-app:
     driver: bridge
 
 volumes:
