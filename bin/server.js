@@ -8,11 +8,11 @@ const success = chalk.black.bgGreen;
 const { port } = require("../config/config.js");
 const db = require("../db/db.js");
 
-const testConnection = () => {
+const testDatabaseConnection = () => {
   return new Promise((resolve, reject) => {
     db.raw("select 1")
       .then((res) => {
-        log(success(`Db connected successfully!`));
+        log(success(`Database connected successfully!`));
         resolve(res);
       })
       .catch((err) => {
@@ -24,7 +24,7 @@ const testConnection = () => {
 
 (async () => {
   try {
-    const conn = await testConnection();
+    const conn = await testDatabaseConnection();
 
     const app = require("../src/app.js");
     app.listen(port);
