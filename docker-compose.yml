@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  web:
+    image: training-log-v2-web
+    build: ./
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    networks:
+      - training-log-v2-app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - training-log-v2-app
+    volumes:
+      - postgres-data:/data/postgres
+
+networks:
+  training-vlog-app:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
