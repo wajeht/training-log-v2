@@ -4,6 +4,7 @@
     "avfm",
     "avsb",
     "cleandb",
+    "datname",
     "knexfile",
     "middlewares",
     "mozjpeg",
