@@ -1,6 +1,10 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 
+/**
+ * Signin page.
+ * @route GET /signin
+ */
 const getSignin = (req, res, next) => {
   const authMessages = {
     error: req.flash("error"),
@@ -18,6 +22,10 @@ const getSignin = (req, res, next) => {
   }
 };
 
+/**
+ * Signup page.
+ * @route GET /signup
+ */
 const getSignup = (req, res, next) => {
   try {
     res.render("pages/auth/signup.ejs", {
@@ -28,6 +36,10 @@ const getSignup = (req, res, next) => {
   }
 };
 
+/**
+ * Forget password page.
+ * @route GET /forget-password
+ */
 const getForgetPassword = (req, res, next) => {
   try {
     res.render("pages/auth/forget-password.ejs", {
@@ -38,6 +50,10 @@ const getForgetPassword = (req, res, next) => {
   }
 };
 
+/**
+ * Send a post req from login page
+ * @route post /login
+ */
 const postLogin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -70,6 +86,10 @@ const postLogin = async (req, res, next) => {
   }
 };
 
+/**
+ * Send a post req from logout page
+ * @route post /logout
+ */
 const postLogout = (req, res, next) => {
   try {
     req.session.isLoggedIn = false;
@@ -82,6 +102,10 @@ const postLogout = (req, res, next) => {
   }
 };
 
+/**
+ * Send a post req from signup form page
+ * @route post /signup
+ */
 const postSignup = async (req, res, next) => {
   try {
     const { name, age, weight, gender, username, email, password } = req.body;
