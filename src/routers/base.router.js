@@ -9,7 +9,7 @@ const {
   getTerms,
   getAbout,
   getPrivacy,
-} = require("../controllers/index.controller.js");
+} = require("../controllers/base.controller.js");
 
 router.get("/", getIndex);
 router.get("/faq", getFaq);

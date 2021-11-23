@@ -16,7 +16,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 
 // routers
-const indexRouter = require("./routers/index.router.js");
+const baseRouter = require("./routers/base.router.js");
 const adminRouter = require("./routers/admin.router.js");
 const authRouter = require("./routers/auth.router.js");
 
@@ -42,7 +42,7 @@ app.use(
   })
 );
 
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 app.use(compression());
 
 app.use(express.urlencoded({ extended: true }));
@@ -70,7 +70,7 @@ app.use("/data", express.static("data"));
 app.use(csrfProtection);
 app.use(localVariables);
 
-app.use(indexRouter);
+app.use(baseRouter);
 app.use(adminRouter);
 app.use(authRouter);
 
