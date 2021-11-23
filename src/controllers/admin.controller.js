@@ -13,18 +13,6 @@ const { deleteAllUserVideos } = require("../../util/delete-video.js");
 const config = require("../../config/config.js");
 
 const bcrypt = require("bcryptjs");
-const nodemailer = require("nodemailer");
-
-const smtpConfig = {
-  host: config.email.host,
-  port: config.email.port,
-  secure: config.email.secure,
-  auth: {
-    user: config.email.auth_user,
-    pass: config.email.auth_pass,
-  },
-};
-const transporter = nodemailer.createTransport(smtpConfig);
 
 const postVideo = async (req, res, next) => {
   try {
@@ -346,27 +334,6 @@ const updateProfileImage = async (req, res, next) => {
   }
 };
 
-const postContact = (req, res, next) => {
-  const { name, email, message } = req.body;
-
-  try {
-    transporter.sendMail({
-      to: `${config.sendGrid.fromEmail}`,
-      from: `${name} <${config.sendGrid.fromEmail}>`,
-      subject: `traininglog.tv's contact page`,
-      html: `
-		<p>${name}</p>
-		<p>${email}</p>
-		<p>${message}</p>
-		`,
-    });
-
-    res.status(200).json({ message: "ok" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
-
 /**
  * Setting page.
  * @route GET /setting
@@ -392,7 +359,6 @@ module.exports = {
   getVideos,
   getUser,
   getSearch,
-  postContact,
   getSettings,
   postComment,
   deleteComment,
