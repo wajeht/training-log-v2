@@ -19,6 +19,5 @@ router.get("/terms", getTerms);
 router.get("/about", getAbout);
 router.get("/contact", getContact);
 router.get("/privacy", getPrivacy);
-router.get("/settings", loginRequired, getSettings);
 
 module.exports = router;

@@ -367,6 +367,24 @@ const postContact = (req, res, next) => {
   }
 };
 
+/**
+ * Setting page.
+ * @route GET /setting
+ */
+const getSettings = async (req, res, next) => {
+  const { id } = req.session.user;
+  const [userDetails] = await User.getUserDetailsById(id);
+
+  try {
+    res.render("pages/settings.ejs", {
+      pageTitle: "TrainingLog: Settings",
+      userDetails,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   postVideo,
   getVideo,
@@ -375,6 +393,7 @@ module.exports = {
   getUser,
   getSearch,
   postContact,
+  getSettings,
   postComment,
   deleteComment,
   postDeleteAccount,

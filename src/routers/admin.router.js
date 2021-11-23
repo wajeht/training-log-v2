@@ -12,6 +12,7 @@ const {
   getUser,
   postContact,
   postComment,
+  getSettings,
   deleteVideo,
   deleteComment,
   postDeleteAccount,
@@ -23,6 +24,8 @@ const {
 router.post("/contact", postContact);
 
 router.get("/search", loginRequired, getSearch);
+
+router.get("/settings", loginRequired, getSettings);
 
 router.get("/users/:username", loginRequired, getUser);
 

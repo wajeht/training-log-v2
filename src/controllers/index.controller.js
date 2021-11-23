@@ -1,6 +1,10 @@
 const Video = require("../models/video.model.js");
 const User = require("../models/user.model.js");
 
+/**
+ * Home page.
+ * @route GET /
+ */
 const getIndex = async (req, res, next) => {
   try {
     // hide home page after login
@@ -28,6 +32,10 @@ const getIndex = async (req, res, next) => {
   }
 };
 
+/**
+ * Contact form page.
+ * @route GET /contact
+ */
 const getContact = (req, res, next) => {
   try {
     res.render("pages/contact.ejs", {
@@ -38,6 +46,10 @@ const getContact = (req, res, next) => {
   }
 };
 
+/**
+ * FAQ page.
+ * @route GET /faq
+ */
 const getFaq = (req, res, next) => {
   try {
     res.render("pages/faq.ejs", {
@@ -48,6 +60,10 @@ const getFaq = (req, res, next) => {
   }
 };
 
+/**
+ * Terms and Services page.
+ * @route GET /terms
+ */
 const getTerms = (req, res, next) => {
   try {
     res.render("pages/terms.ejs", {
@@ -58,6 +74,10 @@ const getTerms = (req, res, next) => {
   }
 };
 
+/**
+ * Privacy page.
+ * @route GET /privacy
+ */
 const getPrivacy = (req, res, next) => {
   try {
     res.render("pages/privacy.ejs", {
@@ -68,24 +88,14 @@ const getPrivacy = (req, res, next) => {
   }
 };
 
+/**
+ * About page.
+ * @route GET /about
+ */
 const getAbout = (req, res, next) => {
   try {
     res.render("pages/about.ejs", {
       pageTitle: "TrainingLog: About",
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-const getSettings = async (req, res, next) => {
-  const { id } = req.session.user;
-  const [userDetails] = await User.getUserDetailsById(id);
-
-  try {
-    res.render("pages/settings.ejs", {
-      pageTitle: "TrainingLog: Settings",
-      userDetails,
     });
   } catch (err) {
     next(err);
@@ -99,5 +109,4 @@ module.exports = {
   getAbout,
   getTerms,
   getPrivacy,
-  getSettings,
 };
