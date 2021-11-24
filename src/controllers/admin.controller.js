@@ -14,6 +14,10 @@ const config = require("../../config/config.js");
 
 const bcrypt = require("bcryptjs");
 
+/**
+ * Post a vide video from add video modal
+ * @route POST /video
+ */
 const postVideo = async (req, res, next) => {
   try {
     const { title, description, userId } = req.body;
@@ -46,6 +50,10 @@ const postVideo = async (req, res, next) => {
   }
 };
 
+/**
+ * Get a video detail
+ * @route GET /video/:id
+ */
 const getVideo = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -69,6 +77,10 @@ const getVideo = async (req, res, next) => {
   }
 };
 
+/**
+ * Delete a single video
+ * @route DELETE /video/:id
+ */
 const deleteVideo = async (req, res) => {
   try {
     const { videoId, userId } = req.body;
@@ -94,6 +106,10 @@ const deleteVideo = async (req, res) => {
   }
 };
 
+/**
+ * Get list of videos
+ * @route GET /videos
+ */
 const getVideos = async (req, res, next) => {
   try {
     const videosPerPage = 16;
@@ -115,6 +131,10 @@ const getVideos = async (req, res, next) => {
   }
 };
 
+/**
+ * Get user details page
+ * @route GET /users/:username
+ */
 const getUser = async (req, res, next) => {
   try {
     const { username } = req.params;
@@ -135,6 +155,10 @@ const getUser = async (req, res, next) => {
   }
 };
 
+/**
+ * Get search page
+ * @route GET /search
+ */
 const getSearch = async (req, res, next) => {
   try {
     const { q } = req.query;
@@ -149,6 +173,10 @@ const getSearch = async (req, res, next) => {
   }
 };
 
+/**
+ * Post a comment under a video detail page
+ * @route POST /comments/:id
+ */
 const postComment = async (req, res, next) => {
   const videoId = req.params.id; // id == "video.id"
   const userId = req.session.user.id;
@@ -170,6 +198,10 @@ const postComment = async (req, res, next) => {
   }
 };
 
+/**
+ * Delete a comment under a video detail page
+ * @route Delete /comments/:id
+ */
 const deleteComment = async (req, res, next) => {
   try {
     const { video_user_id, comment_id, session_user_id } = req.body;
@@ -190,6 +222,10 @@ const deleteComment = async (req, res, next) => {
   }
 };
 
+/**
+ * Update user info
+ * @route PUT /settings/edit-profile
+ */
 const updateEditProfile = async (req, res, next) => {
   const { id, name, username, email, age, weight, gender, biography } =
     req.body;
@@ -224,6 +260,10 @@ const updateEditProfile = async (req, res, next) => {
   }
 };
 
+/**
+ * Update user password
+ * @route PUT /settings/change-password
+ */
 const updateChangePassword = async (req, res, next) => {
   const { oldPassword, newPassword, confirmNewPassword, userId } = req.body;
 
@@ -260,6 +300,10 @@ const updateChangePassword = async (req, res, next) => {
   }
 };
 
+/**
+ * Delete user account
+ * @route DELETE /settings/delete-account
+ */
 const postDeleteAccount = async (req, res, next) => {
   try {
     const { id, password } = req.body;
@@ -301,6 +345,10 @@ const postDeleteAccount = async (req, res, next) => {
   }
 };
 
+/**
+ * Update user profile image
+ * @route PUT /settings/update-profile-image
+ */
 const updateProfileImage = async (req, res, next) => {
   try {
     const picture = `/${req.file.path}`;
