@@ -71,7 +71,27 @@ const getVideo = async (req, res, next) => {
       videoDetails,
       comments,
       recentVideos,
+      // downloadLink: res.attachment(path.join(root, videoDetails.video_url)),
     });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ * Download a video via a get request
+ * @route GET /download/:id
+ */
+const getDownloadVideo = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const [videoDetails] = await Video.getVideoDetails(id);
+
+    if (!videoDetails) {
+      throw new Error("Cannot find the video");
+    }
+
+    return res.download(path.join(root, videoDetails.video_url));
   } catch (err) {
     next(err);
   }
@@ -427,6 +447,7 @@ module.exports = {
   getSettings,
   postComment,
   deleteComment,
+  getDownloadVideo,
   postDeleteAccount,
   updateEditProfile,
   updateProfileImage,

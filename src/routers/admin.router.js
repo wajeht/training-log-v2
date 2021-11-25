@@ -15,6 +15,7 @@ const {
   getSettings,
   deleteVideo,
   deleteComment,
+  getDownloadVideo,
   postDeleteAccount,
   updateEditProfile,
   updateProfileImage,
@@ -34,6 +35,8 @@ router.post("/videos", uploadVideo, postVideo);
 
 router.get("/videos/:id", getVideo);
 router.delete("/videos/:id", loginRequired, deleteVideo);
+
+router.get("/download/:id", loginRequired, getDownloadVideo);
 
 router.post("/comments/:id", loginRequired, postComment);
 router.delete("/comments/:id", loginRequired, deleteComment);
