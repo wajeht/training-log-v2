@@ -1,3 +1,11 @@
+<style>
+  @media screen and (max-width: 768px) {
+    .row > * {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+</style>
 <!-- delete confirmation modal -->
 <%- include("../partials/auth/delete-video-confirmation-modal.ejs") %>
 
@@ -119,7 +127,7 @@
       if (window.innerWidth <= 992) {
         const rvs = document.querySelector("#recent-video").children[0];
         rvs.classList.add("row");
-        rvs.classList.add("d-flex");
+        rvs.classList.remove("d-flex");
         rvs.classList.add("gap-3");
 
         for (let i = 0; i < rvs.children.length; i++) {
