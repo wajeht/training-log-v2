@@ -15,7 +15,7 @@
         <% for (const user of users) { %>
         <div class="card shadow-sm mb-3">
           <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-sm-12 ">
+            <div class="col-12 col-sm-12 ">
               <div
                 class="
                   card-body
@@ -40,9 +40,9 @@
               </div>
             </div>
 
-            <div class="col-8 col-lg-6">
+            <div class="col-10 col-lg-10">
               <div class="card-body">
-                <h5 class="card-title"><%= user.username %></h5>
+                <h5 class="card-title text-center"><%= user.username %></h5>
                 <%  if ((!user.biography || user.biography.split("").length < 1) && (locals.user.id == user.id)) { %>
                   <p>Please update your bio via settings!</p>
                 <% } else if (!user.biography || user.biography.split("").length < 1) { %>

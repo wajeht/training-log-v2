@@ -111,3 +111,45 @@
     <% } %>
   </div>
 </div>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const recentVideo = document.querySelector("#recent-video");
+    if (recentVideo) {
+      if (window.innerWidth <= 992) {
+        const rvs = document.querySelector("#recent-video").children[0];
+        rvs.classList.add("row");
+        rvs.classList.add("d-flex");
+        rvs.classList.add("gap-3");
+
+        for (let i = 0; i < rvs.children.length; i++) {
+          rvs.children[i].classList.add("col-5");
+          rvs.children[i].classList.remove("mb-3");
+        }
+      }
+    }
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 992) {
+        const rvs = document.querySelector("#recent-video").children[0];
+        rvs.classList.add("row");
+        rvs.classList.add("d-flex");
+        rvs.classList.add("gap-3");
+
+        for (let i = 0; i < rvs.children.length; i++) {
+          rvs.children[i].classList.add("col-5");
+          rvs.children[i].classList.remove("mb-3");
+        }
+      } else {
+        const rvs = document.querySelector("#recent-video").children[0];
+        rvs.classList.remove("row");
+        rvs.classList.remove("d-flex");
+        rvs.classList.remove("gap-3");
+
+        for (let i = 0; i < rvs.children.length; i++) {
+          rvs.children[i].classList.remove("col-5");
+          rvs.children[i].classList.add("mb-3");
+        }
+      }
+    });
+  });
+</script>
