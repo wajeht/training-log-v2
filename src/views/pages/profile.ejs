@@ -30,7 +30,13 @@
         <div class="col-8">
           <div class="card-body">
             <h5 class="card-title"><%= userDetails.userInfo.username %></h5>
-            <p><%= !userDetails.userInfo.biography ? "Please update your bio via settings" : userDetails.userInfo.biography %></p>
+            <%  if ((!userDetails.userInfo.biography || userDetails.userInfo.biography.split("").length < 1) && (locals.user.id == userDetails.userInfo.id)) { %>
+              <p>Please update your bio via settings!</p>
+            <% } else if (!userDetails.userInfo.biography || userDetails.userInfo.biography.split("").length < 1) { %>
+              <p>Please login to update your bio!</p>
+            <% } else { %>
+              <p><%= userDetails.userInfo.biography %></p>
+            <% } %>
           </div>
         </div>
       </div>

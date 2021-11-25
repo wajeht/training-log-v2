@@ -43,9 +43,13 @@
             <div class="col-8 col-lg-6">
               <div class="card-body">
                 <h5 class="card-title"><%= user.username %></h5>
-                <p>
-                  <%= !user.biography && locals.user.id != user.id ? "Please login to update your bio!" : "Please update your bio via settings!" %>
-                </p>
+                <%  if ((!user.biography || user.biography.split("").length < 1) && (locals.user.id == user.id)) { %>
+                  <p>Please update your bio via settings!</p>
+                <% } else if (!user.biography || user.biography.split("").length < 1) { %>
+                  <p>Please login to update your bio!</p>
+                <% } else { %>
+                  <p><%= user.biography %></p>
+                <% } %>
               </div>
             </div>
           </div>
