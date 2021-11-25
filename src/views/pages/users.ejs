@@ -1,13 +1,6 @@
 <!-- spinner -->
 <%- include('../partials/spinner.ejs') %>
 
-<style>
-  .profile-img-hover:hover {
-    padding: 0;
-    border: 0.25rem solid #dfdfdf;
-  }
-</style>
-
 <section class="px-4 py-5 border-top">
   <div class="container">
     <div class="row g-3">
@@ -33,7 +26,7 @@
               >
               <a href="/users/<%= user.username %>">
                 <img
-                  class="img-thumbnail shadow-sm profile-img-hover"
+                  class="img-thumbnail shadow-sm card-img-top"
                   style="
                     width: 200px;
                     height: 200px;
