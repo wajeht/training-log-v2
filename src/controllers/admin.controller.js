@@ -156,6 +156,22 @@ const getUser = async (req, res, next) => {
 };
 
 /**
+ * List of users page
+ * @route GET /users
+ */
+const getUsers = async (req, res, next) => {
+  try {
+    const users = await User.getUsers();
+    res.render("pages/users.ejs", {
+      pageTitle: "TrainingLog: Users",
+      users,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
  * Get search page
  * @route GET /search
  */
@@ -406,6 +422,7 @@ module.exports = {
   deleteVideo,
   getVideos,
   getUser,
+  getUsers,
   getSearch,
   getSettings,
   postComment,

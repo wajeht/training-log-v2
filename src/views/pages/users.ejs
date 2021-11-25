@@ -1,0 +1,64 @@
+<!-- spinner -->
+<%- include('../partials/spinner.ejs') %>
+
+<style>
+  .profile-img-hover:hover {
+    padding: 0;
+    border: 0.25rem solid #dfdfdf;
+  }
+</style>
+
+<section class="px-4 py-5 border-top">
+  <div class="container">
+    <div class="row g-3">
+      <div
+        class="d-grid"
+        style="
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-gap: 12px;
+        "
+      >
+        <!-- videos -->
+        <% for (const user of users) { %>
+        <div class="card shadow-sm mb-3">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-sm-12 col-lg-6">
+              <div
+                class="
+                  card-body
+                  d-flex
+                  justify-content-center
+                  align-items-center
+                "
+              >
+              <a href="/users/<%= user.username %>">
+                <img
+                  class="img-thumbnail shadow-sm profile-img-hover"
+                  style="
+                    width: 200px;
+                    height: 200px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                  "
+                  src="<%= user.profile_picture_url%>"
+                  alt=""
+                />
+              </a>
+              </div>
+            </div>
+
+            <div class="col-8 col-lg-6">
+              <div class="card-body">
+                <h5 class="card-title"><%= user.username %></h5>
+                <p>
+                  <%= !user.biography && locals.user.id != user.id ? "Please login to update your bio!" : "Please update your bio via settings!" %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>

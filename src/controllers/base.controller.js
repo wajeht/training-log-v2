@@ -1,5 +1,4 @@
 const Video = require("../models/video.model.js");
-const User = require("../models/user.model.js");
 
 const nodemailer = require("nodemailer");
 const config = require("../../config/config.js");
