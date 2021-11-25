@@ -86,7 +86,7 @@ class Video {
       .from("video")
       .innerJoin("user", "user.id", "video.user_id")
       .orderBy("video.id", "desc")
-      .limit(3);
+      .limit(4);
   };
 
   static getAllVideosThatMatchesSearchParams = (query) => {

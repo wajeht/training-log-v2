@@ -62,31 +62,6 @@
             <li><a class="dropdown-item" href="#">Edit</a></li>
             <% } %>
             <li><a class="dropdown-item" href="#">Share</a></li>
-            <% if ( isAuthenticated && (user.id == video.user_id)) { %>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <input
-                type="hidden"
-                name="userId"
-                id="userIdOnProfile<%= video.user_id %>"
-                value="<%= video.user_id %>"
-              />
-              <input
-                type="hidden"
-                id="videoIdOnProfile<%= video.id %> "
-                value="<%= video.id %>"
-                name="videoId"
-              />
-              <a
-                class="dropdown-item"
-                onclick="setVideoIdLocalStorage(this)"
-                href="#"
-                data-bs-toggle="modal"
-                data-bs-target="#deleteConfirmation"
-                >Delete</a
-              >
-            </li>
-            <% } %>
           </ul>
         </div>
       </div>

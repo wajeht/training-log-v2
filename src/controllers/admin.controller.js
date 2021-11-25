@@ -63,7 +63,8 @@ const getVideo = async (req, res, next) => {
       throw new Error("Cannot find the video");
     }
 
-    const recentVideos = await Video.getRecentVideos();
+    let recentVideos = await Video.getRecentVideos();
+    recentVideos = recentVideos.splice(1)
     const comments = await Comment.getCommentsFromAVideo(id);
 
     res.render("pages/video.ejs", {

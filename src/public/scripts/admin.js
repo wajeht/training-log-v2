@@ -177,6 +177,8 @@ const deleteVideo = (btn) => {
   const csrf = btn.parentNode.querySelector("[name=_csrf]").value;
   let videoId = window.localStorage.getItem("videoId");
 
+  console.log(videoId);
+
   // grab the videoId manually on single video page
   // because on regular page, as soon as user click
   // delete, the dropdown menu show up and it will
