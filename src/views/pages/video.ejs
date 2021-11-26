@@ -14,7 +14,6 @@
         <div id="video-card<%= videoDetails.id %>" class="card shadow-sm mb-3">
           <!-- video player -->
           <video
-            :height="videoHeight"
             controls
             preload="none"
             poster="<%= videoDetails.screenshot_url %>"
@@ -182,7 +181,7 @@
         videoHeight: '',
       };
     },
-    async  mounted() {
+    async mounted() {
       const height = await this.getVideoDimensionsOf(this.video_url);
       this.videoHeight = await height.height;
 
