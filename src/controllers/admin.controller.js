@@ -262,6 +262,7 @@ const getSearch = async (req, res, next) => {
     res.render("pages/auth/search.ejs", {
       pageTitle: "Search",
       searchResults,
+      q,
     });
   } catch (err) {
     next(err);
