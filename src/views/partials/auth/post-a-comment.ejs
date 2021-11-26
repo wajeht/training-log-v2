@@ -1,6 +1,6 @@
 <% if (isAuthenticated) { %>
 <!-- post a comment -->
-<div class="my-0">
+<div v-if="!isUpdate" class="my-0">
   <div class="card shadow-sm">
     <div class="card-body" id="comment_section">
       <h5 class="card-title">Comment</h5>
