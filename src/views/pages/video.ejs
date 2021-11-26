@@ -6,12 +6,12 @@
 <section id="single-video-page" class="px-4 py-5 min-vh-100">
   <div class="container">
     <div class="row gy-3 position-relative">
+
       <!-- main video -->
-      <div id="update-video" class="<%= recentVideos.length == 0 ? "col-12" : "col-lg-9 col-sm-12" %>">
+      <div id="update-video" class="<%= recentVideos.length == 0 ? 'col-12' : 'col-lg-9 col-sm-12' %>">
         <div id="video-card<%= videoDetails.id %>" class="card shadow-sm mb-3">
           <!-- video player -->
           <video
-            v-if="!video"
             controls
             preload="none"
             poster="<%= videoDetails.screenshot_url %>"
@@ -19,14 +19,9 @@
             <source src="<%= videoDetails.video_url %>" type="video/mp4" />
           </video>
 
-          <!-- vue video player -->
-          <video id="video-preview" controls v-show="video != null">
-            <source :src="video" type="video/mp4" />
-          </video>
-
           <div v-if="!isUpdate" class="card-body">
-            <h5 class="card-title"><%= videoDetails.title %></h5>
-            <p class="card-text"><%= videoDetails.description %></p>
+            <h5 class="card-title">{{ title }}</h5>
+            <p class="card-text">{{ description }}</p>
           </div>
 
           <!-- update form -->
@@ -166,6 +161,7 @@
   </div>
 </section>
 
+
 <!-- -------------------- vue scripts -------------------- -->
 <script>
   Vue.createApp({
@@ -178,23 +174,39 @@
         date: null,
         videoId: "<%= videoDetails.id %>",
         user_id: "<%= videoDetails.user_id %>",
+        video_url: "<%= videoDetails.video_url %>",
         csrf: "<%= csrfToken %>",
       };
     },
     methods: {
+      // if use click cancel, revert back og state
       toggleUpdate() {
         this.isUpdate = !this.isUpdate;
-        this.video = null;
+        this.title =  "<%= videoDetails.title %>";
+        this.description = "<%= videoDetails.description %>";
+
+        const video = document.querySelector("#update-video").children[0].children[0];
+        let reader = new FileReader();
+
+        if (this.video != null) {
+          video.src = this.video_url;
+        } else {
+          this.video = null;
+        }
+
       },
       handleFileChange(event) {
         this.video = event.target.files[0];
 
-        let video = document.getElementById("video-preview");
+        // let video = document.getElementById("video-preview");
+        const video = document.querySelector("#update-video").children[0].children[0];
         let reader = new FileReader();
 
         reader.readAsDataURL(this.video);
         reader.addEventListener("load", function () {
           video.src = reader.result;
+          video.removeAttribute('preload')
+          video.removeAttribute('poster')
         });
       },
       async update() {
@@ -226,9 +238,7 @@
             };
           }
 
-          console.log(data);
-
-          this.toggleUpdate();
+          this.isUpdate = !this.isUpdate;
         } catch (err) {
           console.warn(err);
         }

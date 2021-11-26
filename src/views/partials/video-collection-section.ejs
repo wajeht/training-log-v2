@@ -2,9 +2,11 @@
   <div class="container">
     <div class="my-5 text-center">
       <h1 class="fw-bold">Check out recent videos</h1>
+      <% if (videos.length < 0) { %>
       <p>
         Login to to start uploading videos. Don't worry about the content below!
       </p>
+      <% } %>
     </div>
 
     <!-- spinner -->
