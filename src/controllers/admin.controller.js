@@ -141,7 +141,7 @@ const getVideos = async (req, res, next) => {
 
     const videos = await Video.getAllVideosWithUserDetails(videosPerPage, page);
 
-    res.render("pages/videos.ejs", {
+    res.render("pages/auth/videos.ejs", {
       pageTitle: "TrainingLog: Videos",
       videos,
       current: page,
@@ -167,7 +167,7 @@ const getUser = async (req, res, next) => {
       userVideos,
     };
 
-    res.render("pages/profile.ejs", {
+    res.render("pages/auth/profile.ejs", {
       pageTitle: `TrainingLog: ${userDetails.userInfo.username}'s profile`,
       userDetails,
     });
@@ -183,7 +183,7 @@ const getUser = async (req, res, next) => {
 const getUsers = async (req, res, next) => {
   try {
     const users = await User.getUsers();
-    res.render("pages/users.ejs", {
+    res.render("pages/auth/users.ejs", {
       pageTitle: "TrainingLog: Users",
       users,
     });
@@ -201,7 +201,7 @@ const getSearch = async (req, res, next) => {
     const { q } = req.query;
     const searchResults = await Video.getAllVideosThatMatchesSearchParams(q);
 
-    res.render("pages/search.ejs", {
+    res.render("pages/auth/search.ejs", {
       pageTitle: "Search",
       searchResults,
     });
@@ -428,7 +428,7 @@ const getSettings = async (req, res, next) => {
   const [userDetails] = await User.getUserDetailsById(id);
 
   try {
-    res.render("pages/settings.ejs", {
+    res.render("pages/auth/settings.ejs", {
       pageTitle: "TrainingLog: Settings",
       userDetails,
     });
