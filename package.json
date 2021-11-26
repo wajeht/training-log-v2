@@ -34,7 +34,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "helmet": "^4.6.0",
     "imagemin": "^8.0.1",
-    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-mozjpeg": "^0.1.2",
     "knex": "^0.95.14",
     "morgan": "^1.10.0",
     "multer": "^1.4.3",
