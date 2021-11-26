@@ -59,8 +59,6 @@ const getVideo = async (req, res, next) => {
     const { id } = req.params;
     const [videoDetails] = await Video.getVideoDetails(id);
 
-    console.log(videoDetails);
-
     if (!videoDetails) {
       throw new Error("Cannot find the video");
     }
@@ -82,13 +80,59 @@ const getVideo = async (req, res, next) => {
 
 /**
  * update single video
- * @route PUT /video/:id
+ * @route PUT /videos/:id
  */
 const updateVideo = async (req, res, next) => {
   try {
-    // ...
-    return res.status(200).json({ message: err.message });
+    let { title, description, user_id, video_id, date } = req.body;
+    user_id = Number.parseInt(user_id);
+    video_id = Number.parseInt(video_id);
+
+    if (user_id != req.session.user.id) {
+      throw new Error("You're not authorized!");
+    }
+
+    let video, screenshotUrl, isUpdated;
+
+    // if user has picked video
+    // use the picked video as resource to update
+    if (req.file) {
+      video = `/${req.file.path}`;
+      screenshotUrl = await takeScreenshot(video);
+      const minifyScreenshotUrl = await minifyImage(screenshotUrl);
+
+      const doneDeletingLocalFiles = await deleteLocalVideo(video_id);
+
+      if (!doneDeletingLocalFiles) {
+        throw new Error("something went wrong while deleting!");
+      }
+
+      // other wise use the old video
+    } else {
+      const [videoDetails] = await Video.getVideoDetails(video_id);
+
+      video = videoDetails.video_url;
+      screenshotUrl = videoDetails.screenshot_url;
+
+      console.log("##########", "not picked");
+    }
+
+    isUpdated = await Video.putUpdateVideo(
+      video_id,
+      date,
+      title,
+      description,
+      video,
+      screenshotUrl
+    );
+
+    if (!isUpdated) {
+      throw new Error("something went wrong updating!");
+    }
+
+    return res.status(200).json({ message: "ok" });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -455,6 +499,7 @@ module.exports = {
   postVideo,
   getVideo,
   deleteVideo,
+  updateVideo,
   getVideos,
   getUser,
   getUsers,

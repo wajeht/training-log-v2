@@ -31,59 +31,47 @@
 
           <!-- update form -->
           <div v-if="isUpdate" class="card-body">
-            <!-- video file upload  -->
-            <input
-              v-if="isUpdate"
-              type="file"
-              class="form-control mb-2"
-              id="floatingInput"
-              name="video"
-              @change="handleFileChange( $event )"
-              accept="video/*"
-              required
-            />
+            <form>
+              <!-- video file upload  -->
+              <input
+                type="file"
+                class="form-control mb-2"
+                id="floatingInput"
+                name="video"
+                @change="handleFileChange($event)"
+                accept="video/*"
+              />
 
-            <!-- title -->
-            <input
-              v-if="isUpdate"
-              name="title"
-              type="text"
-              class="form-control mb-2"
-              v-model="title"
-              required
-            />
+              <!-- title -->
+              <input
+                name="title"
+                type="text"
+                class="form-control mb-2"
+                v-model="title"
+              />
 
-            <!-- description -->
-            <textarea
-              v-model="description"
-              v-if="isUpdate"
-              class="form-control mb-2"
-              name="description"
-              style="height: 150px"
-            ></textarea>
+              <!-- description -->
+              <textarea
+                v-model="description"
+                class="form-control mb-2"
+                name="description"
+                style="height: 150px"
+              ></textarea>
 
-            <!-- update buttons -->
-            <div v-if="isUpdate">
-              <!-- button -->
+              <!-- cancel button -->
               <button
                 @click="toggleUpdate()"
-                id="add-video_cancel-button"
                 type="button"
                 class="btn btn-danger me-1"
-                data-bs-dismiss="modal"
               >
                 Cancel
               </button>
 
-              <button
-                @click="update()"
-                id="add-video_submit-button"
-                type="submit"
-                class="btn btn-dark"
-              >
+              <!-- update button -->
+              <button @click="update()" type="button" class="btn btn-dark">
                 Update
               </button>
-            </div>
+            </form>
           </div>
 
           <!-- card footer -->
@@ -190,6 +178,7 @@
         date: null,
         videoId: "<%= videoDetails.id %>",
         user_id: "<%= videoDetails.user_id %>",
+        csrf: "<%= csrfToken %>",
       };
     },
     methods: {
@@ -208,19 +197,41 @@
           video.src = reader.result;
         });
       },
-      update() {
+      async update() {
         this.date = new Date().toLocaleDateString();
+        const formData = new FormData();
 
-        const video = {
-          video: this.video,
-          title: this.title,
-          description: this.description,
-          date: this.date,
-          videoId: this.videoId,
-          user_id: this.user_id,
-        };
+        formData.append("video", this.video);
+        formData.append("title", this.title);
+        formData.append("description", this.description);
+        formData.append("user_id", this.user_id);
+        formData.append("date", new Date().toLocaleDateString());
+        formData.append("video_id", this.videoId);
 
-        console.log(video);
+        try {
+          const res = await fetch(`/videos/${this.videoId}`, {
+            method: "PUT",
+            headers: {
+              "csrf-token": this.csrf,
+            },
+            body: formData,
+          });
+
+          const data = await res.json();
+
+          if (!res.ok) {
+            throw {
+              statusCode: res.status,
+              ...data,
+            };
+          }
+
+          console.log(data);
+
+          this.toggleUpdate();
+        } catch (err) {
+          console.warn(err);
+        }
       },
     },
   }).mount("#update-video");

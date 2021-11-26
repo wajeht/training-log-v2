@@ -7,6 +7,7 @@ const { uploadVideo, uploadPicture } = require("../middlewares/upload-file.js");
 const {
   getSearch,
   getVideo,
+  updateVideo,
   postVideo,
   getVideos,
   getUser,
@@ -33,6 +34,7 @@ router.get("/users/:username", loginRequired, getUser);
 router.get("/videos", loginRequired, getVideos);
 router.post("/videos", uploadVideo, postVideo);
 
+router.put("/videos/:id", loginRequired, uploadVideo, updateVideo);
 router.get("/videos/:id", getVideo);
 router.delete("/videos/:id", loginRequired, deleteVideo);
 

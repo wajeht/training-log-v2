@@ -37,6 +37,27 @@ class Video {
     return db.count().from("video");
   };
 
+  static putUpdateVideo = (
+    video_id,
+    date,
+    title,
+    description,
+    video_url,
+    screenshot_url
+  ) => {
+    return db
+      .update({
+        date: date,
+        title: title,
+        description: description,
+        video_url: video_url,
+        screenshot_url: screenshot_url,
+      })
+      .from("video")
+      .where({ "video.id": video_id })
+      .returning("*");
+  };
+
   static getAllVideosThatMatchesUsername = (username) => {
     return db
       .select(
