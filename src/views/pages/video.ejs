@@ -189,6 +189,7 @@
         description: "<%= videoDetails.description %>",
         date: null,
         videoId: "<%= videoDetails.id %>",
+        user_id: "<%= videoDetails.user_id %>",
       };
     },
     methods: {
@@ -216,6 +217,7 @@
           description: this.description,
           date: this.date,
           videoId: this.videoId,
+          user_id: this.user_id,
         };
 
         console.log(video);

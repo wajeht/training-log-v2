@@ -59,12 +59,14 @@ const getVideo = async (req, res, next) => {
     const { id } = req.params;
     const [videoDetails] = await Video.getVideoDetails(id);
 
+    console.log(videoDetails);
+
     if (!videoDetails) {
       throw new Error("Cannot find the video");
     }
 
     let recentVideos = await Video.getRecentVideos();
-    recentVideos = recentVideos.splice(1)
+    recentVideos = recentVideos.splice(1);
     const comments = await Comment.getCommentsFromAVideo(id);
 
     res.render("pages/video.ejs", {
@@ -72,10 +74,22 @@ const getVideo = async (req, res, next) => {
       videoDetails,
       comments,
       recentVideos,
-      // downloadLink: res.attachment(path.join(root, videoDetails.video_url)),
     });
   } catch (err) {
     next(err);
+  }
+};
+
+/**
+ * update single video
+ * @route PUT /video/:id
+ */
+const updateVideo = async (req, res, next) => {
+  try {
+    // ...
+    return res.status(200).json({ message: err.message });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };
 
