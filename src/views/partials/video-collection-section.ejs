@@ -2,6 +2,9 @@
   <div class="container">
     <div class="my-5 text-center">
       <h1 class="fw-bold">Check out recent videos</h1>
+      <p>
+        Login to to start uploading videos. Don't worry about the content below!
+      </p>
     </div>
 
     <!-- spinner -->
@@ -20,9 +23,7 @@
     >
       <!-- videos -->
       <% for (const video of videos) { %>
-
       <!-- single video -->
-
       <div id="video-card<%= video.id %>" class="card shadow-sm">
         <!-- profile image, username and share -->
         <div
@@ -133,7 +134,23 @@
           </a>
         </div>
       </div>
+      <% } %>
 
+      <!-- no videos yet -->
+      <% for (let i = 0; i < 8; i++) { %>
+      <div
+        class="
+          card
+          shadow-sm
+          d-flex
+          justify-content-center
+          align-items-center
+          text-muted
+        "
+        style="background-color: white; height: 300px"
+      >
+        dummy content
+      </div>
       <% } %>
     </div>
   </div>
