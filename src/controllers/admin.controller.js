@@ -235,15 +235,29 @@ const getUser = async (req, res, next) => {
 };
 
 /**
+ * Get dashboard page
+ * @route GET /dashboard
+ */
+const getDashboard = (req, res, next) => {
+  try {
+    // if (!req.session.user.is_admin) {
+    //   return next(new Error("you are not authorized"));
+    // }
+
+    res.render("pages/auth/dashboard.ejs", {
+      pageTitle: "TrainingLog: Dashboard",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
  * List of users page
  * @route GET /users
  */
 const getUsers = async (req, res, next) => {
   try {
-    if (!req.session.user.is_admin) {
-      return next(new Error("you are not authorized"));
-    }
-
     const users = await User.getUsers();
     res.render("pages/auth/users.ejs", {
       pageTitle: "TrainingLog: Users",
@@ -510,6 +524,7 @@ module.exports = {
   getUsers,
   getSearch,
   getSettings,
+  getDashboard,
   postComment,
   deleteComment,
   getDownloadVideo,

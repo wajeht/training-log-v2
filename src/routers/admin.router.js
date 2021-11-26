@@ -14,6 +14,7 @@ const {
   getUsers,
   postComment,
   getSettings,
+  getDashboard,
   deleteVideo,
   deleteComment,
   getDownloadVideo,
@@ -28,6 +29,8 @@ router.get("/users", loginRequired, getUsers);
 router.get("/search", loginRequired, getSearch);
 
 router.get("/settings", loginRequired, getSettings);
+
+router.get("/dashboard", loginRequired, getDashboard);
 
 router.get("/users/:username", loginRequired, getUser);
 
