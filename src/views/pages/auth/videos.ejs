@@ -7,6 +7,7 @@
 <section class="px-4 py-5 border-top">
   <div class="container">
     <div class="row g-3">
+      <% if(videos.length > 0) { %>
       <div
         class="d-grid"
         style="
@@ -15,7 +16,6 @@
         "
         id="videos-home-page"
       >
-      <% if(videos.length > 0) { %>
         <!-- videos -->
         <% for (const video of videos) { %>
         <!-- single video -->
@@ -130,12 +130,44 @@
           </div>
         </div>
         <% } %>
-      <% } else { %>
-        <div class="my-5 text-center">
-          <h4 class="fw-bold">No one has uploaded any videos yet!</h4>
-        </div>
-      <% } %>
       </div>
+
+      <% } else { %>
+
+      <div class="my-5 text-center">
+        <h4 class="fw-bold">No one has uploaded any videos yet!</h4>
+        <p>Start uploading videos. Don't worry about the content below!</p>
+      </div>
+
+      <div
+        class="d-grid"
+        style="
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-gap: 12px;
+        "
+        id="videos-home-page"
+      >
+        <!-- no videos yet -->
+        <% for (let i = 0; i < 16; i++) { %>
+
+        <div
+          class="
+            card
+            shadow-sm
+            d-flex
+            justify-content-center
+            align-items-center
+            text-muted
+          "
+          style="background-color: white; height: 300px"
+        >
+          dummy content
+        </div>
+
+        <% } %>
+      </div>
+
+      <% } %>
     </div>
   </div>
 </section>
