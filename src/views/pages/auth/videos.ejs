@@ -15,11 +15,12 @@
         "
         id="videos-home-page"
       >
+
+
+      <% if(videos.length > 0) { %>
         <!-- videos -->
         <% for (const video of videos) { %>
-
         <!-- single video -->
-
         <div id="video-card<%= video.id %>" class="card shadow-sm">
           <!-- profile image, username and share -->
           <div
@@ -130,8 +131,12 @@
             </a>
           </div>
         </div>
-
         <% } %>
+      <% } else { %>
+        <div class="my-5 text-center">
+          <h4 class="fw-bold">No one has uploaded any videos yet!</h4>
+        </div>
+      <% } %>
       </div>
     </div>
   </div>
