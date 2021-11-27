@@ -28,6 +28,7 @@ const { get404, get500 } = require("./controllers/error.controller.js");
 const store = new KnexSessionStore({
   knex,
   tablename: "sessions",
+  createtable: true,
   clearInterval: 30 * 60 * 1000, // 30 min
   disableDbCleanup: false,
 });
