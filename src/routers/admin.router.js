@@ -7,6 +7,7 @@ const { uploadVideo, uploadPicture } = require("../middlewares/upload-file.js");
 const {
   getSearch,
   getVideo,
+  getInbox,
   updateVideo,
   postVideo,
   getVideos,
@@ -27,6 +28,8 @@ const {
 router.get("/users", loginRequired, getUsers);
 
 router.get("/search", loginRequired, getSearch);
+
+router.get("/inbox", loginRequired, getInbox);
 
 router.get("/settings", loginRequired, getSettings);
 

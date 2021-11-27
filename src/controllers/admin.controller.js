@@ -253,6 +253,24 @@ const getDashboard = (req, res, next) => {
 };
 
 /**
+ * Get inbox page
+ * @route GET /inbox
+ */
+const getInbox = (req, res, next) => {
+  try {
+    // if (!req.session.user.is_admin) {
+    //   return next(new Error("you are not authorized"));
+    // }
+
+    res.render("pages/auth/inbox.ejs", {
+      pageTitle: "TrainingLog: Inbox",
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
  * List of users page
  * @route GET /users
  */
@@ -521,6 +539,7 @@ module.exports = {
   updateVideo,
   getVideos,
   getUser,
+  getInbox,
   getUsers,
   getSearch,
   getSettings,
