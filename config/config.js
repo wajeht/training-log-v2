@@ -30,4 +30,5 @@ module.exports = {
     auth_pass: process.env.EMAIL_AUTH_PASS,
   },
   env: process.env.NODE_ENV,
+  admin: process.env.ADMIN,
 };

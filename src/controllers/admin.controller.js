@@ -278,7 +278,7 @@ const getSearch = async (req, res, next) => {
     const searchResults = await Video.getAllVideosThatMatchesSearchParams(q);
 
     res.render("pages/auth/search.ejs", {
-      pageTitle: "Search",
+      pageTitle: `TrainingLog: Search for ${q}`,
       searchResults,
       q,
     });

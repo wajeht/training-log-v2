@@ -5,5 +5,7 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  return knex.schema.dropTable("user");
+  return knex.schema.table("user", (table) => {
+    table.dropColumn("is_admin");
+  });
 };

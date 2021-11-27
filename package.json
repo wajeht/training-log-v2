@@ -9,7 +9,7 @@
     "start": "node bin/server.js",
     "clean": "bash bin/clean-data.sh && npm run cleandb",
     "cleandb": "npm run rollback && npm run migrate:latest",
-    "restartdb": "npm run rollback && npm run migrate:latest && npm run seed:run && npm run dev",
+    "restartdb": "npm run clean && npm run dev",
     "rollback": "knex migrate:rollback --knexfile=./db/knexfile.js",
     "migrate:make": "knex migrate:make --knexfile=./db/knexfile.js",
     "migrate:latest": "knex migrate:latest --knexfile=./db/knexfile.js",
