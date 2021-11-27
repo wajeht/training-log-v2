@@ -21,6 +21,17 @@ class User {
     return db.select().from("user").where({ email: email });
   };
 
+  static setAdmin = (email, boolean) => {
+    return db
+      .update({ is_admin: boolean })
+      .from("user")
+      .where({ email: email });
+  };
+
+  static adminExist = (email) => {
+    return db.select("is_admin").from("user").where({ email: email });
+  };
+
   static getUserDetailsById = (id) => {
     return db
       .select(

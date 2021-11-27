@@ -11,10 +11,6 @@
     color: #dfdfdf;
   }
 
-  #navBarProfilePicture {
-    border: 2px solid white;
-  }
-
   #navBarProfilePicture:hover {
     border: 2px solid #dfdfdf;
     -webkit-filter: brightness(95%);
@@ -22,6 +18,21 @@
     outline-offset: -2px;
   }
 </style>
+
+<!-- make border color red if admin is logged in -->
+<% if (user.is_admin) { %>
+  <style>
+    #navBarProfilePicture {
+      border: 2px solid #842029;
+    }
+  </style>
+<% } else { %>
+  <style>
+    #navBarProfilePicture {
+      border: 2px solid white;
+    }
+  </style>
+<% } %>
 
 <!-- html -->
 <div class="d-flex align-items-center">
