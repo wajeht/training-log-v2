@@ -240,9 +240,10 @@ const getUser = async (req, res, next) => {
  */
 const getDashboard = (req, res, next) => {
   try {
-    // if (!req.session.user.is_admin) {
-    //   return next(new Error("you are not authorized"));
-    // }
+    
+    if (!req.session.user.is_admin) {
+      return next(new Error("you are not authorized"));
+    }
 
     res.render("pages/auth/dashboard.ejs", {
       pageTitle: "TrainingLog: Dashboard",

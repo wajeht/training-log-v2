@@ -6,6 +6,10 @@
     color: white;
   }
 
+  #navBarProfilePicture {
+    border: 2px solid #f8f9fa;
+  }
+
   #addPostModalFont:hover,
   #videosList:hover {
     color: #dfdfdf;
@@ -18,21 +22,6 @@
     outline-offset: -2px;
   }
 </style>
-
-<!-- make border color red if admin is logged in -->
-<% if (user.is_admin) { %>
-  <style>
-    #navBarProfilePicture {
-      border: 2px solid #842029;
-    }
-  </style>
-<% } else { %>
-  <style>
-    #navBarProfilePicture {
-      border: 2px solid white;
-    }
-  </style>
-<% } %>
 
 <!-- html -->
 <div class="d-flex align-items-center">
@@ -70,19 +59,21 @@
   <a href="" data-bs-toggle="modal" data-bs-target="#addPostModal">
     <i
       id="addPostModalFont"
-      class="bi bi-plus-circle-fill ms-2"
+      class="bi bi-plus-circle-fill <%= user.is_admin == true ? 'ms-2' : 'mx-2' %>"
       style="font-size: 1.7em"
     ></i>
   </a>
 
   <!-- dashboard -->
-  <a href="/dashboard"
-    ><i
-      id="videosList"
-      class="bi bi-gear-fill mx-2"
-      style="font-size: 1.7em"
-    ></i>
-  </a>
+  <% if (user.is_admin == true) { %>
+    <a href="/dashboard"
+      ><i
+        id="videosList"
+        class="bi bi-gear-fill mx-2"
+        style="font-size: 1.7em"
+      ></i>
+    </a>
+  <% } %>
 
   <!-- profile image -->
   <div class="btn-group d-flex justify-content-between align-items-center">

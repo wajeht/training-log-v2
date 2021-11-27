@@ -44,7 +44,8 @@ class User {
         "weight",
         "gender",
         "email",
-        "profile_picture_url"
+        "profile_picture_url",
+        "is_admin"
       )
       .from("user")
       .where({ "user.id": id });
