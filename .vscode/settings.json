@@ -6,6 +6,7 @@
     "checkmark",
     "cleandb",
     "createtable",
+    "Datatables",
     "datname",
     "knexfile",
     "middlewares",
