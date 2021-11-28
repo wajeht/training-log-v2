@@ -24,7 +24,9 @@ class Video {
         "user.profile_picture_url",
         "video.screenshot_url",
         "video.id",
-        "video.title"
+        "video.title",
+        "user.is_admin",
+        "user.is_client"
       )
       .from("video")
       .limit(videosPerPage)
@@ -85,7 +87,9 @@ class Video {
         "description",
         "username",
         "video.user_id",
-        "date"
+        "date",
+        "user.is_admin",
+        "user.is_client",
       )
       .from("video")
       .innerJoin("user", "user.id", "video.user_id")

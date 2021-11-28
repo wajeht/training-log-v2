@@ -29,7 +29,7 @@
 
         <div class="col-8">
           <div class="card-body">
-            <h5 class="card-title"><%= userDetails.userInfo.username %></h5>
+            <h5 class="card-title"><%= userDetails.userInfo.username %> <%- include("../../partials/auth/verified-checkmark.ejs", { user: userDetails.userInfo }) %></h5>
             <%  if ((!userDetails.userInfo.biography || userDetails.userInfo.biography.split("").length < 1) && (locals.user.id == userDetails.userInfo.id)) { %>
               <p>Please update your bio via settings!</p>
             <% } else if (!userDetails.userInfo.biography || userDetails.userInfo.biography.split("").length < 1) { %>

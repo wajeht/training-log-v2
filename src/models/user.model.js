@@ -62,7 +62,9 @@ class User {
         "age",
         "weight",
         "gender",
-        "email"
+        "email",
+        "is_admin",
+        "is_client"
       )
       .from("user")
       .where({ "user.username": username });

@@ -7,8 +7,6 @@
   <div class="container">
     <div class="row gy-3 position-relative">
 
-
-
       <!-- main video -->
       <div id="update-video" class="<%= recentVideos.length == 0 ? 'col-12' : 'col-lg-9 col-sm-12' %>">
         <div id="video-card<%= videoDetails.id %>" class="card shadow-sm mb-3">
@@ -86,7 +84,7 @@
             <!-- post author details -->
             <div class="d-flex gap-3 justify-content-center align-items-center">
               <a
-                href="/users/<%= videoDetails.username  %> "
+                href="/users/<%= videoDetails.username  %>"
                 class="
                   d-inline-block
                   link-secondary
@@ -95,13 +93,13 @@
                 "
               >
                 <img
-                  src="<%= videoDetails.profile_picture_url %> "
+                  src="<%= videoDetails.profile_picture_url %>"
                   alt="mdo"
                   width="25"
                   height="25"
                   class="rounded-circle"
                 />
-                <%= videoDetails.username %>
+                  <%= videoDetails.username %>
               </a>
               <a href="#" class="link-secondary text-decoration-none"
                 ><i class="bi bi-calendar-minus"></i> <%=
