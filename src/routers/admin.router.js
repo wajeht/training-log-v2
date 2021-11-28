@@ -12,6 +12,7 @@ const {
   postVideo,
   getVideos,
   getUser,
+  getUsersJSON,
   getUsers,
   postComment,
   getSettings,
@@ -26,6 +27,7 @@ const {
 } = require("../controllers/admin.controller.js");
 
 router.get("/users", loginRequired, getUsers);
+router.get("/users.json", loginRequired, getUsersJSON);
 
 router.get("/search", loginRequired, getSearch);
 

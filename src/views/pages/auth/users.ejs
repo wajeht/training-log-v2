@@ -1,7 +1,7 @@
 <!-- spinner -->
 <%- include('../../partials/spinner.ejs') %>
 
-<section class="px-4 py-5 border-top">
+<section id="users" class="px-4 py-5 border-top">
   <div class="container">
     <div class="row g-3">
       <div
@@ -62,3 +62,16 @@
     </div>
   </div>
 </section>
+
+<script>
+  Vue.createApp({
+    data(){
+      return{
+        users: []
+      }
+    },
+    created: {
+      
+    }
+  }).mount("users")
+</script>

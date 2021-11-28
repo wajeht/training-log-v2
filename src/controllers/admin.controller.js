@@ -287,6 +287,19 @@ const getUsers = async (req, res, next) => {
 };
 
 /**
+ * List of users as a json
+ * @route GET /usersJSON
+ */
+const getUsersJSON = async (req, res, next) => {
+  try {
+    const users = await User.getUsers();
+    return res.status(200).json(users);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+/**
  * Get search page
  * @route GET /search
  */
@@ -539,6 +552,7 @@ module.exports = {
   updateVideo,
   getVideos,
   getUser,
+  getUsersJSON,
   getInbox,
   getUsers,
   getSearch,

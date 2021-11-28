@@ -2,7 +2,23 @@ const db = require("../../db/db.js");
 
 class User {
   static getUsers = () => {
-    return db.select().from("user");
+    return db
+      .select(
+        "id",
+        "name",
+        "age",
+        "weight",
+        "gender",
+        "username",
+        "email",
+        "biography",
+        "profile_picture_url",
+        "created_at",
+        "updated_at",
+        "is_admin",
+        "is_client"
+      )
+      .from("user");
   };
 
   static deleteUser = (userId) => {
