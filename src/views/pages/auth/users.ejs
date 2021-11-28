@@ -1,7 +1,7 @@
 <!-- spinner -->
 <%- include('../../partials/spinner.ejs') %>
 
-<section id="users" class="px-4 py-5 border-top">
+<section id="users" class="px-4 py-5 border-top" v-cloak>
   <div class="container">
     <div class="row g-3">
       <div
@@ -12,10 +12,9 @@
         "
       >
         <!-- videos -->
-        <% for (const user of users) { %>
-        <div class="card shadow-sm mb-3">
+        <div v-for="user in users" :key="user.id" class="card shadow-sm mb-3">
           <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-12 col-sm-12 ">
+            <div class="col-12 col-sm-12">
               <div
                 class="
                   card-body
@@ -24,54 +23,68 @@
                   align-items-center
                 "
               >
-              <a href="/users/<%= user.username %>">
-                <img
-                  class="img-thumbnail shadow-sm card-img-top"
-                  style="
-                    width: 200px;
-                    height: 200px;
-                    object-fit: cover;
-                    border-radius: 50%;
-                  "
-                  src="<%= user.profile_picture_url%>"
-                  alt=""
-                />
-              </a>
+                <a :href="`/users/${user.username}`">
+                  <img
+                    class="img-thumbnail shadow-sm card-img-top"
+                    style="
+                      width: 200px;
+                      height: 200px;
+                      object-fit: cover;
+                      border-radius: 50%;
+                    "
+                    :src="user.profile_picture_url"
+                    alt=""
+                  />
+                </a>
               </div>
             </div>
 
-
             <div class="col-10 col-lg-10">
               <div class="card-body">
-                <h5 class="card-title text-center">
-                  <%= user.username %> <%- include("../../partials/auth/verified-checkmark.ejs", { user }) %>
-                </h5>
-                <%  if ((!user.biography || user.biography.split("").length < 1) && (locals.user.id == user.id)) { %>
-                  <p>Please update your bio via settings!</p>
-                <% } else if (!user.biography || user.biography.split("").length < 1) { %>
-                  <p>Please login to update your bio!</p>
-                <% } else { %>
-                  <p><%= user.biography %></p>
-                <% } %>
+                <h5 class="card-title text-center">{{ user.username }} <check-mark :is_admin="user.is_admin" :is_client="user.is_client"/></h5>
+                <p v-if="!user.biography && currentLoggedInUser == user.id">
+                  Please update your bio via setting page!
+                </p>
+                <p v-else-if="!user.biography">
+                  Please login to update your bio!
+                </p>
+                <p v-else="user.biography">{{ user.biography }}</p>
               </div>
             </div>
           </div>
         </div>
-        <% } %>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  Vue.createApp({
-    data(){
-      return{
-        users: []
-      }
+  const app = Vue.createApp({
+    data() {
+      return {
+        users: [],
+        checkmark: "",
+        currentLoggedInUser: "<%= locals.user.id %>",
+      };
     },
-    created: {
-      
-    }
-  }).mount("users")
+    async created() {
+      const res = await fetch("/users.json");
+      const data = await res.json();
+      this.users = data;
+    },
+  });
+  app.component("check-mark", {
+    props: ["is_client", "is_admin"],
+    template: `
+      <i v-if="client" class="bi bi-check-circle-fill text-primary" style="font-size: 1rem"></i>
+      <i v-if="admin" class="bi bi-lightning-fill text-primary" style="font-size: 1rem"></i>
+    `,
+    data() {
+      return {
+        client: this.is_client,
+        admin: this.is_admin,
+      };
+    },
+  });
+  app.mount("#users");
 </script>
