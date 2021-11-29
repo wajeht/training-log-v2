@@ -11,6 +11,7 @@ const {
   updateVideo,
   postVideo,
   getVideos,
+  getVideosJSON,
   getUser,
   getUsersJSON,
   getUsers,
@@ -39,6 +40,7 @@ router.get("/dashboard", loginRequired, getDashboard);
 
 router.get("/users/:username", loginRequired, getUser);
 
+router.get("/videos.json", loginRequired, getVideosJSON);
 router.get("/videos", loginRequired, getVideos);
 router.post("/videos", uploadVideo, postVideo);
 

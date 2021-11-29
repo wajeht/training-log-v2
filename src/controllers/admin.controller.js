@@ -181,7 +181,7 @@ const deleteVideo = async (req, res) => {
 
     return res.status(200).json({ message: "success!" });
   } catch (err) {
-    return res.status(500).json({ message: err });
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -207,6 +207,30 @@ const getVideos = async (req, res, next) => {
     });
   } catch (err) {
     next(err);
+  }
+};
+
+/**
+ * Get list of videos as json
+ * @route GET /videos.json
+ */
+const getVideosJSON = async (req, res, next) => {
+  try {
+    let [count] = await Video.countAllVideos();
+    count = Number.parseInt(count.count);
+    const videos = await Video.getAllVideosWithUserDetails(count, 1);
+
+    for (let i = 0; i < videos.length; i++) {
+      const currentVideo = videos[i];
+      currentVideo.date = currentVideo.date.toLocaleDateString();
+      let comment = await Comment.getCommentsFromAVideo(currentVideo.id);
+      comment = comment.length;
+      currentVideo.comment = comment;
+    }
+
+    res.status(200).json(videos);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -551,6 +575,7 @@ module.exports = {
   deleteVideo,
   updateVideo,
   getVideos,
+  getVideosJSON,
   getUser,
   getUsersJSON,
   getInbox,

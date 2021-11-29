@@ -10,29 +10,38 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">ID</th>
+            <th scope="col">Video</th>
+            <th scope="col">Date</th>
+            <th scope="col">Author</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
+          <tr v-for="video in videos" :key="video.id">
+            <th scope="row">{{ video.id }}</th>
+            <td class="d-flex">
+              <img
+                width="50"
+                height="50"
+                class="me-1"
+                :src="video.screenshot_url"
+                alt=""
+              />
+              <p>
+                {{ video.title }}
+                <br />
+                {{ video.description }}
+              </p>
+            </td>
+            <td>{{ video.date }}</td>
+            <td>{{ video.username }}</td>
+            <td>{{ video.comment }}</td>
+            <td>
+              <a class="btn btn-sm btn-warning me-1" href="#">Edit</a>
+              <a class="btn btn-sm btn-danger" href="#">Delete</a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -74,3 +83,20 @@
     </div>
   </div>
 </div>
+
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        videos: [],
+      };
+    },
+    async created() {
+      const res = await fetch("/videos.json");
+      const data = await res.json();
+      this.videos = data;
+
+      console.log(this.videos);
+    },
+  }).mount("#list-videos");
+</script>

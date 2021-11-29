@@ -25,6 +25,8 @@ class Video {
         "video.screenshot_url",
         "video.id",
         "video.title",
+        "video.description",
+        "video.date",
         "user.is_admin",
         "user.is_client"
       )
@@ -89,7 +91,7 @@ class Video {
         "video.user_id",
         "date",
         "user.is_admin",
-        "user.is_client",
+        "user.is_client"
       )
       .from("video")
       .innerJoin("user", "user.id", "video.user_id")

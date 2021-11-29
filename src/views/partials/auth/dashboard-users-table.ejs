@@ -186,7 +186,7 @@
 </div>
 
 <script>
-  const app = Vue.createApp({
+  Vue.createApp({
     data() {
       return {
         users: [],
@@ -206,6 +206,5 @@
         this.user = filteredUser;
       },
     },
-  });
-  app.mount("#list-users");
+  }).mount("#list-users");
 </script>
