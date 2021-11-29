@@ -42,7 +42,7 @@ router.get("/users/:username", loginRequired, getUser);
 
 router.get("/videos.json", loginRequired, getVideosJSON);
 router.get("/videos", loginRequired, getVideos);
-router.post("/videos", uploadVideo, postVideo);
+router.post("/videos", loginRequired, uploadVideo, postVideo);
 
 router.put("/videos/:id", loginRequired, uploadVideo, updateVideo);
 router.get("/videos/:id", getVideo);
