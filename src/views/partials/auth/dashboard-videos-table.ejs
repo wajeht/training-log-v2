@@ -21,30 +21,52 @@
         <tbody>
           <tr v-for="video in videos" :key="video.id">
             <th scope="row">{{ video.id }}</th>
-            <td class="d-flex">
-              <img
-                width="50"
-                height="50"
-                class="me-1"
-                id="navBarProfilePicture"
-                :src="video.screenshot_url"
-                alt=""
-              />
-              <div>
-                <span class="d-block text-truncate" style="max-width: 50px">
-                  {{ video.title }}
-                </span>
-                <span
-                  class="d-inline-block text-truncate"
-                  style="max-width: 100px"
-                >
-                  {{ video.description }}
-                </span>
-              </div>
+            <td>
+              <a
+                :href="`/videos/${video.id}`"
+                class="d-flex text-dark text-decoration-none"
+                target="_blank"
+              >
+                <img
+                  width="50"
+                  height="50"
+                  class="me-1"
+                  id="navBarProfilePicture"
+                  :src="video.screenshot_url"
+                  alt=""
+                />
+                <div>
+                  <span class="d-block text-truncate" style="max-width: 50px">
+                    {{ video.title }}
+                  </span>
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 100px"
+                  >
+                    {{ video.description }}
+                  </span>
+                </div>
+              </a>
             </td>
             <td>{{ video.date }}</td>
-            <td>{{ video.username }}</td>
-            <td>{{ video.comment }}</td>
+            <td>
+              <a
+                :href="`/users/${video.username}`"
+                class="text-dark text-decoration-none"
+                target="_blank"
+              >
+                {{ video.username }}
+              </a>
+            </td>
+            <td>
+              <a
+                :href="`/videos/${video.id}/#comment_section`"
+                class="text-dark text-decoration-none"
+                target="_blank"
+              >
+                {{ video.comment }}
+              </a>
+            </td>
             <td>
               <a class="btn btn-sm btn-warning me-1" href="#">Edit</a>
               <a class="btn btn-sm btn-danger" href="#">Delete</a>
