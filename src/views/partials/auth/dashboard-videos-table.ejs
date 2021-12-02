@@ -102,8 +102,6 @@
       const res = await fetch("/videos.json");
       const data = await res.json();
       this.videos = data;
-
-      console.log(this.videos);
     },
   }).mount("#list-videos");
 </script>
