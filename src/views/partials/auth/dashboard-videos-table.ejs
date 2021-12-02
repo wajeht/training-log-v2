@@ -26,14 +26,21 @@
                 width="50"
                 height="50"
                 class="me-1"
+                id="navBarProfilePicture"
                 :src="video.screenshot_url"
                 alt=""
               />
-              <p>
-                {{ video.title }}
-                <br />
-                {{ video.description }}
-              </p>
+              <div>
+                <span class="d-block text-truncate" style="max-width: 50px">
+                  {{ video.title }}
+                </span>
+                <span
+                  class="d-inline-block text-truncate"
+                  style="max-width: 100px"
+                >
+                  {{ video.description }}
+                </span>
+              </div>
             </td>
             <td>{{ video.date }}</td>
             <td>{{ video.username }}</td>

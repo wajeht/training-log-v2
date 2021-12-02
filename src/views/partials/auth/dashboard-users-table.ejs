@@ -30,14 +30,21 @@
         <tbody>
           <tr v-for="user in users" :key="user.id">
             <th scope="row">{{ user.id }}</th>
-            <td class="d-flex">
-              <img
-                width="27"
-                height="27"
-                class="rounded-circle me-1"
-                :src="user.profile_picture_url"
-              />
-              <p>{{ user.name }}</p>
+            <td>
+              <a
+                :href="`/users/${user.username}`"
+                target="_blank"
+                class="d-flex link-dark text-decoration-none"
+              >
+                <img
+                  width="27"
+                  id="navBarProfilePicture"
+                  height="27"
+                  class="rounded-circle me-1"
+                  :src="user.profile_picture_url"
+                />
+                <p>{{ user.name }}</p>
+              </a>
             </td>
             <td>{{ user.email }}</td>
             <td v-if="user.is_client">client</td>
