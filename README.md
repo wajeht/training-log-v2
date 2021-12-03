@@ -5,8 +5,7 @@
   </a>
 </p>
 
-<p align="center">A full-stack web application to log training videos with the respect to your privacy.
-</p>
+<p align="center">A full-stack web application to log training videos with the respect to your privacy.</p>
 
 
 ## Motivation
@@ -27,8 +26,7 @@ https://traininglog.tv/
 <img src="./.github/screenshots/../SCREENSHOTS/home.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/signin.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/user-profile.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/users.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/video.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/videos.png" width="200">
 
 ## Technology
-
-<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> ‎ ‏<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> ‎ ‎ <img src="https://img.shields.io/badge/Docker-0081CB?style=for-the-badge&logo=docker&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/CSS3-239120?&style=for-the-badge&logo=css3&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/bootstrap-7852B3?style=for-the-badge&logo=bootstrap&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/EJS-B4C965?style=for-the-badge&label=<%=&labelColor=A81F50" />‏ ‎ <img src="https://img.shields.io/badge/vuejs-ffffff?style=for-the-badge&logo=vuedotjs&logoColor=41B883" />‏ ‎ <img src="https://img.shields.io/badge/jquery-0969AD?style=for-the-badge&logo=jquery&logoColor=79CFF5" />‏ ‎ <img src="https://img.shields.io/badge/knex-E26326?style=for-the-badge&logo=knexdot.js&labelColor=79CFF5" />‏ ‎
+<p align="center"><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> ‎ ‏<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> ‎ ‎ <img src="https://img.shields.io/badge/Docker-0081CB?style=for-the-badge&logo=docker&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/CSS3-239120?&style=for-the-badge&logo=css3&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/bootstrap-7852B3?style=for-the-badge&logo=bootstrap&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/EJS-B4C965?style=for-the-badge&label=<%=&labelColor=A81F50" />‏ ‎ <img src="https://img.shields.io/badge/vuejs-ffffff?style=for-the-badge&logo=vuedotjs&logoColor=41B883" />‏ ‎ <img src="https://img.shields.io/badge/jquery-0969AD?style=for-the-badge&logo=jquery&logoColor=79CFF5" />‏ ‎ <img src="https://img.shields.io/badge/knex-E26326?style=for-the-badge&logo=knexdot.js&labelColor=79CFF5" />‏ ‎ </p>
 
 
 ## Database configuration
