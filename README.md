@@ -1,13 +1,13 @@
-## training-log-v2
+# training-log-v2
 
 A full-stack web application to log training videos with the respect to your privacy.
 
-# Motivation
+## Motivation
 
 Instagram is the best medium for powerlifters among other social media. Back in the day, YouTube used to be it. Ever since powerlifting has gotten popular, majority of the content usually reside on Instagram.
 Instagram used to be really good before facebook bought it. Now it has gotta a lot worse with unrelated contents. It has also gotten a lot worse on the aspect of privacy. So I decided to ditch Instagram and build my own platform to log my training.
 
-# Demo
+## Demo
 
 I have a live prototype running at the link below.
 
@@ -17,24 +17,11 @@ https://traininglog.tv/
 
 # Screenshot
 
-<img src="./.github/screenshots/../SCREENSHOTS/home.png" width="200">
-<img src="./.github/screenshots/../SCREENSHOTS/signin.png" width="200">
-<img src="./.github/screenshots/../SCREENSHOTS/user-profile.png" width="200">
-<img src="./.github/screenshots/../SCREENSHOTS/users.png" width="200">
-<img src="./.github/screenshots/../SCREENSHOTS/video.png" width="200">
-<img src="./.github/screenshots/../SCREENSHOTS/videos.png" width="200">
+<img src="./.github/screenshots/../SCREENSHOTS/home.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/signin.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/user-profile.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/users.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/video.png" width="200"> <img src="./.github/screenshots/../SCREENSHOTS/videos.png" width="200">
 
 # Technology
 
-<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />‏‎ ‎‏‎
-<img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> ‎‏‎
-<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />‏‎ ‎‏‎
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> ‎
-<img src="https://img.shields.io/badge/Docker-0081CB?style=for-the-badge&logo=docker&logoColor=white" />‏‎ ‎‏‎
-<img src="https://img.shields.io/badge/CSS3-239120?&style=for-the-badge&logo=css3&logoColor=white" />‏‎ ‎‏‎ ‎‏
-<img src="https://img.shields.io/badge/bootstrap-7852B3?style=for-the-badge&logo=bootstrap&logoColor=white" />‏‎
-<img src="https://img.shields.io/badge/EJS-B4C965?style=for-the-badge&label=<%=&labelColor=A81F50" />‏‎ ‎‏‎
-<img src="https://img.shields.io/badge/vuejs-ffffff?style=for-the-badge&logo=vuedotjs&logoColor=41B883" />‏‎ ‎‏‎
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" /> ‎ ‏<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /> ‎ ‎ <img src="https://img.shields.io/badge/Docker-0081CB?style=for-the-badge&logo=docker&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/CSS3-239120?&style=for-the-badge&logo=css3&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/bootstrap-7852B3?style=for-the-badge&logo=bootstrap&logoColor=white" />‏ ‎ <img src="https://img.shields.io/badge/EJS-B4C965?style=for-the-badge&label=<%=&labelColor=A81F50" />‏ ‎ <img src="https://img.shields.io/badge/vuejs-ffffff?style=for-the-badge&logo=vuedotjs&logoColor=41B883" />
 
 # Database configuration
 
