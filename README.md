@@ -1,6 +1,13 @@
-# training-log-v2
+<p align="center">
+  <a href="https://traininglog.tv">
+    <img src="./.github/SCREENSHOTS/logo.png" height="128">
+    <h1 align="center"></h1>
+  </a>
+</p>
 
-A full-stack web application to log training videos with the respect to your privacy.
+<p align="center">A full-stack web application to log training videos with the respect to your privacy.
+</p>
+
 
 ## Motivation
 
