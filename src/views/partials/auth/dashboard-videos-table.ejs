@@ -1,3 +1,8 @@
+<style>
+  a.page-link {
+    display: inline-block;
+  }
+</style>
 <div
   class="tab-pane fade show"
   id="list-videos"
@@ -23,8 +28,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="video in videos" :key="video.id">
+          <tr v-for="video in displayedPosts" :key="video.id">
+            <!-- id -->
             <th scope="row">{{ video.id }}</th>
+
+            <!-- video -->
             <td>
               <a
                 :href="`/videos/${video.id}`"
@@ -52,7 +60,11 @@
                 </div>
               </a>
             </td>
+
+            <!-- date -->
             <td>{{ video.date }}</td>
+
+            <!-- author -->
             <td>
               <a
                 :href="`/users/${video.username}`"
@@ -62,6 +74,8 @@
                 {{ video.username }}
               </a>
             </td>
+
+            <!-- comment -->
             <td>
               <a
                 :href="`/videos/${video.id}/#comment_section`"
@@ -71,6 +85,8 @@
                 {{ video.comment }}
               </a>
             </td>
+
+            <!-- action -->
             <td>
               <a class="btn btn-sm btn-warning me-1" href="#">Edit</a>
               <a class="btn btn-sm btn-danger" href="#">Delete</a>
@@ -78,6 +94,37 @@
           </tr>
         </tbody>
       </table>
+
+      <!-- pagination -->
+      <nav>
+        <ul class="pagination float-end">
+          <li class="page-item">
+            <a type="button" class="page-link" v-if="page != 1" @click="page--">
+              Previous
+            </a>
+          </li>
+          <li class="page-item">
+            <a
+              type="button"
+              class="page-link"
+              v-for="pageNumber in pages.slice(page-1, page+5)"
+              @click="page = pageNumber"
+            >
+              {{ pageNumber }}
+            </a>
+          </li>
+          <li class="page-item">
+            <a
+              type="button"
+              @click="page++"
+              v-if="page < pages.length"
+              class="page-link"
+            >
+              Next
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 
@@ -121,14 +168,46 @@
   Vue.createApp({
     data() {
       return {
-        videos: [],
+        posts: [],
+        page: 1,
+        perPage: 9,
+        pages: [],
       };
+    },
+    methods: {
+      setPages() {
+        let numberOfPages = Math.ceil(this.posts.length / this.perPage);
+        for (let index = 1; index <= numberOfPages; index++) {
+          this.pages.push(index);
+        }
+      },
+      paginate(posts) {
+        let page = this.page;
+        let perPage = this.perPage;
+        let from = page * perPage - perPage;
+        let to = page * perPage;
+        return posts.slice(from, to);
+      },
+    },
+    computed: {
+      displayedPosts() {
+        return this.paginate(this.posts);
+      },
+    },
+    watch: {
+      posts() {
+        this.setPages();
+      },
     },
     async created() {
       const res = await fetch("/videos.json");
       const data = await res.json();
-      this.videos = data;
-      console.log(this.videos);
+      this.posts = data;
+    },
+    filters: {
+      trimWords(value) {
+        return value.split(" ").splice(0, 20).join(" ") + "...";
+      },
     },
   }).mount("#list-videos");
 </script>
