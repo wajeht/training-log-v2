@@ -91,4 +91,4 @@ Contributions are what make the open source community such an amazing place to b
 
 ## License
 
-Distributed under the MIT License © [wajeht](https://wwwdocs.com/wajeht/). See LICENSE for more information.
+Distributed under the MIT License © [wajeht](https://www.github.com/wajeht/). See LICENSE for more information.
