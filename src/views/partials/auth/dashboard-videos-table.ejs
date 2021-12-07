@@ -1,6 +1,23 @@
 <style>
-  a.page-link {
-    display: inline-block;
+  /* -------------------- pagination -------------------- */
+  .page-link {
+    background-color: white;
+    color: #212529;
+    cursor: pointer;
+  }
+
+  .page-link:hover {
+    color: #5a5a5a;
+    background-color: #eee;
+    border-color: #ddd;
+    cursor: pointer;
+  }
+
+  .page-item.active .page-link {
+    color: white;
+    background-color: #212529 !important;
+    border: solid 1px #212529 !important;
+    cursor: pointer;
   }
 </style>
 <div
@@ -99,27 +116,25 @@
       <nav>
         <ul class="pagination float-end">
           <li class="page-item">
-            <a type="button" class="page-link" v-if="page != 1" @click="page--">
-              Previous
-            </a>
+            <a class="page-link" v-if="page != 1" @click="page--"> Previous </a>
           </li>
+
+          <div v-for="(pageNumber,i) in pages.slice(page-1, page+5)">
+            <li v-if="i == 0" class="page-item active">
+              <a class="page-link" @click="page = pageNumber">
+                {{ pageNumber }}
+              </a>
+            </li>
+
+            <li v-else class="page-item">
+              <a class="page-link" @click="page = pageNumber">
+                {{ pageNumber }}
+              </a>
+            </li>
+          </div>
+
           <li class="page-item">
-            <a
-              type="button"
-              class="page-link"
-              v-for="pageNumber in pages.slice(page-1, page+5)"
-              @click="page = pageNumber"
-            >
-              {{ pageNumber }}
-            </a>
-          </li>
-          <li class="page-item">
-            <a
-              type="button"
-              @click="page++"
-              v-if="page < pages.length"
-              class="page-link"
-            >
+            <a @click="page++" v-if="page < pages.length" class="page-link">
               Next
             </a>
           </li>
