@@ -80,6 +80,24 @@
       <h5 class="card-title mb-3">Edit profile</h5>
 
       <form id="edit-profile-form">
+        <!-- is_client == true -->
+        <div v-if="user.is_client" class="form-floating mb-3">
+          <select class="form-select" id="is_client" name="is_client">
+            <option value="true" selected>yes</option>
+            <option value="false">no</option>
+          </select>
+          <label for="floatingSelect">Client status</label>
+        </div>
+
+        <!-- is_client == false -->
+        <div v-else class="form-floating mb-3">
+          <select class="form-select" id="is_client" name="is_client">
+            <option value="true">yes</option>
+            <option value="false" selected>no</option>
+          </select>
+          <label for="floatingSelect">Client status</label>
+        </div>
+
         <!-- Name -->
         <div class="form-floating mb-3">
           <input

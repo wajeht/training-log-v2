@@ -7,7 +7,11 @@
   <div class="card shadow-sm mb-3">
     <div class="card-body">
       <h5 class="card-title mb-3">Videos</h5>
-      <table class="table">
+      <table
+        id="videos-dashboard"
+        class="table table-striped"
+        style="width: 100%"
+      >
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -124,6 +128,7 @@
       const res = await fetch("/videos.json");
       const data = await res.json();
       this.videos = data;
+      console.log(this.videos);
     },
   }).mount("#list-videos");
 </script>

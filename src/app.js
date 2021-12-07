@@ -43,7 +43,7 @@ app.use(
   })
 );
 
-// app.use(morgan("combined"));
+app.use(morgan("dev"));
 app.use(compression());
 
 app.use(express.json());
