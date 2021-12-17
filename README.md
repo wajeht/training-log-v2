@@ -7,9 +7,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://traininglog.tv/) ![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
 
-
-
-<p align="center">A full-stack web application to log training videos with the respect to your privacy.</p>
+A full-stack web application to log training videos with the respect to your privacy.
 
 ## Motivation
 
