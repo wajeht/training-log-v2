@@ -6,11 +6,9 @@
   </h1>
 </p>
 
-<center>
-
+<p align="center">
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-</center>
+</p>
 
 <p align="center">A full-stack web application to log training videos with the respect to your privacy.</p>
 
