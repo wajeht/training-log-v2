@@ -8,6 +8,7 @@
     "dev": "nodemon bin/server.js",
     "start": "node bin/server.js",
     "clean": "bash bin/clean-data.sh && npm run cleandb",
+    "make-folders": "bash bin/make-folders.sh",
     "cleandb": "npm run rollback && npm run migrate:latest",
     "restartdb": "npm run clean && npm run dev",
     "rollback": "knex migrate:rollback --knexfile=./db/knexfile.js",
