@@ -168,15 +168,12 @@ const deleteVideo = async (req, res) => {
       throw new Error("not authorized!");
     }
 
-    console.log("#####################");
-    const doneDeletingLocalFiles = await deleteLocalVideo(videoId);
-
-    console.log(doneDeletingLocalFiles);
-
     const deleted = await Video.deleteVideoWithVideoIdAndUserId(
       videoId,
       userId
     );
+
+    const doneDeletingLocalFiles = await deleteLocalVideo(videoId);
 
     if (!deleted || !doneDeletingLocalFiles) {
       throw new Error("Something went wrong with your request!");
