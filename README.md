@@ -74,10 +74,11 @@ ADMIN='youremail@domain.com'
 0. `git clone https://github.com/wajeht/training-log-v2.git` to download this repo
 1. `npm run configure` to to set up database and table
 2. `npm install` to install npm packages
-3. `npm run cleandb` to to setup database migration
-4. `npm run dev` to launch the app in dev environment
-5. `npm run start` to launch the app
-6. visit `localhost:6969` or whatever port you set in the browser to visit the site
+3. `npm install` to install npm packages
+4. `npm run cleandb` to to setup database migration
+5. `npm run dev` to launch the app in dev environment
+6. `npm run start` to launch the app
+7. visit `localhost:6969` or whatever port you set in the browser to visit the site
 
 ## Contribute
 
