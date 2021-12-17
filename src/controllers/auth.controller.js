@@ -1,5 +1,6 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
+const db = require("../../db/db.js");
 
 /**
  * Signin page.
@@ -56,7 +57,7 @@ const getForgetPassword = (req, res, next) => {
  */
 const postLogin = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, remember } = req.body;
     const [doesUserExist] = await User.getCheckToSeeUserExistWithAnEmail(email);
 
     // if user does not exist
@@ -75,6 +76,21 @@ const postLogin = async (req, res, next) => {
       req.session.isLoggedIn = true;
       req.session.user = doesUserExist;
       req.session.save();
+
+
+      // TODO: refactor in to separate function
+      // grab sessionID so we can increase cookie expiration to higher date
+      const sessionID = req.session.id;
+
+      // tomorrow date
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      if (typeof remember == "" && remember == "on") {
+        db.update({ expired: tomorrow })
+          .from("sessions")
+          .where({ sid: sessionID });
+      }
 
       return res.redirect(`/users/${req.session.user.username}`);
     }
