@@ -6,10 +6,11 @@
   </h1>
 </p>
 
-<center>
+<p align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://traininglog.tv/) ![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
-</center>
+
+</p>
 
 <p align="center">A full-stack web application to log training videos with the respect to your privacy.</p>
 
@@ -94,6 +95,10 @@ Contributions are what make the open source community such an amazing place to b
 3. Commit your Changes (git commit -m 'Add some AmazingFeature')
 4. Push to the Branch (git push origin feature/AmazingFeature)
 5. Open a Pull Request
+
+## CODE OF CONDUCT
+
+See docs/code_of_conduct.md
 
 ## License
 
