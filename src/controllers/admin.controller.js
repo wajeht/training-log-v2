@@ -5,11 +5,11 @@ const Comment = require("../models/comment.model.js");
 const fs = require("fs");
 const path = require("path");
 
-const { root } = require("../../util/directory.js");
-const { takeScreenshot } = require("../../util/take-screenshot.js");
-const { minifyImage } = require("../../util/minify-image.js");
-const { deleteLocalVideo } = require("../../util/delete-video.js");
-const { deleteAllUserVideos } = require("../../util/delete-video.js");
+const { root } = require("../../utils/directory.js");
+const { takeScreenshot } = require("../../utils/take-screenshot.js");
+const { minifyImage } = require("../../utils/minify-image.js");
+const { deleteLocalVideo } = require("../../utils/delete-video.js");
+const { deleteAllUserVideos } = require("../../utils/delete-video.js");
 const config = require("../../config/config.js");
 
 const bcrypt = require("bcryptjs");

@@ -1,5 +1,5 @@
 const path = require("path");
-const { root } = require("../util/directory.js");
+const { root } = require("../utils/directory.js");
 
 require("dotenv").config({
   path: path.join(root, ".env"),

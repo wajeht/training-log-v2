@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { root } = require("../util/directory.js");
+const { root } = require("../utils/directory.js");
 
 const Video = require("../src/models/video.model.js");
 const User = require("../src/models/user.model.js");

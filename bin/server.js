@@ -6,7 +6,7 @@ const error = chalk.black.bgRed;
 const success = chalk.black.bgGreen;
 
 const { setUpAdminAccount } = require("../utils/setup-admin.js");
-const { testDatabaseConnection, checkForDatabase } = require("../util/test-database-connection.js");
+const { testDatabaseConnection, checkForDatabase } = require("../utils/test-database-connection.js");
 const { port, database, admin: adminEmail } = require("../config/config.js");
 
 // starting server

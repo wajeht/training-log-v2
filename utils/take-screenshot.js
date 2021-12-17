@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { root } = require("../util/directory.js");
+const { root } = require("../utils/directory.js");
 const ffmpeg = require("fluent-ffmpeg");
 
 const takeScreenshot = async (videoPath) => {
