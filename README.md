@@ -98,7 +98,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## CODE OF CONDUCT
 
-See docs/code_of_conduct.md
+See [docs/code_of_conduct.md](./docs/code_of_conduct.md)
 
 ## License
 
