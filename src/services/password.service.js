@@ -1,5 +1,6 @@
 class PasswordService {
-  #mixedCharacter = "abcdefghijklmnopqrstuvwxyz!@#$%^&*-.ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+  #mixedCharacter =
+    "abcdefghijklmnopqrstuvwxyz!@#$%^&*-.ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   #length = 14;
   #uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   #lowercase = "abcdefghijklmnopqrstuvwxyz";
@@ -63,4 +64,4 @@ class PasswordService {
   }
 }
 
-module.exports = new PasswordService();
+module.exports = PasswordService;

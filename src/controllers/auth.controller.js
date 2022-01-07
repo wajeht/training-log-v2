@@ -1,6 +1,8 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 const db = require("../../db/db.js");
+const PasswordService = require("../services/password.service.js");
+const BcryptService = require("../services/bcrypt.services.js");
 
 /**
  * Signin page.
@@ -52,6 +54,26 @@ const getForgetPassword = (req, res, next) => {
 };
 
 /**
+ * Send a post request from forget password page.
+ * @route POST /forget-password
+ */
+const postForgetPassword = async (req, res, next) => {
+  const { email } = req.body;
+
+  try {
+    const userExist = await User.getCheckToSeeUserExistWithAnEmail(email);
+    if (!userExist.length ) {
+      req.flash("error", "check your email again!");
+      return res.redirect("/forget-password");
+    }
+    // const newGeneratedPassword = new PasswordService().getPassword();
+    // const hashPassword = await BcryptService.hashPassword(newGeneratedPassword);
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
  * Send a post req from login page
  * @route post /login
  */
@@ -76,7 +98,6 @@ const postLogin = async (req, res, next) => {
       req.session.isLoggedIn = true;
       req.session.user = doesUserExist;
       req.session.save();
-
 
       // TODO: refactor in to separate function
       // grab sessionID so we can increase cookie expiration to higher date
@@ -154,6 +175,7 @@ const postSignup = async (req, res, next) => {
 module.exports = {
   getSignin,
   getSignup,
+  postForgetPassword,
   getForgetPassword,
   postLogin,
   postLogout,
