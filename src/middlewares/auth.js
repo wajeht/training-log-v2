@@ -1,8 +1,15 @@
 const User = require("../models/user.model.js");
 
 const localVariables = async (req, res, next) => {
+  const authMessages = {
+    error: req.flash("error"),
+    success: req.flash("success"),
+    warning: req.flash("warning"),
+  };
+
   res.locals.csrfToken = req.csrfToken();
   res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.authMessages = authMessages;
 
   let user;
 

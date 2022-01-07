@@ -9,16 +9,11 @@ const BcryptService = require("../services/bcrypt.services.js");
  * @route GET /signin
  */
 const getSignin = (req, res, next) => {
-  const authMessages = {
-    error: req.flash("error"),
-    success: req.flash("success"),
-    warning: req.flash("warning"),
-  };
+
 
   try {
     res.render("pages/auth/signin.ejs", {
       pageTitle: "TrainingLog: Signin",
-      authMessages,
     });
   } catch (err) {
     next(err);
@@ -68,6 +63,9 @@ const postForgetPassword = async (req, res, next) => {
     }
     // const newGeneratedPassword = new PasswordService().getPassword();
     // const hashPassword = await BcryptService.hashPassword(newGeneratedPassword);
+
+    req.flash("success", "Check your email for new password!");
+    return res.redirect('/signin')
   } catch (err) {
     next(err);
   }
