@@ -1,18 +1,21 @@
 <% if (authMessages.error != '') { %>
-  <div class="alert alert-danger" role="alert">
+  <div class="alert alert-danger d-flex justify-content-between" role="alert">
     <%= authMessages.error%>
+    <span onclick="removeAlertBox()" style="cursor: pointer;">X</span>
   </div>
 <% } %>
 
 <% if (authMessages.success != '') { %>
-  <div class="alert alert-success" role="alert">
+  <div class="alert alert-success d-flex justify-content-between" role="alert">
     <%= authMessages.success%>
+    <span onclick="removeAlertBox()" style="cursor: pointer;">X</span>
   </div>
 <% } %>
 
 <% if (authMessages.warning != '') { %>
-  <div class="alert alert-warning" role="alert">
+  <div class="alert alert-warning d-flex justify-content-between" role="alert">
     <%= authMessages.warning%>
+    <span onclick="removeAlertBox()" style="cursor: pointer;">X</span>
   </div>
 <% } %>
 
