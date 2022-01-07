@@ -8,6 +8,7 @@ const {
   getSignin,
   getSignup,
   getForgetPassword,
+  postForgetPassword,
 } = require("../controllers/auth.controller.js");
 
 const { isLoggedIn } = require("../middlewares/auth.js");
@@ -15,6 +16,7 @@ const { isLoggedIn } = require("../middlewares/auth.js");
 router.get("/signin", isLoggedIn, getSignin);
 router.get("/signup", isLoggedIn, getSignup);
 router.get("/forget-password", isLoggedIn, getForgetPassword);
+router.post("/forget-password", isLoggedIn, postForgetPassword);
 
 router.post("/login", isLoggedIn, postLogin);
 router.post("/logout", postLogout);
