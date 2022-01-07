@@ -2,15 +2,26 @@ const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 const db = require("../../db/db.js");
 const PasswordService = require("../services/password.service.js");
-const BcryptService = require("../services/bcrypt.services.js");
+
+const nodemailer = require("nodemailer");
+const config = require("../../config/config.js");
+
+const smtpConfig = {
+  host: config.email.host,
+  port: config.email.port,
+  secure: config.email.secure,
+  auth: {
+    user: config.email.auth_user,
+    pass: config.email.auth_pass,
+  },
+};
+const transporter = nodemailer.createTransport(smtpConfig);
 
 /**
  * Signin page.
  * @route GET /signin
  */
 const getSignin = (req, res, next) => {
-
-
   try {
     res.render("pages/auth/signin.ejs", {
       pageTitle: "TrainingLog: Signin",
@@ -57,15 +68,38 @@ const postForgetPassword = async (req, res, next) => {
 
   try {
     const userExist = await User.getCheckToSeeUserExistWithAnEmail(email);
-    if (!userExist.length ) {
+    const { id, name } = userExist[0];
+
+    if (!userExist.length) {
       req.flash("error", "check your email again!");
       return res.redirect("/forget-password");
     }
-    // const newGeneratedPassword = new PasswordService().getPassword();
-    // const hashPassword = await BcryptService.hashPassword(newGeneratedPassword);
+
+    const newGeneratedPassword = new PasswordService().getPassword();
+    const hashedPassword = await bcrypt.hash(newGeneratedPassword, 14);
+    const updatePassword = await User.updateChangePassword(id, hashedPassword);
+
+    if (!updatePassword) {
+      throw new Error("something went wrong updating your password");
+    }
+
+    transporter.sendMail({
+      to: `${email}`,
+      from: `${name} <${config.sendGrid.fromEmail}>`,
+      subject: `Password reset from traininglog.tv's`,
+      html: `
+		<p>Hello ${name},</p>
+    <br>
+		<p>You've request to reset for a new password. Please login to update using your temporary password!</p>
+		<p>Temporary password: ${newGeneratedPassword}</p>
+    <br>
+		<p>Thanks,</p>
+		<p>Jaw</p>
+		`,
+    });
 
     req.flash("success", "Check your email for new password!");
-    return res.redirect('/signin')
+    return res.redirect("/signin");
   } catch (err) {
     next(err);
   }
