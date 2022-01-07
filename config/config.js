@@ -31,4 +31,5 @@ module.exports = {
   },
   env: process.env.NODE_ENV,
   admin: process.env.ADMIN,
+  salt: process.env.SALT,
 };
