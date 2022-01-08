@@ -1,4 +1,5 @@
 const User = require("../models/user.model.js");
+const { env } = require("../../config/config.js");
 
 const localVariables = async (req, res, next) => {
   const authMessages = {
@@ -10,6 +11,7 @@ const localVariables = async (req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   res.locals.isAuthenticated = req.session.isLoggedIn;
   res.locals.authMessages = authMessages;
+  res.locals.env = env;
 
   let user;
 
