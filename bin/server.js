@@ -8,6 +8,7 @@ const success = chalk.black.bgGreen;
 const { setUpAdminAccount } = require("../utils/setup-admin.js");
 const { testDatabaseConnection, checkForDatabase } = require("../utils/test-database-connection.js");
 const { port, database, admin: adminEmail } = require("../config/config.js");
+const messageHandler = require("../src/sockets/message.handler.js");
 
 // starting server
 (async () => {
@@ -17,7 +18,22 @@ const { port, database, admin: adminEmail } = require("../config/config.js");
     const setupAdmin = await setUpAdminAccount(adminEmail);
 
     const app = require("../src/app.js");
-    app.listen(port);
+
+    // -------------------- socket io starts --------------------
+    const http = require("http");
+    const server = http.createServer(app);
+    const { Server } = require("socket.io");
+    const io = require("socket.io")(server);
+
+    const init = (socket) => {
+      console.log("Initialized socket.io!");
+      messageHandler(io, socket);
+    };
+
+    io.on("connection", init);
+    // -------------------- socket io ends --------------------
+
+    server.listen(port);
 
     log(success(`Server started on http://localhost:${port}`));
     log();
