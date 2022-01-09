@@ -1,29 +1,65 @@
-<section id="inbox" class="px-4 py-5">
+<section id="inbox" class="px-4 py-5" v-cloak>
   <div class="container">
     <div class="row gy-3 position-relative">
-      <!-- Account settings -->
+      <!-- current users to chat -->
       <div class="col-12 col-md-4 col-lg-4">
-        <div class="card shadow-sm">
+        <div v-if="currentUsersTab" class="card shadow-sm">
           <div class="list-group" id="list-tab" role="tablist">
             <div class="card-body">
               <h5 class="card-title mb-3 d-flex justify-content-between">
-                Inbox <span>+</span>
+                Inbox
+                <a @click="showAddUserTab">+</a>
               </h5>
-              <div>
-                <input
-                  list="ice-cream-flavors"
-                  id="ice-cream-choice"
-                  name="ice-cream-choice"
-                />
-                <datalist id="ice-cream-flavors">
-                  <option value="Chocolate"></option>
-                  <option value="Coconut"></option>
-                  <option value="Mint"></option>
-                  <option value="Strawberry"></option>
-                  <option value="Vanilla"></option>
-                </datalist>
-              </div>
             </div>
+            <a
+              class="list-group-item list-group-item-action"
+              href="#message"
+              role="tab"
+              data-bs-toggle="list"
+              v-for="user in messageUsersList"
+              ><div class="d-flex">
+                <img
+                  width="27.203"
+                  height="27"
+                  class="rounded-circle me-2"
+                  :src="user.profile_picture_url"
+                />
+                {{ user.name }}
+              </div></a
+            >
+
+            <div
+              class="list-group-item d-flex justify-content-center align-items-center"
+              v-if="messageUsersList.length == 0"
+              style="height: 755px"
+            >
+              + to message user
+            </div>
+          </div>
+        </div>
+
+        <!-- chose which user to message -->
+        <div v-if="addUserTab" class="card shadow-sm">
+          <div class="list-group" id="list-tab" role="tablist">
+            <div class="card-body">
+              <h5 class="card-title mb-3" @click="hideAddUserTab"><</h5>
+            </div>
+            <a
+              class="list-group-item list-group-item-action"
+              href="#"
+              role="tab"
+              v-for="user in users"
+            >
+              <div class="d-flex" @click="addToMessageUsersList(user)">
+                <img
+                  width="27.203"
+                  height="27"
+                  class="rounded-circle me-2"
+                  :src="user.profile_picture_url"
+                />
+                {{ user.name }}
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -31,12 +67,32 @@
       <div class="col-12 col-md-8 col-lg-8">
         <div class="tab-content" id="nav-tabContent">
           <div
-            class="tab-pane fade show active"
-            id="list-home"
+            class="tab-pane fade show card shadow-sm active"
+            id="message"
             role="tabpanel"
-            aria-labelledby="list-home-list"
           >
-            ...
+            <div class="card-body">
+              <h5 class="card-title mb-3">Delete account</h5>
+              <div>
+                <div class="bg-light border" style="height: 700px"></div>
+                <div class="input-group input-group-lg mt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="message..."
+                    aria-label="message..."
+                    aria-describedby="button-addon2"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    id="button-addon2"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -48,7 +104,11 @@
   Vue.createApp({
     data() {
       return {
+        users: <%- JSON.stringify(users) %>, // make sure inside is single quote
         onlineUsers: [],
+        messageUsersList: [],
+        addUserTab: false,
+        currentUsersTab: true,
       };
     },
     created() {
@@ -56,9 +116,18 @@
       socket.emit("chat message", "<%= locals.user.name %>");
     },
     methods: {
-      say() {
-        console.log("hello world");
+      showAddUserTab() {
+        this.addUserTab = true;
+        this.currentUsersTab = false;
       },
+      hideAddUserTab() {
+        this.addUserTab = false;
+        this.currentUsersTab = true;
+      },
+      addToMessageUsersList(user) {
+        this.messageUsersList.push(user);
+        this.hideAddUserTab();
+      }
     },
   }).mount("#inbox");
 </script>

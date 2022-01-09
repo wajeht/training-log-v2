@@ -280,14 +280,16 @@ const getDashboard = (req, res, next) => {
  * Get inbox page
  * @route GET /inbox
  */
-const getInbox = (req, res, next) => {
+const getInbox = async (req, res, next) => {
   try {
+    const users = await User.getUsers();
     // if (!req.session.user.is_admin) {
     //   return next(new Error("you are not authorized"));
     // }
 
     res.render("pages/auth/inbox.ejs", {
       pageTitle: "TrainingLog: Inbox",
+      users,
     });
   } catch (err) {
     next(err);
