@@ -8,9 +8,9 @@
         <h1 class="fw-bold">500</h1>
         <h2><%= error.message %></h2>
         <% if (locals.env == 'development') { %>
-          <pre class="text-start"><%= error.stack %> </pre>
+        <pre class="text-start"><%= error.stack %> </pre>
         <% } else { %>
-          <p class="text-start text-center"><%= error.stack %> </p>
+        <p class="text-start text-center"><%= error.stack %></p>
         <% } %>
       </div>
     </div>

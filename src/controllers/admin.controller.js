@@ -485,7 +485,9 @@ const postDeleteAccount = async (req, res, next) => {
     const samePassword = await bcrypt.compare(password, user.password);
 
     if (!samePassword) {
-      throw new Error("wrong password!");
+      req.flash("error", "Wrong password");
+      return res.redirect("/settings#list-delete-account");
+      // throw new Error("wrong password!");
     }
 
     const doneDeletingLocalFiles = await deleteAllUserVideos(user.id);
