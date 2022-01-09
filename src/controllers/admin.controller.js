@@ -7,7 +7,7 @@ const path = require("path");
 
 const { root } = require("../../utils/directory.js");
 const { takeScreenshot } = require("../../utils/take-screenshot.js");
-const { minifyImage } = require("../../utils/minify-image.js");
+// const { minifyImage } = require("../../utils/minify-image.js");
 const { deleteLocalVideo } = require("../../utils/delete-video.js");
 const { deleteAllUserVideos } = require("../../utils/delete-video.js");
 const config = require("../../config/config.js");
@@ -27,7 +27,7 @@ const postVideo = async (req, res, next) => {
 
     const screenshotUrl = await takeScreenshot(video);
 
-    const minifyScreenshotUrl = await minifyImage(screenshotUrl);
+    // const minifyScreenshotUrl = await minifyImage(screenshotUrl);
 
     let inserted = await Video.postAVideo(
       date,
