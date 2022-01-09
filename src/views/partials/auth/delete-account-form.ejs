@@ -2,12 +2,14 @@
   class="tab-pane fade show card shadow-sm"
   id="list-delete-account"
   role="tabpanel"
-  aria-labelledby="list-home-list"
 >
   <div class="card-body">
     <h5 class="card-title mb-3">Delete account</h5>
+
+    <!-- error message -->
+    <%- include('../auth/auth-messages.ejs') %>
+
     <form action="/settings/delete-account" method="post">
-      
       <!-- user id -->
       <input type="hidden" id="id" name="id" value="<%= userDetails.id %>" />
 
