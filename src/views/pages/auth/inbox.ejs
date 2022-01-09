@@ -1,4 +1,4 @@
-<section class="px-4 py-5">
+<section id="inbox" class="px-4 py-5">
   <div class="container">
     <div class="row gy-3 position-relative">
       <!-- Account settings -->
@@ -6,7 +6,23 @@
         <div class="card shadow-sm">
           <div class="list-group" id="list-tab" role="tablist">
             <div class="card-body">
-              <h5 class="card-title mb-3">Inbox</h5>
+              <h5 class="card-title mb-3 d-flex justify-content-between">
+                Inbox <span>+</span>
+              </h5>
+              <div>
+                <input
+                  list="ice-cream-flavors"
+                  id="ice-cream-choice"
+                  name="ice-cream-choice"
+                />
+                <datalist id="ice-cream-flavors">
+                  <option value="Chocolate"></option>
+                  <option value="Coconut"></option>
+                  <option value="Mint"></option>
+                  <option value="Strawberry"></option>
+                  <option value="Vanilla"></option>
+                </datalist>
+              </div>
             </div>
           </div>
         </div>
@@ -27,3 +43,22 @@
     </div>
   </div>
 </section>
+<script src="/scripts/lib/socket.io.min.js"></script>
+<script>
+  Vue.createApp({
+    data() {
+      return {
+        onlineUsers: [],
+      };
+    },
+    created() {
+      const socket = io();
+      socket.emit("chat message", "<%= locals.user.name %>");
+    },
+    methods: {
+      say() {
+        console.log("hello world");
+      },
+    },
+  }).mount("#inbox");
+</script>

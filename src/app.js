@@ -36,14 +36,18 @@ const store = new KnexSessionStore({
 const csurf = require("csurf");
 var csrfProtection = csurf({ cookie: false });
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(
   helmet({
     contentSecurityPolicy: false,
   })
 );
 
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 app.use(compression());
 
 app.use(express.json());
