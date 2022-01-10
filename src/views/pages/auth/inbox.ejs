@@ -3,21 +3,34 @@
     <div class="row gy-3 position-relative">
       <!-- current users to chat -->
       <div class="col-12 col-md-4 col-lg-4">
-        <div v-if="currentUsersTab" class="card shadow-sm">
+        <div
+          v-if="currentUsersTab"
+          class="card shadow-sm"
+          style="height: 805px; overflow: auto; position: relative"
+        >
           <div class="list-group" id="list-tab" role="tablist">
-            <div class="card-body">
-              <h5 class="card-title mb-3 d-flex justify-content-between">
-                Inbox
-                <a @click="showAddUserTab">+</a>
-              </h5>
+            <div
+              style="position: sticky; top: 0; z-index: 1"
+              class="bg-white border-bottom shadow-sm"
+            >
+              <div class="card-body">
+                <h5 class="card-title mb-3 d-flex justify-content-between">
+                  Inbox
+                  <button class="btn btn-primary" @click="showAddUserTab()">
+                    +
+                  </button>
+                </h5>
+              </div>
             </div>
+
+            <!-- user -->
             <a
               class="list-group-item list-group-item-action"
               href="#message"
               role="tab"
               data-bs-toggle="list"
               v-for="user in messageUsersList"
-              ><div class="d-flex">
+              ><div class="d-flex" @click="openCurrentChat(user)">
                 <img
                   width="27.203"
                   height="27"
@@ -27,14 +40,6 @@
                 {{ user.name }}
               </div></a
             >
-
-            <div
-              class="list-group-item d-flex justify-content-center align-items-center"
-              v-if="messageUsersList.length == 0"
-              style="height: 755px"
-            >
-              + to message user
-            </div>
           </div>
         </div>
 
@@ -42,7 +47,11 @@
         <div v-if="addUserTab" class="card shadow-sm">
           <div class="list-group" id="list-tab" role="tablist">
             <div class="card-body">
-              <h5 class="card-title mb-3" @click="hideAddUserTab"><</h5>
+              <h5 class="card-title mb-3" @click="hideAddUserTab">
+                <button class="btn btn-primary" @click="showAddUserTab">
+                  <
+                </button>
+              </h5>
             </div>
             <a
               class="list-group-item list-group-item-action"
@@ -72,7 +81,7 @@
             role="tabpanel"
           >
             <div class="card-body">
-              <h5 class="card-title mb-3">Delete account</h5>
+              <h5 class="card-title mb-3">{{ currentChat.name }}</h5>
               <div>
                 <div class="bg-light border" style="height: 700px"></div>
                 <div class="input-group input-group-lg mt-2">
@@ -109,6 +118,7 @@
         messageUsersList: [],
         addUserTab: false,
         currentUsersTab: true,
+        currentChat: '',
       };
     },
     created() {
@@ -127,7 +137,10 @@
       addToMessageUsersList(user) {
         this.messageUsersList.push(user);
         this.hideAddUserTab();
-      }
+      },
+      openCurrentChat(user) {
+        this.currentChat = user;
+      },
     },
   }).mount("#inbox");
 </script>
