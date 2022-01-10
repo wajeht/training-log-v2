@@ -16,7 +16,7 @@
               <div class="card-body">
                 <h5 class="card-title mb-3 d-flex justify-content-between">
                   Inbox
-                  <button class="btn btn-primary" @click="showAddUserTab()">
+                  <button class="btn btn-dark" @click="showAddUserTab()">
                     +
                   </button>
                 </h5>
@@ -25,11 +25,11 @@
 
             <!-- user -->
             <a
-              class="list-group-item list-group-item-action"
-              href="#message"
+              :href="currentChat.name + '#message'"
               role="tab"
               data-bs-toggle="list"
-              v-for="user in messageUsersList"
+              v-for="(user, index) in messageUsersList"
+              :class="index == 0 ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action' "
               ><div class="d-flex" @click="openCurrentChat(user)">
                 <img
                   width="27.203"
@@ -47,19 +47,22 @@
         <div v-if="addUserTab" class="card shadow-sm">
           <div class="list-group" id="list-tab" role="tablist">
             <div class="card-body">
-              <h5 class="card-title mb-3" @click="hideAddUserTab">
-                <button class="btn btn-primary" @click="showAddUserTab">
+              <h5 class="card-title mb-3" @click="hideAddUserTab()">
+                <button class="btn btn-dark" @click="showAddUserTab()">
                   <
                 </button>
               </h5>
             </div>
             <a
               class="list-group-item list-group-item-action"
-              href="#"
+              style="cursor: pointer"
               role="tab"
               v-for="user in users"
             >
-              <div class="d-flex" @click="addToMessageUsersList(user)">
+              <div
+                class="d-flex"
+                @click="addToMessageUsersList(user); openCurrentChat(user)"
+              >
                 <img
                   width="27.203"
                   height="27"
@@ -77,13 +80,25 @@
         <div class="tab-content" id="nav-tabContent">
           <div
             class="tab-pane fade show card shadow-sm active"
-            id="message"
+            :id="currentChat.name + '#message'"
             role="tabpanel"
           >
-            <div class="card-body">
-              <h5 class="card-title mb-3">{{ currentChat.name }}</h5>
+            <div
+              v-if="currentChat"
+              class="card-body d-flex flex-column"
+              style="height: 805px; width: auto"
+            >
+              <h5 class="card-title mb-3">
+                {{ currentChat.name }}
+              </h5>
+
+              <div
+                class="border flex-grow-1 bg-light"
+                style="height: 100%"
+              ></div>
+
+              <!-- send  -->
               <div>
-                <div class="bg-light border" style="height: 700px"></div>
                 <div class="input-group input-group-lg mt-2">
                   <input
                     type="text"
@@ -92,15 +107,18 @@
                     aria-label="message..."
                     aria-describedby="button-addon2"
                   />
-                  <button
-                    class="btn btn-primary"
-                    type="button"
-                    id="button-addon2"
-                  >
+                  <button class="btn btn-dark" type="button" id="button-addon2">
                     Send
                   </button>
                 </div>
               </div>
+            </div>
+            <div
+              v-else
+              class="card-body d-flex justify-content-center align-items-center text-muted"
+              style="height: 805px"
+            >
+              <p>empty</p>
             </div>
           </div>
         </div>
@@ -135,7 +153,7 @@
         this.currentUsersTab = true;
       },
       addToMessageUsersList(user) {
-        this.messageUsersList.push(user);
+        this.messageUsersList.unshift(user);
         this.hideAddUserTab();
       },
       openCurrentChat(user) {
