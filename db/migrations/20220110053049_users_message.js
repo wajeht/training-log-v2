@@ -1,6 +1,5 @@
 exports.up = (knex) => {
   return knex.schema.createTable("users_message", (table) => {
-    table.string("message").notNullable();
     table
       .integer("sender_id")
       .references("id")

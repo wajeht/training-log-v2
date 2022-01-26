@@ -6,10 +6,7 @@
   data-bs-keyboard="false"
   tabindex="-1"
 >
-  <div
-    style="margin: 0 <%= pageTitle == 'TrainingLog: Videos' ? '35px' :  '25px' %>;"
-    class="modal-dialog modal-dialog-centered mx-sm-auto mx-md-auto mx-lg-auto"
-  >
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
         <div>
@@ -27,7 +24,11 @@
             value="<%= csrfToken %>"
           />
           <!-- button -->
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-outline-dark"
+            data-bs-dismiss="modal"
+          >
             No
           </button>
           <button

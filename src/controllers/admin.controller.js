@@ -282,7 +282,11 @@ const getDashboard = (req, res, next) => {
  */
 const getInbox = async (req, res, next) => {
   try {
-    const users = await User.getUsers();
+    let users = await User.getUsers();
+    const currentUser = req.session.user;
+
+    users = users.filter((u) => u.id != currentUser.id); // dont' bring yourself as a user
+
     // if (!req.session.user.is_admin) {
     //   return next(new Error("you are not authorized"));
     // }
