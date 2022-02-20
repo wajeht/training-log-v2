@@ -16,7 +16,7 @@
               <div class="card-body">
                 <h5 class="card-title mb-3 d-flex justify-content-between">
                   Inbox
-                  <button class="btn btn-dark" @click="showAddUserTab()">
+                  <button  :class="AddToMessageButtonStyle" @click="showAddUserTab()">
                     +
                   </button>
                 </h5>
@@ -160,5 +160,10 @@
         this.currentChat = user;
       },
     },
+    computed: {
+      AddToMessageButtonStyle() {
+        return this.users.length ? 'btn btn-dark' : 'btn btn-dark disabled';
+      }
+    }
   }).mount("#inbox");
 </script>

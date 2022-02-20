@@ -68,12 +68,13 @@ const postForgetPassword = async (req, res, next) => {
 
   try {
     const userExist = await User.getCheckToSeeUserExistWithAnEmail(email);
-    const { id, name } = userExist[0];
 
     if (!userExist.length) {
       req.flash("error", "check your email again!");
       return res.redirect("/forget-password");
     }
+
+    const { id, name } = userExist[0];
 
     const newGeneratedPassword = new PasswordService().getPassword();
     const hashedPassword = await bcrypt.hash(newGeneratedPassword, 14);

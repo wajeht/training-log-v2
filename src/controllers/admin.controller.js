@@ -1,6 +1,7 @@
 const Video = require("../models/video.model.js");
 const User = require("../models/user.model.js");
 const Comment = require("../models/comment.model.js");
+const Message = require("../models/message.model.js");
 
 const fs = require("fs");
 const path = require("path");
@@ -287,9 +288,11 @@ const getInbox = async (req, res, next) => {
 
     users = users.filter((u) => u.id != currentUser.id); // dont' bring yourself as a user
 
-    // if (!req.session.user.is_admin) {
-    //   return next(new Error("you are not authorized"));
-    // }
+    // const j = await Message.send("what are you doing?", 1, 3);
+    // const s = await Message.send("nothing munch", 3, 1);
+
+    const r = await Message.get(1, 3);
+    console.log(r);
 
     res.render("pages/auth/inbox.ejs", {
       pageTitle: "TrainingLog: Inbox",
@@ -497,9 +500,11 @@ const postDeleteAccount = async (req, res, next) => {
     }
 
     const doneDeletingLocalFiles = await deleteAllUserVideos(user.id);
-    const doneDeletingVideoDatabase = await Video.deleteAllUserVideosWithUserId(
+    const doneDeletingVideoDatabxwase = await Video.deleteAllUserVideosWithUserId(
       user.id
     );
+
+
 
     if (!doneDeletingVideoDatabase || !doneDeletingLocalFiles) {
       throw new Error("something went wrong while deleting your videos!");
