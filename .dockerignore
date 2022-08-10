@@ -3,3 +3,11 @@
 node_modules/
 data/
 /data
+.github
+.vscode
+data
+.editorconfig
+.env.example
+.eslintrc.json
+README.md
+LICENSE
