@@ -20,7 +20,7 @@ Instagram used to be really good before facebook bought it. Now it has gotta a l
 I have a live prototype running at the link below.
 
 ```
-https://training-log-v2.jaw.dev.
+https://training-log-v2.jaw.dev/
 ```
 
 ## 🖼️ Screenshot
