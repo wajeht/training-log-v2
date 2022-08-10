@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon bin/server.js",
-    "start": "node bin/server.js",
+    "start": "npm run make-folders && npm run restartdb && node bin/server.js",
     "clean": "bash bin/clean-data.sh && npm run cleandb",
     "update": "bash bin/update.sh",
     "make-folders": "bash bin/make-folders.sh",
