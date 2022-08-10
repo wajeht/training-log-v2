@@ -6,6 +6,10 @@
 
 A full-stack web application to log training videos with the respect to your privacy.
 
+## ⚠️ Depreciated
+
+This codebase is no longer actively maintained. The package will continue working, but support and changes are no longer provided.
+
 ## 💪 Motivation
 
 Instagram is the best medium for powerlifters among other social media. Back in the day, YouTube used to be it. Ever since powerlifting has gotten popular, majority of the content usually reside on Instagram.
