@@ -36,10 +36,11 @@ const postVideo = async (req, res, next) => {
       userId
     );
 
-    const [id] = inserted;
+    const [{ id }] = inserted;
 
     // this 1 sec will let the screenshot to generate
     // and minify the image before redirecting
+
     setTimeout(() => {
       res.redirect(`/videos/${id}`);
     }, 1000);
@@ -110,8 +111,6 @@ const updateVideo = async (req, res, next) => {
 
       video = videoDetails.video_url;
       screenshotUrl = videoDetails.screenshot_url;
-
-      console.log("##########", "not picked");
     }
 
     isUpdated = await Video.putUpdateVideo(
