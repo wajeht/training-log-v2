@@ -9,7 +9,7 @@
     "start": "npm run make-folders && npm run restartdb && node bin/server.js",
     "clean": "sh bin/clean-data.sh && npm run cleandb",
     "update": "sh bin/update.sh",
-    "make-folders": "bash bin/make-folders.sh",
+    "make-folders": "sh bin/make-folders.sh",
     "cleandb": "npm run rollback && npm run migrate:latest",
     "restartdb": "npm run clean && npm run dev",
     "rollback": "knex migrate:rollback --knexfile=./db/knexfile.js",
