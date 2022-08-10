@@ -100,7 +100,7 @@ const updateVideo = async (req, res, next) => {
     if (req.file) {
       video = `/${req.file.path}`;
       screenshotUrl = await takeScreenshot(video);
-      const minifyScreenshotUrl = await minifyImage(screenshotUrl);
+      // const minifyScreenshotUrl = await minifyImage(screenshotUrl);
 
       const doneDeletingLocalFiles = await deleteLocalVideo(video_id);
 
@@ -500,11 +500,8 @@ const postDeleteAccount = async (req, res, next) => {
     }
 
     const doneDeletingLocalFiles = await deleteAllUserVideos(user.id);
-    const doneDeletingVideoDatabxwase = await Video.deleteAllUserVideosWithUserId(
-      user.id
-    );
-
-
+    const doneDeletingVideoDatabxwase =
+      await Video.deleteAllUserVideosWithUserId(user.id);
 
     if (!doneDeletingVideoDatabase || !doneDeletingLocalFiles) {
       throw new Error("something went wrong while deleting your videos!");
