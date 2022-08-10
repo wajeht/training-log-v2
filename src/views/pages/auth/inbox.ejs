@@ -3,20 +3,13 @@
     <div class="row gy-3 position-relative">
       <!-- current users to chat -->
       <div class="col-12 col-md-4 col-lg-4">
-        <div
-          v-if="currentUsersTab"
-          class="card shadow-sm"
-          style="height: 805px; overflow: auto; position: relative"
-        >
+        <div v-if="currentUsersTab" class="card shadow-sm" style="height: 805px; overflow: auto; position: relative">
           <div class="list-group" id="list-tab" role="tablist">
-            <div
-              style="position: sticky; top: 0; z-index: 1"
-              class="bg-white border-bottom shadow-sm"
-            >
+            <div style="position: sticky; top: 0; z-index: 1" class="bg-white border-bottom shadow-sm">
               <div class="card-body">
                 <h5 class="card-title mb-3 d-flex justify-content-between">
                   Inbox
-                  <button  :class="AddToMessageButtonStyle" @click="showAddUserTab()">
+                  <button :class="AddToMessageButtonStyle" @click="showAddUserTab()">
                     +
                   </button>
                 </h5>
@@ -24,22 +17,14 @@
             </div>
 
             <!-- user -->
-            <a
-              :href="currentChat.name + '#message'"
-              role="tab"
-              data-bs-toggle="list"
+            <a :href="currentChat.name + '#message'" role="tab" data-bs-toggle="list"
               v-for="(user, index) in messageUsersList"
-              :class="index == 0 ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action' "
-              ><div class="d-flex" @click="openCurrentChat(user)">
-                <img
-                  width="27.203"
-                  height="27"
-                  class="rounded-circle me-2"
-                  :src="user.profile_picture_url"
-                />
+              :class="index == 0 ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action' ">
+              <div class="d-flex" @click="openCurrentChat(user)">
+                <img width="27.203" height="27" class="rounded-circle me-2" :src="user.profile_picture_url" />
                 {{ user.name }}
-              </div></a
-            >
+              </div>
+            </a>
           </div>
         </div>
 
@@ -49,26 +34,12 @@
             <div class="card-body">
               <h5 class="card-title mb-3" @click="hideAddUserTab()">
                 <button class="btn btn-dark" @click="showAddUserTab()">
-                  <
-                </button>
+                  < </button>
               </h5>
             </div>
-            <a
-              class="list-group-item list-group-item-action"
-              style="cursor: pointer"
-              role="tab"
-              v-for="user in users"
-            >
-              <div
-                class="d-flex"
-                @click="addToMessageUsersList(user); openCurrentChat(user)"
-              >
-                <img
-                  width="27.203"
-                  height="27"
-                  class="rounded-circle me-2"
-                  :src="user.profile_picture_url"
-                />
+            <a class="list-group-item list-group-item-action" style="cursor: pointer" role="tab" v-for="user in users">
+              <div class="d-flex" @click="addToMessageUsersList(user); openCurrentChat(user)">
+                <img width="27.203" height="27" class="rounded-circle me-2" :src="user.profile_picture_url" />
                 {{ user.name }}
               </div>
             </a>
@@ -78,46 +49,27 @@
 
       <div class="col-12 col-md-8 col-lg-8">
         <div class="tab-content" id="nav-tabContent">
-          <div
-            class="tab-pane fade show card shadow-sm active"
-            :id="currentChat.name + '#message'"
-            role="tabpanel"
-          >
-            <div
-              v-if="currentChat"
-              class="card-body d-flex flex-column"
-              style="height: 805px; width: auto"
-            >
+          <div class="tab-pane fade show card shadow-sm active" :id="currentChat.name + '#message'" role="tabpanel">
+            <div v-if="currentChat" class="card-body d-flex flex-column" style="height: 805px; width: auto">
               <h5 class="card-title mb-3">
                 {{ currentChat.name }}
               </h5>
 
-              <div
-                class="border flex-grow-1 bg-light"
-                style="height: 100%"
-              ></div>
+              <div class="border flex-grow-1 bg-light" style="height: 100%"></div>
 
               <!-- send  -->
               <div>
                 <div class="input-group input-group-lg mt-2">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="message..."
-                    aria-label="message..."
-                    aria-describedby="button-addon2"
-                  />
+                  <input type="text" class="form-control" placeholder="message..." aria-label="message..."
+                    aria-describedby="button-addon2" />
                   <button class="btn btn-dark" type="button" id="button-addon2">
                     Send
                   </button>
                 </div>
               </div>
             </div>
-            <div
-              v-else
-              class="card-body d-flex justify-content-center align-items-center text-muted"
-              style="height: 805px"
-            >
+            <div v-else class="card-body d-flex justify-content-center align-items-center text-muted"
+              style="height: 805px">
               <p>empty</p>
             </div>
           </div>
@@ -131,7 +83,7 @@
   Vue.createApp({
     data() {
       return {
-        users: <%- JSON.stringify(users) %>, // make sure inside is single quote
+        users: '<%- JSON.stringify(users) %>', // make sure inside is single quote
         onlineUsers: [],
         messageUsersList: [],
         addUserTab: false,
