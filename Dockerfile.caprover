@@ -9,7 +9,7 @@ RUN npm install
 RUN apk update
 RUN apk add
 RUN apk add ffmpeg
-RUN apk --no-cache add curl
+RUN apk add curl
 
 COPY ./ .
 
