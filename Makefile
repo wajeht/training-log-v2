@@ -1,10 +1,10 @@
 all: dropdb createdb
 
 dropdb:
-	dropdb -U node_user traininglog;
+	dropdb -U username database;
 
 createdb:
-	createdb -U node_user traininglog;
+	createdb -U username database;
 
 build:
 	docker build -t training-log-v2-web .
