@@ -13,9 +13,9 @@ const messageHandler = require("../src/sockets/message.handler.js");
 // starting server
 (async () => {
   try {
-    const isConnection = await testDatabaseConnection();
+    // const isConnection = await testDatabaseConnection();
     // const databaseExist = await checkForDatabase(database.database);
-    const setupAdmin = await setUpAdminAccount(adminEmail);
+    // const setupAdmin = await setUpAdminAccount(adminEmail);
 
     const app = require("../src/app.js");
 
