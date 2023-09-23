@@ -5,3 +5,5 @@
 ./bin/make-folders.sh
 
 npm run cleandb
+
+npm run start
