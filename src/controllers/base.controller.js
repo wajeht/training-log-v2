@@ -140,6 +140,21 @@ const getAbout = (req, res, next) => {
   }
 };
 
+/**
+ * About page.
+ * @route GET /about
+ */
+const getHealthCheck = (req, res, next) => {
+  try {
+    res.json({
+      message: "ok",
+      date: new Date(),
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getIndex,
   getContact,
@@ -148,4 +163,5 @@ module.exports = {
   getAbout,
   getTerms,
   getPrivacy,
+  getHealthCheck,
 };
