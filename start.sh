@@ -1,7 +1,7 @@
 #!/bin/bash
 
-bash ./bin/clean-data.sh
+./bin/clean-data.sh
 
-bash ./bin/make-folders.sh
+./bin/make-folders.sh
 
 npm run cleandb
