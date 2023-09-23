@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
     ports:
-      - 5432:5432
+      - '5432:5432'
     networks:
       - training-log-v2-app
     volumes:
@@ -21,7 +21,7 @@ services:
       dockerfile: ./Dockerfile.dev
     stdin_open: true
     ports:
-      - "8085:8085"
+      - '8085:8085'
     networks:
       - training-log-v2-app
     depends_on:
