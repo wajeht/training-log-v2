@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
 const chalk = require("chalk");
+const util = require('util');
+const exec = require('child_process').exec
 const log = console.log;
 const error = chalk.black.bgRed;
 const success = chalk.black.bgGreen;
+const shell = util.promisify(exec);
 
 const { setUpAdminAccount } = require("../utils/setup-admin.js");
 const { testDatabaseConnection, checkForDatabase } = require("../utils/test-database-connection.js");
@@ -15,7 +18,10 @@ const messageHandler = require("../src/sockets/message.handler.js");
   try {
     const isConnection = await testDatabaseConnection();
     const databaseExist = await checkForDatabase(database.database);
-    // const setupAdmin = await setUpAdminAccount(adminEmail);
+
+    await shell('npm run cleandb');
+
+    const setupAdmin = await setUpAdminAccount(adminEmail);
 
     const app = require("../src/app.js");
 
