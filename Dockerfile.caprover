@@ -17,4 +17,4 @@ EXPOSE 8085
 
 HEALTHCHECK CMD curl -f http://localhost:8085/health-check || exit 1
 
-CMD ["npm", "run" "start"]
+CMD ["npm", "run", "start"]
