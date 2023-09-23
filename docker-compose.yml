@@ -4,22 +4,24 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: ${DB_DATABASE}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: database
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
     ports:
-      - ${DB_PORT}:${DB_PORT}
+      - 5432:5432
     networks:
       - training-log-v2-app
     volumes:
       - postgres-data:/data/postgres
-      
+
   web:
     image: training-log-v2-web
-    build: ./
+    build:
+      context: ./
+      dockerfile: ./Dockerfile.dev
     stdin_open: true
     ports:
-      - "3000:3000"
+      - "8085:8085"
     networks:
       - training-log-v2-app
     depends_on:
