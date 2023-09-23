@@ -15,6 +15,6 @@ COPY ./ .
 
 EXPOSE 8085
 
-HEALTHCHECK CMD curl -f http://localhost:8085/health-check || exit 1
+# HEALTHCHECK CMD curl -f http://localhost:8085/health-check || exit 1
 
 CMD ["start.sh"]
